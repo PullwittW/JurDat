@@ -17,10 +17,11 @@ class CaseViewModel: ObservableObject {
     
     
     // URL-Cases: https://de.openlegaldata.io/api/cases/
+    // Complete URL: https://de.openlegaldata.io/api/cases/?court=1&court__jurisdiction=&court__level_of_appeal=&court__slug=&court__state=&date_after=&date_before=&ecli=&file_number=&has_reference_to_law=&page=2&slug=
     
     func loadNewCases() {
         Task {
-            let url = URL(string: "https://de.openlegaldata.io/api/cases/?ordering=-date")!
+            let url = URL(string: "https://de.openlegaldata.io/api/cases/?ordering=-date&page_size=100")!
             do {
                 let (data, response) = try await URLSession.shared.data(from: url)
                 if 200..<300 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
@@ -36,5 +37,23 @@ class CaseViewModel: ObservableObject {
         }
     }
     
+    func formattedDate(dateString: String) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd" // Das Eingabeformat
+            if let date = dateFormatter.date(from: dateString) {
+                dateFormatter.dateFormat = "dd.MM.yyyy" // Das Ausgabeformat
+                return dateFormatter.string(from: date)
+            } else {
+                return "Ungültiges Datum"
+            }
+        }
+    
+    func filterCases(searchText: String) -> [Case] {
+        if searchText.isEmpty {
+                    return newCases
+                } else {
+                    return newCases.filter { $0.fileNumber.contains(searchText) }
+                }
+    }
     
 }

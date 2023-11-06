@@ -20,6 +20,7 @@ struct HomeView: View {
                     .fontWeight(.bold)
             
                 Spacer()
+                
                 Image("profilePicture")
                     .resizable()
                     .scaledToFill()
@@ -27,7 +28,9 @@ struct HomeView: View {
                     .cornerRadius(20)
             }
             
-            CaseHeader()
+            CaseHeader(headerCaseName: "XYZ/23 Petra Klaus")
+            
+            Spacer()
             
         }
         .padding()
@@ -36,7 +39,7 @@ struct HomeView: View {
 
 struct CaseHeader: View {
     
-    let headerCaseName: String = "XYZ/23 Klaus"
+    let headerCaseName: String
     
     var body: some View {
         VStack {
