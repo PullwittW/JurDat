@@ -32,23 +32,23 @@ struct singleCaseView: View {
     let caseItem: Case
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(caseItem.fileNumber)
-                .font(.title2)
-                .fontWeight(.bold)
+        ZStack {
+            RoundedRectangle(cornerRadius: 15)
+                .stroke()
+                .padding(5)
             
-            Text(caseItem.court.name)
-            
-            Text(caseItem.type)
+            VStack(alignment: .leading) {
+                Text(caseItem.fileNumber)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                
+                Text(caseItem.court.name)
+                    .fontWeight(.semibold)
+                
+                Text(caseItem.type)
+            }
+            .padding()
         }
-        .frame(width: .infinity, height: 100)
-        .padding()
-        .background {
-                RoundedRectangle(cornerRadius: 15)
-                    .stroke()
-        }
-        .padding(.vertical, 5)
-        .padding(.horizontal, 5)
     }
 }
 
