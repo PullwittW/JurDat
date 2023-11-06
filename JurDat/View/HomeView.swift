@@ -10,44 +10,43 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var vm = CaseViewModel()
+    @State var userName = "Wangu"
     
     var body: some View {
         VStack {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack{
-                    ForEach(vm.newCases) { newCase in
-                        singleCaseView(caseItem: newCase)
-                    }
-                }
+            HStack {
+                Text("Hi, \(userName)")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+            
+                Spacer()
+                Image("profilePicture")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 70, height: 70)
+                    .cornerRadius(20)
             }
+            
+            CaseHeader()
+            
         }
-        .onAppear {
-            vm.loadNewCases()
-        }
+        .padding()
     }
 }
 
-struct singleCaseView: View {
+struct CaseHeader: View {
     
-    let caseItem: Case
+    let headerCaseName: String = "XYZ/23 Klaus"
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 15)
-                .stroke()
-                .padding(5)
-            
-            VStack(alignment: .leading) {
-                Text(caseItem.fileNumber)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                
-                Text(caseItem.court.name)
-                    .fontWeight(.semibold)
-                
-                Text(caseItem.type)
+        VStack {
+            HStack {
+                Text(headerCaseName)
+                    .font(.title3)
+                    .fontWeight(.medium)
+                Spacer()
             }
-            .padding()
+            Divider()
         }
     }
 }

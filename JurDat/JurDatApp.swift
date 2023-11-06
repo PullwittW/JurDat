@@ -11,10 +11,19 @@ import SwiftUI
 struct JurDatApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .preferredColorScheme(.light)
-//            LogInView()
-//                .preferredColorScheme(.light)
+            TabView {
+                HomeView()
+                    .preferredColorScheme(.light)
+                    .tabItem {
+                        Image(systemName: "house")
+                    }
+                
+                SearchPage()
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                    }
+            }
+            
         }
     }
 }
