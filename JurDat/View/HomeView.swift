@@ -12,16 +12,18 @@ struct HomeView: View {
     @StateObject var vm = CaseViewModel()
     
     var body: some View {
-        ScrollView(.vertical) {
-            VStack{
-                ForEach(vm.newCases) { newCase in
-                    singleCaseView(caseItem: newCase)
+        VStack {
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack{
+                    ForEach(vm.newCases) { newCase in
+                        singleCaseView(caseItem: newCase)
+                    }
                 }
             }
         }
-        .onAppear(perform: {
+        .onAppear {
             vm.loadNewCases()
-        })
+        }
     }
 }
 
@@ -30,22 +32,23 @@ struct singleCaseView: View {
     let caseItem: Case
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 15)
+        VStack(alignment: .leading) {
+            Text(caseItem.fileNumber)
+                .font(.title2)
+                .fontWeight(.bold)
             
-            VStack {
-                HStack {
-                    Text(caseItem.fileNumber)
-                    
-                    Text(caseItem.court.name)
-                }
-                
-                Text(caseItem.type)
-            }
-            .background {
-                RoundedRectangle(cornerRadius: 15)
-            }
+            Text(caseItem.court.name)
+            
+            Text(caseItem.type)
         }
+        .frame(width: .infinity, height: 100)
+        .padding()
+        .background {
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke()
+        }
+        .padding(.vertical, 5)
+        .padding(.horizontal, 5)
     }
 }
 
