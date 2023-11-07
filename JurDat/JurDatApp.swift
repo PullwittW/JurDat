@@ -23,10 +23,10 @@ struct JurDatApp: App {
                         Image(systemName: "magnifyingglass")
                     }
                 
-                LawsOverviewView()
-                    .tabItem {
-                        Image("lawBookIcon")
-                    }
+//                LawsOverviewView()
+//                    .tabItem {
+//                        Image("lawBookIcon")
+//                    }
             }
             
         }

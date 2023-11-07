@@ -14,6 +14,7 @@
 		726357C82AF99496006E8AA7 /* CaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C72AF99496006E8AA7 /* CaseModel.swift */; };
 		726357CA2AF9A03E006E8AA7 /* LawBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C92AF9A03E006E8AA7 /* LawBookViewModel.swift */; };
 		726357CC2AF9A0E9006E8AA7 /* LawBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357CB2AF9A0E9006E8AA7 /* LawBookModel.swift */; };
+		726357CE2AFAAF94006E8AA7 /* lawsuitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357CD2AFAAF94006E8AA7 /* lawsuitModel.swift */; };
 		72D8B2EB2AF2ADAD0030770A /* JurDatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8B2EA2AF2ADAD0030770A /* JurDatApp.swift */; };
 		72D8B2EF2AF2ADB00030770A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D8B2EE2AF2ADB00030770A /* Assets.xcassets */; };
 		72D8B2F22AF2ADB00030770A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D8B2F12AF2ADB00030770A /* Preview Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		726357C72AF99496006E8AA7 /* CaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseModel.swift; sourceTree = "<group>"; };
 		726357C92AF9A03E006E8AA7 /* LawBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawBookViewModel.swift; sourceTree = "<group>"; };
 		726357CB2AF9A0E9006E8AA7 /* LawBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawBookModel.swift; sourceTree = "<group>"; };
+		726357CD2AFAAF94006E8AA7 /* lawsuitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lawsuitModel.swift; sourceTree = "<group>"; };
 		72D8B2E72AF2ADAD0030770A /* JurDat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JurDat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72D8B2EA2AF2ADAD0030770A /* JurDatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JurDatApp.swift; sourceTree = "<group>"; };
 		72D8B2EE2AF2ADB00030770A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				726357CB2AF9A0E9006E8AA7 /* LawBookModel.swift */,
 				72D8B3052AF2AF3C0030770A /* UserModel.swift */,
 				726357C72AF99496006E8AA7 /* CaseModel.swift */,
+				726357CD2AFAAF94006E8AA7 /* lawsuitModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				726357CA2AF9A03E006E8AA7 /* LawBookViewModel.swift in Sources */,
 				726357C12AF924C0006E8AA7 /* SearchPage.swift in Sources */,
 				72D8B2FC2AF2AE250030770A /* LogInView.swift in Sources */,
+				726357CE2AFAAF94006E8AA7 /* lawsuitModel.swift in Sources */,
 				72D8B2EB2AF2ADAD0030770A /* JurDatApp.swift in Sources */,
 				726357C62AF98D16006E8AA7 /* LawsOverviewView.swift in Sources */,
 				72D8B3042AF2AE9D0030770A /* CourtModel.swift in Sources */,

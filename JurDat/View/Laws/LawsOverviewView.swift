@@ -10,48 +10,73 @@ import SwiftUI
 struct LawsOverviewView: View {
     
     @StateObject var vm = LawBookViewModel()
+    @State private var searchText: String = ""
     
     var body: some View {
-        VStack(spacing: 10) {
-            
-            HStack {
-                lawBooksFavorites(lawBookName: "Bürgerliches Gesetzbuch")
-                lawBooksFavorites(lawBookName: "Grundgesetz")
+        NavigationStack {
+            VStack {
+                HStack {
+                    lawBooksFavorites(lawBookName: "BGB")
+                    lawBooksFavorites(lawBookName: "GG")
+                }
+                HStack {
+                    lawBooksFavorites(lawBookName: "StpO")
+                    lawBooksFavorites(lawBookName: "StGB")
+                }
+                
+                if vm.lawBooks.isEmpty {
+                    VStack {
+                        ProgressView()
+                    }
+                    .padding()
+                } else {
+                    ScrollView {
+                        ForEach(vm.filterLawBooks(searchText: searchText)) { book in
+                            lawBooks(lawBook: book)
+                        }
+                    }
+                    .padding()
+                }
+                Spacer()
             }
-            
-            HStack {
-                lawBooksFavorites(lawBookName: "Bürgerliches Gesetzbuch")
-                lawBooksFavorites(lawBookName: "Bürgerliches Gesetzbuch")
-            }
-            
-            
-            ScrollView {
-                ForEach(vm.lawBooks) { book in
-                    Text(book.title)
+            .navigationTitle("Gesetze")
+            .searchable(text: $searchText, prompt: "Suche nach Gesetzen")
+            .onAppear {
+//                vm.loadLawBooks()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                    print(vm.lawBooks)
                 }
             }
-        }
-        .onAppear {
-            vm.loadLawBooks()
         }
     }
 }
 
 struct lawBooksFavorites: View {
-    
     var lawBookName: String
-    
     var body: some View {
         VStack {
             Text(lawBookName)
-                .padding(5)
-                .background {
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke()
-                        .frame(height: 50)
-            }
+                .font(.title3)
+                .padding()
+            Divider()
         }
-        .padding(10)
+        .padding(.horizontal)
+    }
+}
+
+struct lawBooks: View {
+    
+    let lawBook: LawBook
+    
+    var body: some View {
+        VStack {
+            Text(lawBook.title ?? "")
+                .font(.title2)
+            .fontWeight(.bold)
+            
+            Divider()
+        }
+        .padding()
     }
 }
 

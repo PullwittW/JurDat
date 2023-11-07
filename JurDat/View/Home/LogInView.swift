@@ -13,7 +13,7 @@ struct LogInView: View {
     @State var userPassword: String = ""
     
     var body: some View {
-        ZStack {
+        VStack {
             cicleView
         }
         .offset(y: 250)

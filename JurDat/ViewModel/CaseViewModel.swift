@@ -11,7 +11,76 @@ import SwiftUI
 @MainActor
 class CaseViewModel: ObservableObject {
     
-    @Published var newCases: [Case] = []
+    @Published var lawsuits: [lawsuit] = [
+        lawsuit(lawsuitName: "Favoriten", mandateName: nil, fileNumbers: [])
+    ]
+    
+    @Published var newCases: [Case] = [
+        Case(id: 1,
+             slug: "lg-koln-2029-11-13-84-o-24918",
+             court: Court(id: 812,
+                          name: "Landgericht Köln",
+                          slug: "lg-koln",
+                          city: 446,
+                          state: 12,
+                          jurisdiction: "Ordentliche Gerichtsbarkeit",
+                          levelOfAppeal: "Landgericht"),
+             fileNumber: "84 O 249/18",
+             date: "2029-11-13",
+             createdDate: "2020-02-06T11:01:05Z",
+             updatedDate: "2020-12-10T13:50:38Z",
+             type: "Urteil",
+             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
+             content: ""),
+        Case(id: 2,
+             slug: "lg-koln-2029-11-13-84-o-24918",
+             court: Court(id: 812,
+                          name: "Landgericht Köln",
+                          slug: "lg-koln",
+                          city: 446,
+                          state: 12,
+                          jurisdiction: "Ordentliche Gerichtsbarkeit",
+                          levelOfAppeal: "Landgericht"),
+             fileNumber: "S 46 AS 2230/15",
+             date: "2029-11-13",
+             createdDate: "2020-02-06T11:01:05Z",
+             updatedDate: "2020-12-10T13:50:38Z",
+             type: "Urteil",
+             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
+             content: ""),
+        Case(id: 3,
+             slug: "lg-koln-2029-11-13-84-o-24918",
+             court: Court(id: 812,
+                          name: "Landgericht Köln",
+                          slug: "lg-koln",
+                          city: 446,
+                          state: 12,
+                          jurisdiction: "Ordentliche Gerichtsbarkeit",
+                          levelOfAppeal: "Landgericht"),
+             fileNumber: "12 Sa 347/21",
+             date: "2029-11-13",
+             createdDate: "2020-02-06T11:01:05Z",
+             updatedDate: "2020-12-10T13:50:38Z",
+             type: "Urteil",
+             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
+             content: ""),
+        Case(id: 4,
+             slug: "lg-koln-2029-11-13-84-o-24918",
+             court: Court(id: 812,
+                          name: "Landgericht Köln",
+                          slug: "lg-koln",
+                          city: 446,
+                          state: 12,
+                          jurisdiction: "Ordentliche Gerichtsbarkeit",
+                          levelOfAppeal: "Landgericht"),
+             fileNumber: "131 C 134/20",
+             date: "2029-11-13",
+             createdDate: "2020-02-06T11:01:05Z",
+             updatedDate: "2020-12-10T13:50:38Z",
+             type: "Urteil",
+             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
+             content: "")
+    ]
     
     static let APIKey = "d90efaba4ab6b4d0ccbaf0cc2c58fb6e97769dbe"
     

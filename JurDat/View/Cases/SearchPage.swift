@@ -24,8 +24,13 @@ struct SearchPage: View {
                 }
             }
             .searchable(text: $searchText, prompt: "Suche nach Urteilen")
+            .navigationTitle("Urteile")
+            .navigationBarBackButtonHidden(true)
             .onAppear {
-                vm.loadNewCases()
+//                vm.loadNewCases()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                    print(vm.newCases)
+                }
             }
         }
     }
@@ -61,8 +66,6 @@ struct singleCaseView: View {
             Divider()
                 
         }
-        .navigationTitle("Suche")
-        .navigationBarBackButtonHidden(true)
         .padding()
     }
 }

@@ -17,10 +17,11 @@ struct LawBookResult: Codable {
 
 // MARK: - LawBook
 struct LawBook: Codable, Identifiable {
-    let id: String = UUID().uuidString
-    let code, slug, title, revisionDate: String
-    let latest: Bool
-    let order: Int
+    let id: Int
+    let code, slug: String
+    let title, revisionDate: String?
+    let latest: Bool?
+    let order: Int?
 
     enum CodingKeys: String, CodingKey {
         case id, code, slug, title

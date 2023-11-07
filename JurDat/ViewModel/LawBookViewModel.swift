@@ -12,7 +12,7 @@ class LawBookViewModel: ObservableObject {
     
     @Published var lawBooks: [LawBook] = []
     
-    // URL: https://de.openlegaldata.io/api/law_books/?slug=&code=&latest=true&revision_date=
+    // URL: https://de.openlegaldata.io/api/law_books/?slug=&code=&latest=true
     
     func loadLawBooks() {
         Task {
@@ -27,6 +27,16 @@ class LawBookViewModel: ObservableObject {
                 
             } catch {
                 print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func filterLawBooks(searchText: String) -> [LawBook] {
+        if searchText.isEmpty {
+            return lawBooks
+        } else {
+            return lawBooks.filter {
+                $0.title!.contains(searchText)
             }
         }
     }
