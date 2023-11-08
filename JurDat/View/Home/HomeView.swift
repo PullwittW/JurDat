@@ -9,24 +9,16 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @StateObject var vm = CaseViewModel()
+    @StateObject private var vm = CaseViewModel()
     @State var userName = "Wangu"
+    @State private var suitSheet: Bool = false
+    @State private var newSuitSheet: Bool = false
+    @State var newSuitName: String = ""
+    @State var newSuitDescription: String = ""
     
     var body: some View {
         VStack {
-            HStack {
-                Text("Hi, \(userName)")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-            
-                Spacer()
-                
-                Image("profilePicture")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 55, height: 55)
-                    .cornerRadius(20)
-            }
+            homeHeader
             
             ScrollView {
                 ForEach(vm.lawsuits) { suit in
@@ -46,11 +38,31 @@ struct HomeView: View {
             
         }
         .padding()
+        .sheet(isPresented: $suitSheet, content: {
+            suitSheetView
+                .presentationDetents([.height(UIScreen.main.bounds.height*0.15)])
+        })
+    }
+    
+    var homeHeader: some View {
+        HStack {
+            Text("Hi, \(userName)")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+        
+            Spacer()
+            
+            Image("profilePicture")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 55, height: 55)
+                .cornerRadius(20)
+        }
     }
     
     var plusButton: some View {
         ZStack {
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+            Button(action: {suitSheet.toggle()}, label: {
                 ZStack {
                     Circle()
                         .fill(.accent)
@@ -61,6 +73,46 @@ struct HomeView: View {
             })
             .frame(width: 60, height: 60)
         }
+    }
+    
+    var suitSheetView: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Neuen Fall hinzufügen")
+                .onTapGesture {newSuitSheet.toggle()}
+            
+            Divider()
+            Text("Alle Fälle ansehen")
+        }
+        .font(.headline)
+        .padding()
+        .sheet(isPresented: $newSuitSheet, content: {
+            newSuitSheetView
+                .presentationDetents([.medium])
+        })
+    }
+    
+    var newSuitSheetView: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                Spacer()
+                Button(action: {
+                    vm.lawsuits.append(lawsuit(lawsuitName: newSuitName, mandateName: newSuitDescription, fileNumbers: []))
+                    newSuitName = ""
+                    newSuitDescription = ""
+                    suitSheet = false
+                    newSuitSheet = false
+                }, label: {
+                    Text("Erstellen")
+                })
+            }
+            TextField("Neuen Fall anlegen", text: $newSuitName)
+                .font(.headline)
+            Divider()
+            TextField("Mandaten, Beschreibung, etc. hinzufügen", text: $newSuitDescription, axis: .vertical)
+            
+            Spacer()
+        }
+        .padding()
     }
 }
 

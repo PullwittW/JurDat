@@ -15,6 +15,7 @@
 		726357CA2AF9A03E006E8AA7 /* LawBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C92AF9A03E006E8AA7 /* LawBookViewModel.swift */; };
 		726357CC2AF9A0E9006E8AA7 /* LawBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357CB2AF9A0E9006E8AA7 /* LawBookModel.swift */; };
 		726357CE2AFAAF94006E8AA7 /* lawsuitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357CD2AFAAF94006E8AA7 /* lawsuitModel.swift */; };
+		726357D02AFB85BF006E8AA7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 726357CF2AFB85BF006E8AA7 /* Launch Screen.storyboard */; };
 		72D8B2EB2AF2ADAD0030770A /* JurDatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8B2EA2AF2ADAD0030770A /* JurDatApp.swift */; };
 		72D8B2EF2AF2ADB00030770A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D8B2EE2AF2ADB00030770A /* Assets.xcassets */; };
 		72D8B2F22AF2ADB00030770A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D8B2F12AF2ADB00030770A /* Preview Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		726357C92AF9A03E006E8AA7 /* LawBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawBookViewModel.swift; sourceTree = "<group>"; };
 		726357CB2AF9A0E9006E8AA7 /* LawBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawBookModel.swift; sourceTree = "<group>"; };
 		726357CD2AFAAF94006E8AA7 /* lawsuitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lawsuitModel.swift; sourceTree = "<group>"; };
+		726357CF2AFB85BF006E8AA7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		72D8B2E72AF2ADAD0030770A /* JurDat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JurDat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72D8B2EA2AF2ADAD0030770A /* JurDatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JurDatApp.swift; sourceTree = "<group>"; };
 		72D8B2EE2AF2ADB00030770A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,8 +61,6 @@
 		726357C22AF98CC2006E8AA7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				72D8B2FB2AF2AE250030770A /* LogInView.swift */,
-				72D8B2FD2AF2AE2E0030770A /* SignInView.swift */,
 				72D8B2FF2AF2AE360030770A /* HomeView.swift */,
 			);
 			path = Home;
@@ -123,6 +123,9 @@
 		72D8B2F82AF2ADDD0030770A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				726357CF2AFB85BF006E8AA7 /* Launch Screen.storyboard */,
+				72D8B2FB2AF2AE250030770A /* LogInView.swift */,
+				72D8B2FD2AF2AE2E0030770A /* SignInView.swift */,
 				726357C22AF98CC2006E8AA7 /* Home */,
 				726357C32AF98CC9006E8AA7 /* Cases */,
 				726357C42AF98CE4006E8AA7 /* Laws */,
@@ -209,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				726357D02AFB85BF006E8AA7 /* Launch Screen.storyboard in Resources */,
 				72D8B2F22AF2ADB00030770A /* Preview Assets.xcassets in Resources */,
 				72D8B2EF2AF2ADB00030770A /* Assets.xcassets in Resources */,
 			);
@@ -371,9 +375,12 @@
 				DEVELOPMENT_TEAM = DCLZM878SK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = JurDat.;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -400,9 +407,12 @@
 				DEVELOPMENT_TEAM = DCLZM878SK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = JurDat.;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
