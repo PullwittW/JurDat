@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct PlusButton: View {
+    @Binding var suitSheet: Bool
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Button(action: {suitSheet.toggle()}, label: {
+                ZStack {
+                    Circle()
+                        .fill(.accent)
+                    Image(systemName: "plus")
+                        .foregroundStyle(.white)
+                        .fontWeight(.bold)
+                }
+            })
+            .frame(width: 60, height: 60)
+        }
     }
-}
-
-#Preview {
-    PlusButton()
 }

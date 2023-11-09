@@ -43,9 +43,9 @@ struct LawsOverviewView: View {
             .searchable(text: $searchText, prompt: "Suche nach Gesetzen")
             .onAppear {
 //                vm.loadLawBooks()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                    print(vm.lawBooks)
-                }
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+//                    print(vm.lawBooks)
+//                }
             }
         }
     }

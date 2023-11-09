@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct SuitSheetView: View {
+    @Binding var newSuitSheet: Bool
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Neuen Fall hinzufügen")
+                .onTapGesture {newSuitSheet.toggle()}
+            
+            Divider()
+            Text("Alle Fälle ansehen")
+        }
+        .font(.headline)
+        .padding()
+        
     }
-}
-
-#Preview {
-    SuitSheetView()
 }

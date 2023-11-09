@@ -28,9 +28,6 @@ struct SearchPage: View {
             .navigationBarBackButtonHidden(true)
             .onAppear {
 //                vm.loadNewCases()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                    print(vm.newCases)
-                }
             }
         }
     }
@@ -39,34 +36,10 @@ struct SearchPage: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack{
                 ForEach(vm.filterCases(searchText: searchText)) { newCase in
-                    singleCaseView(caseItem: newCase)
+                    SingleCaseView(caseItem: newCase)
                 }
             }
         }
-    }
-}
-
-struct singleCaseView: View {
-    
-    @StateObject var vm = CaseViewModel()
-    let caseItem: Case
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(caseItem.fileNumber)
-                .font(.title2)
-                .fontWeight(.bold)
-            
-            
-            Text("\(caseItem.court.name) vom \(vm.formattedDate(dateString: caseItem.date))")
-                .fontWeight(.semibold)
-            
-            Text(caseItem.type)
-            
-            Divider()
-                
-        }
-        .padding()
     }
 }
 

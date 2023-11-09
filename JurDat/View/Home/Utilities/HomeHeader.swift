@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct HomeHeader: View {
+    @State var userName: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Text("Hi, \(userName)")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+        
+            Spacer()
+            
+            Image("profilePicture")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 55, height: 55)
+                .cornerRadius(20)
+        }
     }
-}
-
-#Preview {
-    HomeHeader()
 }

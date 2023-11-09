@@ -98,7 +98,7 @@ class CaseViewModel: ObservableObject {
                 }
                 let newCasesResult = try JSONDecoder().decode(Result.self, from: data)
                 newCases = newCasesResult.results
-                print(newCases)
+//                print(newCases)
                 
             } catch {
                 print(error.localizedDescription)
