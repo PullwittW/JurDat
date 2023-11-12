@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LawsuitCard: View {
     
-    let suit: lawsuit
+    let suit: Lawsuit
     
     var body: some View {
         HStack {

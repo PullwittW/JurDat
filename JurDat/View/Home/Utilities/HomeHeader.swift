@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeHeader: View {
     @State var userName: String
+    @Binding var settingsSheet: Bool
+    
     var body: some View {
         HStack {
             Text("Hi, \(userName)")
@@ -22,6 +24,9 @@ struct HomeHeader: View {
                 .scaledToFill()
                 .frame(width: 55, height: 55)
                 .cornerRadius(20)
+                .onTapGesture {
+                    settingsSheet.toggle()
+                }
         }
     }
 }

@@ -7,79 +7,75 @@
 
 import Foundation
 import SwiftUI
+import Firebase
 
 @MainActor
 class CaseViewModel: ObservableObject {
-    
-    @Published var lawsuits: [lawsuit] = [
-        lawsuit(lawsuitName: "Favoriten", mandateName: nil, fileNumbers: [])
-    ]
-    
     @Published var newCases: [Case] = [
-        Case(id: 1,
-             slug: "lg-koln-2029-11-13-84-o-24918",
-             court: Court(id: 812,
-                          name: "Landgericht Köln",
-                          slug: "lg-koln",
-                          city: 446,
-                          state: 12,
-                          jurisdiction: "Ordentliche Gerichtsbarkeit",
-                          levelOfAppeal: "Landgericht"),
-             fileNumber: "84 O 249/18",
-             date: "2029-11-13",
-             createdDate: "2020-02-06T11:01:05Z",
-             updatedDate: "2020-12-10T13:50:38Z",
-             type: "Urteil",
-             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
-             content: ""),
-        Case(id: 2,
-             slug: "lg-koln-2029-11-13-84-o-24918",
-             court: Court(id: 812,
-                          name: "Landgericht Köln",
-                          slug: "lg-koln",
-                          city: 446,
-                          state: 12,
-                          jurisdiction: "Ordentliche Gerichtsbarkeit",
-                          levelOfAppeal: "Landgericht"),
-             fileNumber: "S 46 AS 2230/15",
-             date: "2029-11-13",
-             createdDate: "2020-02-06T11:01:05Z",
-             updatedDate: "2020-12-10T13:50:38Z",
-             type: "Urteil",
-             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
-             content: ""),
-        Case(id: 3,
-             slug: "lg-koln-2029-11-13-84-o-24918",
-             court: Court(id: 812,
-                          name: "Landgericht Köln",
-                          slug: "lg-koln",
-                          city: 446,
-                          state: 12,
-                          jurisdiction: "Ordentliche Gerichtsbarkeit",
-                          levelOfAppeal: "Landgericht"),
-             fileNumber: "12 Sa 347/21",
-             date: "2029-11-13",
-             createdDate: "2020-02-06T11:01:05Z",
-             updatedDate: "2020-12-10T13:50:38Z",
-             type: "Urteil",
-             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
-             content: ""),
-        Case(id: 4,
-             slug: "lg-koln-2029-11-13-84-o-24918",
-             court: Court(id: 812,
-                          name: "Landgericht Köln",
-                          slug: "lg-koln",
-                          city: 446,
-                          state: 12,
-                          jurisdiction: "Ordentliche Gerichtsbarkeit",
-                          levelOfAppeal: "Landgericht"),
-             fileNumber: "131 C 134/20",
-             date: "2029-11-13",
-             createdDate: "2020-02-06T11:01:05Z",
-             updatedDate: "2020-12-10T13:50:38Z",
-             type: "Urteil",
-             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
-             content: "")
+//        Case(id: 1,
+//             slug: "lg-koln-2029-11-13-84-o-24918",
+//             court: Court(id: 812,
+//                          name: "Landgericht Köln",
+//                          slug: "lg-koln",
+//                          city: 446,
+//                          state: 12,
+//                          jurisdiction: "Ordentliche Gerichtsbarkeit",
+//                          levelOfAppeal: "Landgericht"),
+//             fileNumber: "84 O 249/18",
+//             date: "2029-11-13",
+//             createdDate: "2020-02-06T11:01:05Z",
+//             updatedDate: "2020-12-10T13:50:38Z",
+//             type: "Urteil",
+//             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
+//             content: ""),
+//        Case(id: 2,
+//             slug: "lg-koln-2029-11-13-84-o-24918",
+//             court: Court(id: 812,
+//                          name: "Landgericht Köln",
+//                          slug: "lg-koln",
+//                          city: 446,
+//                          state: 12,
+//                          jurisdiction: "Ordentliche Gerichtsbarkeit",
+//                          levelOfAppeal: "Landgericht"),
+//             fileNumber: "S 46 AS 2230/15",
+//             date: "2029-11-13",
+//             createdDate: "2020-02-06T11:01:05Z",
+//             updatedDate: "2020-12-10T13:50:38Z",
+//             type: "Urteil",
+//             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
+//             content: ""),
+//        Case(id: 3,
+//             slug: "lg-koln-2029-11-13-84-o-24918",
+//             court: Court(id: 812,
+//                          name: "Landgericht Köln",
+//                          slug: "lg-koln",
+//                          city: 446,
+//                          state: 12,
+//                          jurisdiction: "Ordentliche Gerichtsbarkeit",
+//                          levelOfAppeal: "Landgericht"),
+//             fileNumber: "12 Sa 347/21",
+//             date: "2029-11-13",
+//             createdDate: "2020-02-06T11:01:05Z",
+//             updatedDate: "2020-12-10T13:50:38Z",
+//             type: "Urteil",
+//             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
+//             content: ""),
+//        Case(id: 4,
+//             slug: "lg-koln-2029-11-13-84-o-24918",
+//             court: Court(id: 812,
+//                          name: "Landgericht Köln",
+//                          slug: "lg-koln",
+//                          city: 446,
+//                          state: 12,
+//                          jurisdiction: "Ordentliche Gerichtsbarkeit",
+//                          levelOfAppeal: "Landgericht"),
+//             fileNumber: "131 C 134/20",
+//             date: "2029-11-13",
+//             createdDate: "2020-02-06T11:01:05Z",
+//             updatedDate: "2020-12-10T13:50:38Z",
+//             type: "Urteil",
+//             ecli: "ECLI:DE:LGK:2029:1113.84O249.18.00",
+//             content: "")
     ]
     
     static let APIKey = "d90efaba4ab6b4d0ccbaf0cc2c58fb6e97769dbe"
@@ -121,8 +117,52 @@ class CaseViewModel: ObservableObject {
         if searchText.isEmpty {
                     return newCases
                 } else {
-                    return newCases.filter { $0.fileNumber.contains(searchText) }
+                    return newCases.filter {
+                        $0.fileNumber.contains(searchText)
+                    }
                 }
     }
     
+    
+    
+    @Published var lawsuits: [Lawsuit] = [
+        Lawsuit(lawsuitName: "Favoriten", lawsuitDescription: "", fileNumbers: [])
+    ]
+    
+    func fetchLawsuits() {
+        lawsuits.removeAll()
+        let db = Firestore.firestore()
+        let ref = db.collection("Lawsuits")
+        ref.getDocuments { snapshot, error in
+            guard error == nil else {
+                print(error?.localizedDescription ?? "")
+                return
+            }
+            if let snapshot = snapshot {
+                for document in snapshot.documents {
+                    let data = document.data()
+                    
+                    let lawsuitName = data["lawsuitName"] as? String ?? ""
+                    let lawsuitDescription = data["mandateName"] as? String ?? ""
+                    let fileNumbers = data["fileNumbers"] as? [String] ?? [""]
+                    
+                    let lawsuit = Lawsuit(lawsuitName: lawsuitName, lawsuitDescription: lawsuitDescription, fileNumbers: fileNumbers)
+                    self.lawsuits.append(lawsuit)
+                }
+            }
+        }
+    }
+    
+    func addLawsuit(lawsuitName: String, mandateName: String, fileNumbers: [Int]) {
+        let db = Firestore.firestore()
+        let ref = db.collection("Lawsuits").document(lawsuitName)
+        
+        ref.setData(["lawsuitName": lawsuitName, "mandateName": mandateName, "fileNumbers": []]) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
+        
+    }
 }

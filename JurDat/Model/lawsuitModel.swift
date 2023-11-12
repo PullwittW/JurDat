@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct lawsuit: Codable, Identifiable {
+struct Lawsuit: Codable, Identifiable {
     let id: String = UUID().uuidString
     let lawsuitName: String
-    let mandateName: String?
-    let fileNumbers: [Int]
+    let lawsuitDescription: String?
+    let fileNumbers: [String]
 }

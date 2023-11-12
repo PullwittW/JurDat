@@ -27,7 +27,7 @@ struct SearchPage: View {
             .navigationTitle("Urteile")
             .navigationBarBackButtonHidden(true)
             .onAppear {
-//                vm.loadNewCases()
+                vm.loadNewCases()
             }
         }
     }
@@ -37,6 +37,9 @@ struct SearchPage: View {
             VStack{
                 ForEach(vm.filterCases(searchText: searchText)) { newCase in
                     SingleCaseView(caseItem: newCase)
+                        .onTapGesture {
+                            print(newCase.fileNumber)
+                        }
                 }
             }
         }

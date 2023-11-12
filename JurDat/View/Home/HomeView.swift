@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct HomeView: View {
     
     @StateObject private var vm = CaseViewModel()
     @State var userName = "Wangu"
+    @State private var settingsSheet: Bool = false
     @State private var suitSheet: Bool = false
     @State private var newSuitSheet: Bool = false
     @State var newSuitName: String = ""
@@ -18,7 +20,7 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            HomeHeader(userName: userName)
+            HomeHeader(userName: userName, settingsSheet: $settingsSheet)
             
             favoritesCardView
         
@@ -35,14 +37,17 @@ struct HomeView: View {
             
         }
         .padding()
-        .sheet(isPresented: $suitSheet, content: {
+        .fullScreenCover(isPresented: $settingsSheet) {
+            RootView()
+        }
+        .sheet(isPresented: $suitSheet) {
             SuitSheetView(newSuitSheet: $newSuitSheet)
                 .presentationDetents([.height(UIScreen.main.bounds.height*0.15)])
                 .sheet(isPresented: $newSuitSheet) {
                     newSuitSheetView
                         .presentationDetents([.medium])
                 }
-        })
+        }
     }
     
     var favoritesCardView: some View {
@@ -66,7 +71,7 @@ struct HomeView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    vm.lawsuits.append(lawsuit(lawsuitName: newSuitName, mandateName: newSuitDescription, fileNumbers: []))
+                    vm.lawsuits.append(Lawsuit(lawsuitName: newSuitName, lawsuitDescription: newSuitDescription, fileNumbers: []))
                     newSuitName = ""
                     newSuitDescription = ""
                     suitSheet = false

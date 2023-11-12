@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct user: Codable {
-    let userId = UUID().uuidString
-    let userSurname: String
-    let userLastname: String
-    let jobTitle: String
-}
+//struct User: Codable {
+//    let uid: String
+//    let email: String
+//    let photoURL: String
+//}
+
