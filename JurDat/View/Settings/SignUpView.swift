@@ -9,17 +9,28 @@ import SwiftUI
 import Firebase
 import GoogleSignIn
 
-struct LogInView: View {
+struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject private var vm = UserViewModel()
     
     var body: some View {
-        VStack {
-            textFields
-//            ZStack {
-//                cicleView
-//                    .offset(y: 250)
-//            }
+        NavigationStack {
+            VStack {
+                textFields
+    //            ZStack {
+    //                cicleView
+    //                    .offset(y: 250)
+    //            }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {dismiss()}, label: {
+                    Image(systemName: "chevron.left")
+                        .resizable()
+                        .fontWeight(.bold)
+                })
+            }
         }
     }
     
@@ -48,32 +59,26 @@ struct LogInView: View {
                 .foregroundStyle(Color.accent)
             
             Button(action: {
-                vm.singIn()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-                    if authUser != nil {
-                        dismiss()
-                    }
+                vm.singUp()
+                let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+                if authUser != nil {
+                    dismiss()
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    
                 }
             }, label: {
-                Text("Sign Up")
-                    .font(.headline)
-                    .foregroundStyle(.white)
-                    .bold()
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .background {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.accent)
-                    }
+                PurpleButton(buttonName: "Sign Up")
             })
             
             HStack {
                 Text("Alredy have an account?")
-                Button(action: {}, label: {
-                    Text("Log In")
-                        .bold()
-                })
+                Text("Sign In")
+                    .onTapGesture {
+                        dismiss()
+                    }
+                    .bold()
+                    .foregroundStyle(Color.accent)
             }
         }
         .padding()
@@ -85,5 +90,5 @@ struct LogInView: View {
 }
 
 #Preview {
-    LogInView()
+    SignUpView()
 }

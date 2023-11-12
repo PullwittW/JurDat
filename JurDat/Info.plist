@@ -8,12 +8,14 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string></string>
+			<string>Google Sing In</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.1025524235727-5ca5gp8c62pdvt26l5q7m9rc3uaeqm57</string>
 			</array>
 		</dict>
 	</array>
+	<key>GIDClientID</key>
+	<string>1025524235727-5ca5gp8c62pdvt26l5q7m9rc3uaeqm57.apps.googleusercontent.com</string>
 </dict>
 </plist>

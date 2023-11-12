@@ -90,7 +90,7 @@ class CaseViewModel: ObservableObject {
             do {
                 let (data, response) = try await URLSession.shared.data(from: url)
                 if 200..<300 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
-                    print("SUCCESS")
+                    print("SUCCESS LOADING CASES")
                 }
                 let newCasesResult = try JSONDecoder().decode(Result.self, from: data)
                 newCases = newCasesResult.results

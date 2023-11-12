@@ -41,6 +41,11 @@
 		7258AAB72B001CD3005A86DD /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7258AAB62B001CD3005A86DD /* GoogleSignInSwift */; };
 		7258AABA2B00D073005A86DD /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258AAB92B00D073005A86DD /* AuthenticationManager.swift */; };
 		7258AABC2B010032005A86DD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258AABB2B010032005A86DD /* SettingsViewModel.swift */; };
+		7258AABF2B011475005A86DD /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258AABE2B011475005A86DD /* SignInView.swift */; };
+		7258AAC22B013525005A86DD /* PurpleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258AAC12B013525005A86DD /* PurpleButton.swift */; };
+		7258AAC62B0142A7005A86DD /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258AAC52B0142A7005A86DD /* AuthenticationViewModel.swift */; };
+		7258AAC82B01442B005A86DD /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258AAC72B01442B005A86DD /* Utilities.swift */; };
+		7258AACA2B016B92005A86DD /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258AAC92B016B92005A86DD /* SignInGoogleHelper.swift */; };
 		726357C12AF924C0006E8AA7 /* SearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C02AF924C0006E8AA7 /* SearchPage.swift */; };
 		726357C62AF98D16006E8AA7 /* LawsOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C52AF98D16006E8AA7 /* LawsOverviewView.swift */; };
 		726357C82AF99496006E8AA7 /* CaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C72AF99496006E8AA7 /* CaseModel.swift */; };
@@ -59,11 +64,10 @@
 		72D8B2EB2AF2ADAD0030770A /* JurDatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8B2EA2AF2ADAD0030770A /* JurDatApp.swift */; };
 		72D8B2EF2AF2ADB00030770A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D8B2EE2AF2ADB00030770A /* Assets.xcassets */; };
 		72D8B2F22AF2ADB00030770A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D8B2F12AF2ADB00030770A /* Preview Assets.xcassets */; };
-		72D8B2FC2AF2AE250030770A /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8B2FB2AF2AE250030770A /* LogInView.swift */; };
+		72D8B2FC2AF2AE250030770A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8B2FB2AF2AE250030770A /* SignUpView.swift */; };
 		72D8B2FE2AF2AE2E0030770A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8B2FD2AF2AE2E0030770A /* RootView.swift */; };
 		72D8B3002AF2AE360030770A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8B2FF2AF2AE360030770A /* HomeView.swift */; };
 		72D8B3042AF2AE9D0030770A /* CourtModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8B3032AF2AE9D0030770A /* CourtModel.swift */; };
-		72D8B3062AF2AF3C0030770A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8B3052AF2AF3C0030770A /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +76,11 @@
 		7258AAB12B001C52005A86DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7258AAB92B00D073005A86DD /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		7258AABB2B010032005A86DD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		7258AABE2B011475005A86DD /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		7258AAC12B013525005A86DD /* PurpleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleButton.swift; sourceTree = "<group>"; };
+		7258AAC52B0142A7005A86DD /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		7258AAC72B01442B005A86DD /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		7258AAC92B016B92005A86DD /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
 		726357C02AF924C0006E8AA7 /* SearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPage.swift; sourceTree = "<group>"; };
 		726357C52AF98D16006E8AA7 /* LawsOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawsOverviewView.swift; sourceTree = "<group>"; };
 		726357C72AF99496006E8AA7 /* CaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseModel.swift; sourceTree = "<group>"; };
@@ -92,11 +101,10 @@
 		72D8B2EA2AF2ADAD0030770A /* JurDatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JurDatApp.swift; sourceTree = "<group>"; };
 		72D8B2EE2AF2ADB00030770A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72D8B2F12AF2ADB00030770A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		72D8B2FB2AF2AE250030770A /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		72D8B2FB2AF2AE250030770A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		72D8B2FD2AF2AE2E0030770A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		72D8B2FF2AF2AE360030770A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		72D8B3032AF2AE9D0030770A /* CourtModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtModel.swift; sourceTree = "<group>"; };
-		72D8B3052AF2AF3C0030770A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +151,30 @@
 			isa = PBXGroup;
 			children = (
 				7258AAB92B00D073005A86DD /* AuthenticationManager.swift */,
+				7258AAC92B016B92005A86DD /* SignInGoogleHelper.swift */,
+				7258AAC52B0142A7005A86DD /* AuthenticationViewModel.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		7258AABD2B0112E5005A86DD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7258AAC02B013509005A86DD /* Utilities */,
+				72D8B2FD2AF2AE2E0030770A /* RootView.swift */,
+				72AC4D272AFE3B360008C9A7 /* SettingsView.swift */,
+				7258AABE2B011475005A86DD /* SignInView.swift */,
+				72D8B2FB2AF2AE250030770A /* SignUpView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		7258AAC02B013509005A86DD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7258AAC12B013525005A86DD /* PurpleButton.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		726357C22AF98CC2006E8AA7 /* Home */ = {
@@ -152,8 +182,6 @@
 			children = (
 				72B764382AFD7F2C005CDA43 /* Utilities */,
 				72D8B2FF2AF2AE360030770A /* HomeView.swift */,
-				72D8B2FD2AF2AE2E0030770A /* RootView.swift */,
-				72AC4D272AFE3B360008C9A7 /* SettingsView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -209,6 +237,7 @@
 				72AC4D1F2AFE29270008C9A7 /* Info.plist */,
 				7258AAB12B001C52005A86DD /* GoogleService-Info.plist */,
 				72D8B2EA2AF2ADAD0030770A /* JurDatApp.swift */,
+				7258AAC72B01442B005A86DD /* Utilities.swift */,
 				723911F52AF3F0F800BD4295 /* ColorExtension.swift */,
 				7258AAB82B00D051005A86DD /* Authentication */,
 				72D8B2F82AF2ADDD0030770A /* View */,
@@ -232,7 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				726357CF2AFB85BF006E8AA7 /* Launch Screen.storyboard */,
-				72D8B2FB2AF2AE250030770A /* LogInView.swift */,
+				7258AABD2B0112E5005A86DD /* Settings */,
 				726357C22AF98CC2006E8AA7 /* Home */,
 				726357C32AF98CC9006E8AA7 /* Cases */,
 				726357C42AF98CE4006E8AA7 /* Laws */,
@@ -245,7 +274,6 @@
 			children = (
 				72D8B3032AF2AE9D0030770A /* CourtModel.swift */,
 				726357CB2AF9A0E9006E8AA7 /* LawBookModel.swift */,
-				72D8B3052AF2AF3C0030770A /* UserModel.swift */,
 				726357C72AF99496006E8AA7 /* CaseModel.swift */,
 				726357CD2AFAAF94006E8AA7 /* lawsuitModel.swift */,
 			);
@@ -372,16 +400,19 @@
 			files = (
 				72D8B2FE2AF2AE2E0030770A /* RootView.swift in Sources */,
 				72B7643E2AFD8153005CDA43 /* PlusButton.swift in Sources */,
-				72D8B3062AF2AF3C0030770A /* UserModel.swift in Sources */,
+				7258AAC82B01442B005A86DD /* Utilities.swift in Sources */,
 				72B764402AFD823D005CDA43 /* LawsuitCard.swift in Sources */,
 				726357CC2AF9A0E9006E8AA7 /* LawBookModel.swift in Sources */,
 				72D8B3002AF2AE360030770A /* HomeView.swift in Sources */,
+				7258AAC62B0142A7005A86DD /* AuthenticationViewModel.swift in Sources */,
 				726357C82AF99496006E8AA7 /* CaseModel.swift in Sources */,
+				7258AACA2B016B92005A86DD /* SignInGoogleHelper.swift in Sources */,
+				7258AABF2B011475005A86DD /* SignInView.swift in Sources */,
 				723911F62AF3F0F800BD4295 /* ColorExtension.swift in Sources */,
 				72B764462AFD8721005CDA43 /* SingleCaseView.swift in Sources */,
 				726357CA2AF9A03E006E8AA7 /* LawBookViewModel.swift in Sources */,
 				726357C12AF924C0006E8AA7 /* SearchPage.swift in Sources */,
-				72D8B2FC2AF2AE250030770A /* LogInView.swift in Sources */,
+				72D8B2FC2AF2AE250030770A /* SignUpView.swift in Sources */,
 				72B7643C2AFD8068005CDA43 /* SuitHeader.swift in Sources */,
 				726357CE2AFAAF94006E8AA7 /* lawsuitModel.swift in Sources */,
 				72B764422AFD830D005CDA43 /* SuitSheetView.swift in Sources */,
@@ -394,6 +425,7 @@
 				7258AABA2B00D073005A86DD /* AuthenticationManager.swift in Sources */,
 				72AC4D282AFE3B360008C9A7 /* SettingsView.swift in Sources */,
 				7258AABC2B010032005A86DD /* SettingsViewModel.swift in Sources */,
+				7258AAC22B013525005A86DD /* PurpleButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

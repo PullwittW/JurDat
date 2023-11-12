@@ -16,9 +16,17 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                Spacer()
+                if vm.authProviders.contains(.email) {
+                    listView
+                }
+                
                 userLogOutButton
             }
             .padding()
+        }
+        .onAppear {
+            vm.loadAuthProviders()
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -31,6 +39,17 @@ struct SettingsView: View {
         }
     }
     
+    var listView: some View {
+        List {
+            Section("Email") {
+                updateEmailButton
+                updatePasswordButton
+                resetPasswordButton
+            }
+        }
+        .listStyle(.plain)
+    }
+    
     var userLogOutButton: some View {
         Button(action: {
             Task {
@@ -41,14 +60,56 @@ struct SettingsView: View {
                     print(error)
                 }
             }
-        }, label: {
-            Text("Ausloggen")
-                .foregroundStyle(.white)
-                .padding()
-        })
-        .background {
-            RoundedRectangle(cornerRadius: 15)
-                .fill(.accent)
+        }) {
+            PurpleButton(buttonName: "Log Out")
+        }
+    }
+    
+    var resetPasswordButton: some View {
+        Button(action: {
+            Task {
+                do {
+                    try await vm.resetPassword()
+                    print("PASSWORD RESET")
+                } catch {
+                    print(error)
+                }
+            }
+            
+        }) {
+            PurpleButton(buttonName: "Passwort zurücksetzen")
+        }
+    }
+    
+    var updatePasswordButton: some View {
+        Button(action: {
+            Task {
+                do {
+                    try await vm.updatePassword()
+                    print("PASSWORD UPDATED")
+                } catch {
+                    print(error)
+                }
+            }
+            
+        }) {
+            PurpleButton(buttonName: "Passwort ändern")
+        }
+    }
+    
+    var updateEmailButton: some View {
+        Button(action: {
+            Task {
+                do {
+                    try await vm.updateEmail()
+                    print("EMAIL UPDATED")
+                } catch {
+                    print(error)
+                }
+            }
+            
+        }) {
+            PurpleButton(buttonName: "Email ändern")
         }
     }
 }
