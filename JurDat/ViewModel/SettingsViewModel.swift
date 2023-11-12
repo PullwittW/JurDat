@@ -40,4 +40,8 @@ final class SettingsViewModel: ObservableObject {
     func signOut() throws {
         try AuthenticationManager.shared.singOut()
     }
+    
+    func deleteUser() async throws {
+        try await AuthenticationManager.shared.deleteUser()
+    }
 }

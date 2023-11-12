@@ -22,6 +22,7 @@ struct SettingsView: View {
                 }
                 
                 userLogOutButton
+                userDeleteButton
             }
             .padding()
         }
@@ -48,21 +49,6 @@ struct SettingsView: View {
             }
         }
         .listStyle(.plain)
-    }
-    
-    var userLogOutButton: some View {
-        Button(action: {
-            Task {
-                do {
-                    try vm.signOut()
-                    showSignInView = true
-                } catch {
-                    print(error)
-                }
-            }
-        }) {
-            PurpleButton(buttonName: "Log Out")
-        }
     }
     
     var resetPasswordButton: some View {
@@ -111,6 +97,44 @@ struct SettingsView: View {
         }) {
             PurpleButton(buttonName: "Email ändern")
         }
+    }
+    
+    var userLogOutButton: some View {
+        Button(action: {
+            Task {
+                do {
+                    try vm.signOut()
+                    showSignInView = true
+                } catch {
+                    print(error)
+                }
+            }
+        }) {
+            PurpleButton(buttonName: "Log Out")
+        }
+    }
+
+    var userDeleteButton: some View {
+        Button(role: .destructive) {
+            Task {
+                do {
+                    try await vm.deleteUser()
+                    showSignInView = true
+                } catch {
+                    print(error)
+                }
+            }
+        } label: {
+            Text("Account löschen")
+                .font(.headline)
+                .foregroundStyle(.white)
+                .bold()
+                .frame(height: 55)
+                .frame(maxWidth: .infinity)
+                .background(Color.red)
+                .cornerRadius(10)
+        }
+
     }
 }
 

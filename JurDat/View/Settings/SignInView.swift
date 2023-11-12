@@ -18,15 +18,17 @@ struct SignInView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Spacer()
-                textFields
-                signInEmailButton
-                    .padding(.top)
-                Spacer()
-                signInGoogleButton
+            if showSignInView {
+                VStack {
+                    Spacer()
+                    textFields
+                    signInEmailButton
+                        .padding(.top)
+                    Spacer()
+                    signInGoogleButton
+                }
+                .padding()
             }
-            .padding()
         }
         .navigationBarBackButtonHidden()
     }
@@ -67,7 +69,7 @@ struct SignInView: View {
             HStack {
                 Text("Don't have an account yet?")
                 NavigationLink("Sign Up") {
-                    SignUpView()
+                    SignUpView(showSignInView: $showSignInView)
                 }
                 .bold()
                 .foregroundStyle(Color.accent)

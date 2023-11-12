@@ -12,17 +12,21 @@ import GoogleSignIn
 struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
     @StateObject private var vm = UserViewModel()
+    @Binding var showSignInView: Bool
     
     var body: some View {
         NavigationStack {
-            VStack {
-                textFields
-    //            ZStack {
-    //                cicleView
-    //                    .offset(y: 250)
-    //            }
+            if showSignInView {
+                VStack {
+                    textFields
+        //            ZStack {
+        //                cicleView
+        //                    .offset(y: 250)
+        //            }
+                }
             }
         }
+        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {dismiss()}, label: {
@@ -60,12 +64,12 @@ struct SignUpView: View {
             
             Button(action: {
                 vm.singUp()
-                let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-                if authUser != nil {
-                    dismiss()
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+                    if authUser != nil {
+                        showSignInView = false
+                        dismiss()
+                    }
                 }
             }, label: {
                 PurpleButton(buttonName: "Sign Up")
@@ -83,12 +87,4 @@ struct SignUpView: View {
         }
         .padding()
     }
-    
-//    var googleButton: some View {
-//        
-//    }
-}
-
-#Preview {
-    SignUpView()
 }
