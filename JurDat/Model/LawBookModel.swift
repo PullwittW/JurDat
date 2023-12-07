@@ -29,3 +29,7 @@ struct LawBook: Codable, Identifiable {
         case latest, order
     }
 }
+
+struct LawBookSearchPage: Codable {
+    
+}

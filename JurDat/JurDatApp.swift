@@ -12,27 +12,48 @@ import Firebase
 struct JurDatApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @State private var showLaunchAnimation: Bool = true
+    @StateObject private var caseVM = CaseViewModel()
+    @StateObject private var userVM = UserViewModel()
+    @StateObject private var newsVM = NewsViewModel()
     
     var body: some Scene {
         WindowGroup {
 //            LogInView()
-            TabView {
-                
-                HomeView()
-                    .preferredColorScheme(.light)
-                    .tabItem {
-                        Image(systemName: "house")
-                    }
-                
-                SearchPage()
-                    .tabItem {
-                        Image(systemName: "magnifyingglass")
-                    }
-                
-//                LawsOverviewView()
-//                    .tabItem {
-//                        Image("lawBookIcon")
-//                    }
+            ZStack {
+                TabView {
+                    
+                    HomeView()
+                        .preferredColorScheme(.light)
+                        .tabItem {
+                            Image(systemName: "house")
+                            Text("Home")
+                        }
+                    
+                    SearchPage()
+                        .tabItem {
+                            Image(systemName: "magnifyingglass")
+                            Text("Suchen")
+                        }
+                    
+                    LawsOverviewView()
+                        .tabItem {
+                            Image("lawBookIcon2")
+                                .renderingMode(.template)
+                            Text("Gesetze")
+                        }
+                    
+                    NewsView()
+                        .tabItem {
+                            Image(systemName: "newspaper")
+                            Text("News")
+                        }
+                }
+                // Show the animation on launch
+                if showLaunchAnimation {
+                    LaunchView(showLaunchAnimation: $showLaunchAnimation)
+                        .transition(.move(edge: .leading))
+                }
             }
         }
     }

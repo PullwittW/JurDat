@@ -17,5 +17,10 @@
 	</array>
 	<key>GIDClientID</key>
 	<string>1025524235727-5ca5gp8c62pdvt26l5q7m9rc3uaeqm57.apps.googleusercontent.com</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Kadwa-Bold.ttf</string>
+		<string>Kadwa-Regular.ttf</string>
+	</array>
 </dict>
 </plist>

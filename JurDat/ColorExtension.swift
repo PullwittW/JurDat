@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 
 extension Color {
+    static let theme = ColorTheme()
+}
+
+struct ColorTheme {
     
-    static let purple = Color(red: 0.112, green: 0.61, blue: 0.219)
-    
+    let purple = Color("PurpleColor")
+    let textColor = Color("TextColor")
 }
