@@ -18,9 +18,24 @@ struct SignUpView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                VStack {
-                    textFields
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundStyle(Color.theme.purple)
+                        
+                    VStack {
+                        Spacer()
+                        textFields
+                    }
+                    .padding()
                 }
+                .offset(y: -UIScreen.main.bounds.height * 0.5)
+                
+                VStack(spacing: 30) {
+                    Spacer()
+                    signUpEmailButton
+                        .padding(.top)
+                }
+                .padding()
             }
         }
         .toolbar(.hidden, for: .tabBar)
@@ -53,18 +68,28 @@ struct SignUpView: View {
         VStack(spacing: 20) {
             TextField("Email", text: $vm.userEmail)
                 .textFieldStyle(.plain)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
             
-            Rectangle()
-                .frame(width: 350, height: 1)
-                .foregroundStyle(Color.accent)
+//            Rectangle()
+//                .frame(width: 350, height: 1)
+//                .foregroundStyle(Color.accent)
             
             SecureField("Passwort", text: $vm.userPassword)
                 .textFieldStyle(.plain)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
             
-            Rectangle()
-                .frame(width: 350, height: 1)
-                .foregroundStyle(Color.accent)
+//            Rectangle()
+//                .frame(width: 350, height: 1)
+//                .foregroundStyle(Color.accent)
             
+        }
+        .padding()
+    }
+    
+    var signUpEmailButton: some View {
+        VStack {
             Button(action: {
                 if vm.userEmail.count <= 0 || vm.userPassword.count <= 0 {
                     let customeError: Error = MyCustomError.noCredentials
@@ -87,8 +112,8 @@ struct SignUpView: View {
                     .bold()
                     .foregroundStyle(Color.accent)
             }
+            .padding(.top)
         }
-        .padding()
     }
 }
 

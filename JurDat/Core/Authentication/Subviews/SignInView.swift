@@ -20,12 +20,23 @@ struct SignInView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundStyle(Color.theme.purple)
+                        
+                    VStack {
+                        Spacer()
+                        textFields
+                    }
+                    .padding()
+                }
+                .offset(y: -UIScreen.main.bounds.height * 0.5)
+                
+                
                 VStack(spacing: 30) {
                     Spacer()
-                    textFields
                     signInEmailButton
                         .padding(.top)
-                    Spacer()
                     signInGoogleButton
                 }
                 .padding()
@@ -53,17 +64,21 @@ struct SignInView: View {
         VStack(spacing: 20) {
             TextField("Email", text: $vm.userEmail)
                 .textFieldStyle(.plain)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
             
-            Rectangle()
-                .frame(width: 350, height: 1)
-                .foregroundStyle(Color.accent)
+//            Rectangle()
+//                .frame(width: 350, height: 1)
+//                .foregroundStyle(Color.white)
             
             SecureField("Passwort", text: $vm.userPassword)
                 .textFieldStyle(.plain)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
             
-            Rectangle()
-                .frame(width: 350, height: 1)
-                .foregroundStyle(Color.accent)
+//            Rectangle()
+//                .frame(width: 350, height: 1)
+//                .foregroundStyle(Color.white)
         }
     }
     
