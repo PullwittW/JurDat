@@ -33,11 +33,19 @@ struct SignInView: View {
                 .offset(y: -UIScreen.main.bounds.height * 0.5)
                 
                 
-                VStack(spacing: 30) {
+                VStack {
                     Spacer()
-                    signInEmailButton
-                        .padding(.top)
                     signInGoogleButton
+                        .padding(.bottom)
+                    signInEmailButton
+                    HStack {
+                        Text("Du hast noch keinen Accout?")
+                        NavigationLink("Registrieren") {
+                            SignUpView()
+                        }
+                        .bold()
+                        .foregroundStyle(Color.accent)
+                    }
                 }
                 .padding()
             }
@@ -50,6 +58,7 @@ struct SignInView: View {
                     Image(systemName: "chevron.left")
                         .resizable()
                         .fontWeight(.bold)
+                        .foregroundStyle(Color.white)
                 })
             }
         }
@@ -65,7 +74,7 @@ struct SignInView: View {
             TextField("Email", text: $vm.userEmail)
                 .textFieldStyle(.plain)
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
             
 //            Rectangle()
 //                .frame(width: 350, height: 1)
@@ -74,7 +83,7 @@ struct SignInView: View {
             SecureField("Passwort", text: $vm.userPassword)
                 .textFieldStyle(.plain)
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
             
 //            Rectangle()
 //                .frame(width: 350, height: 1)
@@ -100,16 +109,6 @@ struct SignInView: View {
             }, label: {
                 PurpleButton(buttonName: "Sign In")
             })
-            
-            HStack {
-                Text("Du hast noch keinen Accout?")
-                NavigationLink("Registrieren") {
-                    SignUpView()
-                }
-                .bold()
-                .foregroundStyle(Color.accent)
-            }
-            .padding(.top)
         }
     }
     

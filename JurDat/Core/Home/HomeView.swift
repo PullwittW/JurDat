@@ -45,8 +45,7 @@ struct HomeView: View {
                         .padding(.vertical)
                     
                     ScrollView(showsIndicators: false) {
-                        Text("Logge dich ein, um neue Fälle anlegen zu können")
-                            .bold()
+                        noUserCard
                     }
                     
                     Spacer()
@@ -110,8 +109,25 @@ struct HomeView: View {
         }
         .padding()
     }
-}
-
-#Preview {
-    HomeView()
+    
+    var noUserCard: some View {
+        NavigationLink {
+            SettingsView()
+        } label: {
+            HStack {
+                Spacer()
+                Text("Logge dich ein um neue Fälle anzulegen!")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                Spacer()
+            }
+            .foregroundColor(.white)
+            .frame(height: 125)
+            .frame(maxWidth: .infinity)
+            .background {
+                RoundedRectangle(cornerRadius: 15, style: .continuous)
+                    .fill(Color.theme.purple)
+            }
+        }
+    }
 }

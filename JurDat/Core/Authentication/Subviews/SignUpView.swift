@@ -30,10 +30,18 @@ struct SignUpView: View {
                 }
                 .offset(y: -UIScreen.main.bounds.height * 0.5)
                 
-                VStack(spacing: 30) {
+                VStack {
                     Spacer()
                     signUpEmailButton
-                        .padding(.top)
+                    HStack {
+                        Text("Du hast noch keinen Accout?")
+                        Text("Sign In")
+                            .onTapGesture {
+                                dismiss()
+                            }
+                            .bold()
+                            .foregroundStyle(Color.accent)
+                    }
                 }
                 .padding()
             }
@@ -46,6 +54,7 @@ struct SignUpView: View {
                     Image(systemName: "chevron.left")
                         .resizable()
                         .fontWeight(.bold)
+                        .foregroundStyle(Color.white)
                 })
             }
         }
@@ -56,36 +65,18 @@ struct SignUpView: View {
         }
     }
     
-    var circleView: some View {
-        ZStack {
-            Circle()
-                .fill(.accent)
-                .frame(width: 700, height: 700)
-        }
-    }
-    
     var textFields: some View {
         VStack(spacing: 20) {
             TextField("Email", text: $vm.userEmail)
                 .textFieldStyle(.plain)
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
-            
-//            Rectangle()
-//                .frame(width: 350, height: 1)
-//                .foregroundStyle(Color.accent)
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
             
             SecureField("Passwort", text: $vm.userPassword)
                 .textFieldStyle(.plain)
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 15).fill(Color.white))
-            
-//            Rectangle()
-//                .frame(width: 350, height: 1)
-//                .foregroundStyle(Color.accent)
-            
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white)) 
         }
-        .padding()
     }
     
     var signUpEmailButton: some View {
@@ -102,17 +93,6 @@ struct SignUpView: View {
             }, label: {
                 PurpleButton(buttonName: "Sign Up")
             })
-            
-            HStack {
-                Text("Alredy have an account?")
-                Text("Sign In")
-                    .onTapGesture {
-                        dismiss()
-                    }
-                    .bold()
-                    .foregroundStyle(Color.accent)
-            }
-            .padding(.top)
         }
     }
 }
