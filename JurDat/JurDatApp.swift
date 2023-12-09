@@ -13,16 +13,15 @@ struct JurDatApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State private var showLaunchAnimation: Bool = true
-    @StateObject private var caseVM = CaseViewModel()
-    @StateObject private var userVM = UserViewModel()
-    @StateObject private var newsVM = NewsViewModel()
+    var user = UserViewModel()
+    var caseItem = CaseViewModel()
+    var news = NewsViewModel()
+    var laws = LawBookViewModel()
     
     var body: some Scene {
         WindowGroup {
-//            LogInView()
             ZStack {
                 TabView {
-                    
                     HomeView()
                         .preferredColorScheme(.light)
                         .tabItem {
@@ -42,6 +41,7 @@ struct JurDatApp: App {
                                 .renderingMode(.template)
                             Text("Gesetze")
                         }
+                        .environmentObject(laws)
                     
                     NewsView()
                         .tabItem {
@@ -55,12 +55,14 @@ struct JurDatApp: App {
                         .transition(.move(edge: .leading))
                 }
             }
+            .environmentObject(user)
+            .environmentObject(caseItem)
+            .environmentObject(news)
         }
     }
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
         

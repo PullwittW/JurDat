@@ -11,7 +11,8 @@ import FirebaseAuth
 struct HomeView: View {
     
     @StateObject private var caseVM = CaseViewModel()
-    @StateObject private var userVM = UserViewModel()
+//    @StateObject private var userVM = UserViewModel()
+    @EnvironmentObject var userVM: UserViewModel
     @StateObject private var newsVM = NewsViewModel()
     @State var userName = "Wangu"
 //    @State private var settingsSheet: Bool = false
@@ -52,7 +53,7 @@ struct HomeView: View {
                 }
             }
             .task {
-                try? await userVM.loadCurrentUser()
+//                try? await userVM.loadCurrentUser()
 //                try? await caseVM.loadNewCases()
 //                try? await newsVM.loadNews()
             }

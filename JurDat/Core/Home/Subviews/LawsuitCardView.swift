@@ -26,14 +26,14 @@ struct LawsuitDetailView: View {
                                     .frame(width: 3)
                             VStack(alignment: .leading) {
                                 Text(lawsuit.lawsuitDescription ?? "")
-                                    .font(.title3)
-                                    .fontWeight(.semibold)
                             }
+                            .foregroundStyle(Color("TextColor"))
+                            .font(.callout)
+                            .fontWeight(.semibold)
                             Spacer()
                         }
                         .padding(.vertical)
                     }
-    //                PurpleLine()
                     Divider()
                 }
                 .padding()

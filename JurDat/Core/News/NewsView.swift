@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewsView: View {
     
-    @StateObject private var newsVM = NewsViewModel()
+    @EnvironmentObject var newsVM: NewsViewModel
     @State private var performSearch: Bool = true
     @State private var searchText: String = ""
     
@@ -33,16 +33,10 @@ struct NewsView: View {
                 }
             }
             .navigationTitle("News")
-            .task {
-                if performSearch {
-                    try? await newsVM.loadNews()
-                    performSearch = false
-                }
-            }
+            .searchable(text: $searchText, prompt: "Suche nach Vorgängen")
             .refreshable {
                 try? await newsVM.loadNews()
             }
-            .searchable(text: $searchText, prompt: "Suche nach Vorgängen")
         }
     }
 }

@@ -9,30 +9,37 @@ import SwiftUI
 
 struct LaunchView: View {
     
-    @StateObject private var caseVM = CaseViewModel()
-    @StateObject private var userVM = UserViewModel()
-    @StateObject private var newsVM = NewsViewModel()
     @State private var text: [String] = "JurDat.".map { String($0) }
+    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var caseVM: CaseViewModel
+    @EnvironmentObject var newsVM: NewsViewModel
     @Binding var showLaunchAnimation: Bool
     
     var body: some View {
-        ZStack {
-            Color.theme.purple.ignoresSafeArea()
-            
+        NavigationStack {
             ZStack {
-                HStack(spacing: 0) {
-                    ForEach(text.indices) { index in
-                        Text(text[index])
+                Color.theme.purple.ignoresSafeArea()
+                
+                ZStack {
+                    HStack(spacing: 0) {
+                        ForEach(text.indices) { index in
+                            Text(text[index])
+                        }
                     }
+                    .foregroundStyle(Color.white)
+                    .font(.custom("Kadwa-Regular", size: 60))
                 }
-                .foregroundStyle(Color.theme.textColor)
-                .font(.custom("Kadwa-Regular", size: 60))
             }
-        }
-        .onAppear {
-            // Set show launch animation to false after x seconds
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                showLaunchAnimation = false
+            .task {
+                try? await userVM.loadCurrentUser()
+                try? await caseVM.loadNewCases()
+                try? await newsVM.loadNews()
+            }
+            .onAppear {
+                // Set show launch animation to false after x seconds
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    showLaunchAnimation = false
+                }
             }
         }
     }

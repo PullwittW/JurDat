@@ -16,7 +16,7 @@ struct SingleNewsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(news.titel)
-                .font(.title2)
+                .font(.title3)
                 .fontWeight(.bold)
                 .lineLimit(2)
             
@@ -26,9 +26,13 @@ struct SingleNewsView: View {
             
             ForEach(news.initiative ?? [], id: \.self) { type in
                 Text(type)
+                    .foregroundStyle(Color("TextColor"))
+                    .font(.callout)
             }
             if let beratungszustand = news.beratungsstand {
                 Text("Beratungsstand: " + beratungszustand)
+                    .foregroundStyle(Color("TextColor"))
+                    .font(.callout)
             }
         }
         .padding()

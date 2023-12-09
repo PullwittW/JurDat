@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - LawBookResult
-struct LawBookResult: Codable {
+struct LawbookResult: Codable {
     let count: Int
     let next: String?
     let previous: String?
@@ -30,6 +30,29 @@ struct LawBook: Codable, Identifiable {
     }
 }
 
-struct LawBookSearchPage: Codable {
-    
+// MARK: - LawbookResult
+struct specificLawbookResult: Codable {
+    let count: Int
+    let next: String?
+    let previous: String?
+    let results: [specificLawbook]
+}
+
+// MARK: - Result
+struct specificLawbook: Codable, Identifiable {
+    let id: Int
+    let book: Int
+    let title, content: String?
+    let slug: String
+    let createdDate, updatedDate: String?
+    let section: String?
+    let amtabk, kurzue, doknr: String?
+    let order: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case id, book, title, content, slug
+        case createdDate = "created_date"
+        case updatedDate = "updated_date"
+        case section, amtabk, kurzue, doknr, order
+    }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CaseDetailView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject private var userVM = UserViewModel()
+    @EnvironmentObject var userVM: UserViewModel
     
     @State private var showAddToSuitSheet: Bool = false
     @State private var caseIsFavorite: Bool = false
@@ -18,32 +18,6 @@ struct CaseDetailView: View {
     
     private func caseIsSelected(text: String) -> Bool {
         userVM.user?.favoriteCases?.contains(text) == true
-    }
-    
-    struct Item: Identifiable {
-        let id: UUID
-        let text: Text
-    }
-    
-    private func formattHTMLText(caseItem: Case) -> [Item] {
-        var formattedText: [Item] = []
-        let htmlText = caseItem.content
-        let lines = htmlText.components(separatedBy: .newlines)
-        
-        for line in lines {
-            if line.contains("<h2>") {
-                formattedText.append(Item(id: UUID(), text: Text(line.replacingOccurrences(of: "<h2>", with: "").replacingOccurrences(of: "</h2>", with: ""))
-                    .font(.title)))
-            } else if line.contains("<ul class=\"ol\">") {
-                // Handle list items, you may need a more sophisticated parsing approach for nested lists.
-            } else if line.contains("<li>") {
-                formattedText.append(Item(id: UUID(), text: Text(line.replacingOccurrences(of: "<li>", with: ""))))
-            } else if line.contains("<p>") {
-                formattedText.append(Item(id: UUID(), text: Text(line.replacingOccurrences(of: "<p>", with: ""))))
-            }
-            // Add more conditions to handle other HTML tags as needed.
-        }
-        return formattedText
     }
     
     var body: some View {
@@ -107,7 +81,7 @@ struct CaseDetailView: View {
     var userView: some View {
         VStack {
             Text(caseItem.court.name)
-                .font(.title2)
+                .font(.title3)
                 .bold()
             
             HStack(spacing: 10) {
@@ -116,13 +90,13 @@ struct CaseDetailView: View {
                     .frame(width: 3)
                 VStack(alignment: .leading) {
                     Text(caseItem.fileNumber)
-                        .font(.title3)
-                        .fontWeight(.semibold)
                     Spacer()
                     Text(caseItem.type)
-                        .font(.title3)
-                        .fontWeight(.semibold)
+                        
                 }
+                .foregroundStyle(Color("TextColor"))
+                .font(.callout)
+                .fontWeight(.semibold)
                 Spacer()
             }
             .padding(.vertical)
@@ -132,9 +106,7 @@ struct CaseDetailView: View {
             Spacer()
             
             VStack(alignment: .leading) {
-                ForEach(formattHTMLText(caseItem: caseItem)) { line in
-                    line.text
-                }
+                Text(caseItem.content.html2String)
             }
         }
     }

@@ -25,6 +25,8 @@ struct SingleCaseView: View {
                 .fontWeight(.semibold)
             
             Text(caseItem.type)
+                .foregroundStyle(Color("TextColor"))
+                .font(.callout)
         }
         .padding()
         .onTapGesture {

@@ -8,40 +8,42 @@
 import SwiftUI
 
 struct NewsDetailView: View {
-    let news: News
     @Environment(\.dismiss) var dismiss
+    let news: News
     
     var body: some View {
         NavigationStack {
-            VStack {
-                userView
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {dismiss()}, label: {
-                        Image(systemName: "chevron.left")
-                            .resizable()
-                            .fontWeight(.bold)
-                    })
+            ScrollView {
+                VStack {
+                    userView
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                    } label: {
-                        Image(systemName: "heart")
-                            .resizable()
-                            .fontWeight(.bold)
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(action: {dismiss()}, label: {
+                            Image(systemName: "chevron.left")
+                                .resizable()
+                                .fontWeight(.bold)
+                        })
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                        } label: {
+                            Image(systemName: "heart")
+                                .resizable()
+                                .fontWeight(.bold)
+                        }
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {}, label: {
+                            Image(systemName: "plus")
+                                .resizable()
+                                .fontWeight(.bold)
+                        })
                     }
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {}, label: {
-                        Image(systemName: "plus")
-                            .resizable()
-                            .fontWeight(.bold)
-                    })
-                }
+                .interactiveDismissDisabled()
             }
         }
-        .interactiveDismissDisabled()
     }
     
     var userView: some View {
@@ -58,12 +60,15 @@ struct NewsDetailView: View {
                     VStack(alignment: .leading) {
                         ForEach(news.initiative ?? [], id: \.self) { news in
                             Text(news)
+                                .foregroundStyle(Color("TextColor"))
                         }
                         if let beratungszustand = news.beratungsstand {
                             Text("Beratungsstand: " + beratungszustand)
+                                .foregroundStyle(Color("TextColor"))
                         }
                     }
-                    .font(.title3)
+                    .font(.callout)
+                    .bold()
                     
                     Spacer()
                 }
@@ -73,10 +78,11 @@ struct NewsDetailView: View {
                 Spacer()
                 
                 VStack(alignment: .leading) {
-                    Text(news.abstract ?? "Kein Inhalt verfügbar")
+                    Text(news.abstract?.html2String ?? "Kein Inhalt verfügbar")
                 }
             }
             .padding()
+            .interactiveDismissDisabled()
         }
     }
 }

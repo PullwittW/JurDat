@@ -12,13 +12,14 @@ import SwiftUI
 class LawBookViewModel: ObservableObject {
 
     @Published var lawBooks: [LawBook] = []
-    @Published var singleLawbook: [LawBook] = []
+    @Published var singleLawbook: [specificLawbook] = []
     
     // URL: https://de.openlegaldata.io/api/law_books/?slug=&code=&latest=true&limit=1200
-    //
+    // Specific Book: https://de.openlegaldata.io/api/laws/?book_id=2215&book__latest=true
     
-    func loadSpecificLawbook(slug: String) async throws {
-        guard let url = URL(string: "https://de.openlegaldata.io/api/law_books/?slug=\(slug)&code=&latest=true") else { return }
+    func loadSpecificLawbook(bookId: String) async throws {
+        print("LOADING SPECIFIC LAWBOOK")
+        guard let url = URL(string: "https://de.openlegaldata.io/api/laws/?book_id=\(bookId)&book__latest=true") else { return }
         singleLawbook = []
         Task {
             do {
@@ -26,18 +27,16 @@ class LawBookViewModel: ObservableObject {
                 if 200..<300 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
                     print("SUCCESS")
                 }
-                let lawBookResult = try JSONDecoder().decode(LawBookResult.self, from: data)
+                let lawBookResult = try JSONDecoder().decode(specificLawbookResult.self, from: data)
                 singleLawbook.self = lawBookResult.results
-                print(singleLawbook.first?.title)
-                
-                
+                print("SUCCESS LOADING LAWBOOK")
             } catch {
                 print(error.localizedDescription)
             }
         }
     }
     
-//    func loadLawBooks() async throws {
+//    func loadLawBook() async throws {
 //        guard let url = URL(string: "https://de.openlegaldata.io/api/law_books/?slug=patg&code=&latest=true") else { return }
 //        Task {
 //            do {

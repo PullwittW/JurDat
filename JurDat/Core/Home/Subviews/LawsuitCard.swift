@@ -20,9 +20,6 @@ struct LawsuitCard: View {
                 .font(.title2)
                 .fontWeight(.bold)
             Spacer()
-            Divider()
-                .padding()
-            Spacer()
             VStack {
                 Text("\(suit.fileNumbers.count)")
                     .font(.title2)

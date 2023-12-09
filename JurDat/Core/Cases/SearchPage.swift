@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SearchPage: View {
     
-    @StateObject var vm = CaseViewModel()
+    @EnvironmentObject var caseVM: CaseViewModel
     @State private var searchText = ""
     @State private var performSearch: Bool = true
     
     var body: some View {
         NavigationStack {
             VStack {
-                if vm.newCases.isEmpty {
+                if caseVM.newCases.isEmpty {
                     VStack(spacing: 10) {
                         ProgressView()
                         Text("Lade Fälle...")
@@ -24,7 +24,7 @@ struct SearchPage: View {
                 } else {
                     ScrollView {
                         VStack(alignment: .leading) {
-                            ForEach(vm.filterCases(searchText: searchText)) { caseItem in
+                            ForEach(caseVM.filterCases(searchText: searchText)) { caseItem in
                                 SingleCaseView(caseItem: caseItem)
                                 Divider()
                             }
@@ -33,15 +33,9 @@ struct SearchPage: View {
                 }
             }
             .navigationTitle("Urteile")
-            .task {
-                if performSearch {
-                    try? await vm.loadNewCases()
-                    performSearch = false
-                }
-            }
             .searchable(text: $searchText, prompt: "Suche nach Urteilen")
             .refreshable {
-                try? await vm.loadNewCases()
+                try? await caseVM.loadNewCases()
             }
         }
     }

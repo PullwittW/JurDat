@@ -10,7 +10,8 @@ import Firebase
 
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject private var userVM = UserViewModel()
+    @EnvironmentObject var userVM: UserViewModel
+//    @StateObject private var userVM = UserViewModel()
     @State private var userEmail = "info.pullwitt@gmail.com"
     
     var body: some View {
@@ -43,7 +44,6 @@ struct SettingsView: View {
             }
             .padding()
             .task {
-                try? await userVM.loadCurrentUser()
                 userVM.loadAuthProviders()
             }
             .toolbar {

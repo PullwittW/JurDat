@@ -9,7 +9,8 @@ import SwiftUI
 
 struct LawsOverviewView: View {
     
-    @StateObject var vm = LawBookViewModel()
+    @EnvironmentObject var bookVM: LawBookViewModel
+    @State private var showCaseDetailView: Bool = false
     @State private var searchText: String = ""
     @State private var performSearch: Bool = true
     
@@ -21,13 +22,14 @@ struct LawsOverviewView: View {
                         lawBooksFavorites(lawBookName: "BGB")
                             .onTapGesture {
                                 Task {
-                                    try? await vm.loadSpecificLawbook(slug: "bgb")
+                                    try? await bookVM.loadSpecificLawbook(bookId: "1280")
                                 }
+                                
                             }
                         lawBooksFavorites(lawBookName: "GG")
                             .onTapGesture {
                                 Task {
-                                    try? await vm.loadSpecificLawbook(slug: "gg")
+                                    try? await bookVM.loadSpecificLawbook(bookId: "2215")
                                 }
                             }
                     }
@@ -35,18 +37,18 @@ struct LawsOverviewView: View {
                         lawBooksFavorites(lawBookName: "StpO")
                             .onTapGesture {
                                 Task {
-                                    try? await vm.loadSpecificLawbook(slug: "stpo")
+                                    try? await bookVM.loadSpecificLawbook(bookId: "2012")
                                 }
                             }
                         lawBooksFavorites(lawBookName: "StGB")
                             .onTapGesture {
                                 Task {
-                                    try? await vm.loadSpecificLawbook(slug: "stgb")
+                                    try? await bookVM.loadSpecificLawbook(bookId: "2009")
                                 }
                             }
                     }
                     
-                    if vm.lawBooks.isEmpty {
+                    if bookVM.lawBooks.isEmpty {
                         VStack(spacing: 10) {
                             ProgressView()
                             Text("Lade Gesetzbücher...")
@@ -54,11 +56,11 @@ struct LawsOverviewView: View {
                         .padding()
                     } else {
                         LazyVStack {
-                            ForEach(vm.filterLawBooks(searchText: searchText)) { book in
+                            ForEach(bookVM.filterLawBooks(searchText: searchText)) { book in
                                 singleLawbook(lawBook: book)
                                     .onTapGesture {
                                         Task {
-                                            try? await vm.loadSpecificLawbook(slug: book.slug)
+                                            try? await bookVM.loadSpecificLawbook(bookId: String(book.id))
                                         }
                                     }
                             }
@@ -71,7 +73,7 @@ struct LawsOverviewView: View {
                 .searchable(text: $searchText, prompt: "Suche nach Gesetzen")
                 .task {
                     if performSearch {
-                        try? await vm.getAllLawbooks()
+                        try? await bookVM.getAllLawbooks()
                         performSearch = false
                     }
                 }
@@ -81,6 +83,7 @@ struct LawsOverviewView: View {
 }
 
 struct lawBooksFavorites: View {
+    @StateObject var bookVM = LawBookViewModel()
     var lawBookName: String
     var body: some View {
         VStack {
@@ -89,15 +92,17 @@ struct lawBooksFavorites: View {
                 .fontWeight(.semibold)
                 .padding()
             Divider()
-//            PurpleLine()
         }
         .padding(.horizontal)
+        .environmentObject(bookVM)
     }
 }
 
 struct singleLawbook: View {
     
     let lawBook: LawBook
+    @StateObject var bookVM = LawBookViewModel()
+    @State private var showCaseDetailView: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -108,6 +113,13 @@ struct singleLawbook: View {
             Divider()
         }
         .padding()
+        .onTapGesture {
+            showCaseDetailView.toggle()
+        }
+        .sheet(isPresented: $showCaseDetailView, content: {
+            
+        })
+        .environmentObject(bookVM)
     }
 }
 
