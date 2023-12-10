@@ -10,12 +10,8 @@ import FirebaseAuth
 
 struct HomeView: View {
     
-    @StateObject private var caseVM = CaseViewModel()
-//    @StateObject private var userVM = UserViewModel()
     @EnvironmentObject var userVM: UserViewModel
-    @StateObject private var newsVM = NewsViewModel()
     @State var userName = "Wangu"
-//    @State private var settingsSheet: Bool = false
     @State private var suitSheet: Bool = false
     @State private var newSuitSheet: Bool = false
     @State var newSuitName: String = ""
@@ -50,11 +46,6 @@ struct HomeView: View {
                     
                     Spacer()
                 }
-            }
-            .task {
-//                try? await userVM.loadCurrentUser()
-//                try? await caseVM.loadNewCases()
-//                try? await newsVM.loadNews()
             }
             .padding()
             .sheet(isPresented: $suitSheet) {
@@ -102,7 +93,6 @@ struct HomeView: View {
                 .font(.headline)
             
             Divider()
-//            PurpleLine()
             TextField("Mandaten, Beschreibung, etc. hinzufügen", text: $newSuitDescription, axis: .vertical)
             
             Spacer()

@@ -12,8 +12,9 @@ import GoogleSignInSwift
 struct SignInView: View {
     
     @Environment(\.dismiss) var dismiss
-    @StateObject private var vm = SignInEmailViewModel()
-    @StateObject private var authVM = AuthenticationViewModel()
+    @EnvironmentObject var email: SignInEmailViewModel
+    @EnvironmentObject var auth: AuthenticationViewModel
+    @EnvironmentObject var user: UserViewModel
     @State private var showError: Bool = false
     @State private var error: Error? = nil
     
@@ -67,43 +68,40 @@ struct SignInView: View {
                 
             }
         }
+        .ignoresSafeArea(.keyboard)
     }
     
     var textFields: some View {
         VStack(spacing: 20) {
-            TextField("Email", text: $vm.userEmail)
+            TextField("Email", text: $email.userEmail)
                 .textFieldStyle(.plain)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
+                .keyboardType(.emailAddress)
             
-//            Rectangle()
-//                .frame(width: 350, height: 1)
-//                .foregroundStyle(Color.white)
-            
-            SecureField("Passwort", text: $vm.userPassword)
+            SecureField("Passwort", text: $email.userPassword)
                 .textFieldStyle(.plain)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-            
-//            Rectangle()
-//                .frame(width: 350, height: 1)
-//                .foregroundStyle(Color.white)
         }
     }
     
     var signInEmailButton: some View {
         VStack {
             Button(action: {
-                if vm.userEmail.isEmpty || vm.userPassword.isEmpty {
+                if email.userEmail.isEmpty || email.userPassword.isEmpty {
                     let customeError: Error = MyCustomError.noCredentials
                     error = customeError
                     showError.toggle()
-                } else if vm.userEmail.count <= 0 || vm.userPassword.count <= 0{
+                } else if email.userEmail.count <= 0 || email.userPassword.count <= 0{
                     let customeError: Error = MyCustomError.wrongCredentals
                     error = customeError
                     showError.toggle()
                 } else {
-                    vm.singIn()
+                    email.singIn()
+                    Task {
+                        try? await user.loadCurrentUser()
+                    }
                     dismiss()
                 }
             }, label: {
@@ -116,19 +114,11 @@ struct SignInView: View {
         GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .wide, state: .normal)) {
             Task {
                 do {
-                    try await authVM.signInGoogle()
+                    try await auth.signInGoogle()
                 } catch {
                     print(error)
                 }
-                
             }
-        }
-    }
-    
-    var circleView: some View {
-        ZStack {
-            Circle()
-                .fill(.accent)
         }
     }
 }

@@ -10,14 +10,13 @@ import SwiftUI
 struct CaseDetailView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userVM: UserViewModel
-    
     @State private var showAddToSuitSheet: Bool = false
     @State private var caseIsFavorite: Bool = false
     
     let caseItem: Case
     
-    private func caseIsSelected(text: String) -> Bool {
-        userVM.user?.favoriteCases?.contains(text) == true
+    private func caseIsSelected(slug: String) -> Bool {
+        userVM.user?.favoriteCases?.contains(slug) == true
     }
     
     var body: some View {
@@ -31,17 +30,18 @@ struct CaseDetailView: View {
                     }
                 }
                 .padding()
-                .sheet(isPresented: $showAddToSuitSheet, content: {
-                    AddToLawsuitSheet(caseItem: caseItem)
-                        .presentationDetents([.height(UIScreen.main.bounds.height*0.4)])
-                })
                 .task {
                     try? await userVM.loadCurrentUser()
-                    if caseIsSelected(text: caseItem.slug) {
+                    if caseIsSelected(slug: caseItem.slug) {
                         print("Case is favorite")
+                        print(userVM.user?.favoriteCases?.count)
                         caseIsFavorite = true
                     }
                 }
+//                .sheet(isPresented: $showAddToSuitSheet, content: {
+//                    AddToLawsuitSheet(caseItem: caseItem)
+//                        .presentationDetents([.height(UIScreen.main.bounds.height*0.4)])
+//                })
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(action: {dismiss()}, label: {
@@ -52,7 +52,7 @@ struct CaseDetailView: View {
                     }
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            if caseIsSelected(text: caseItem.slug) {
+                            if caseIsSelected(slug: caseItem.slug) {
                                 userVM.removeUserFavoiteCase(caseID: caseItem.slug)
                                 caseIsFavorite = false
                             } else {
@@ -73,9 +73,9 @@ struct CaseDetailView: View {
                         })
                     }
                 }
-                .interactiveDismissDisabled()
             }
         }
+        .interactiveDismissDisabled()
     }
     
     var userView: some View {

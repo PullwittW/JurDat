@@ -17,6 +17,8 @@ struct JurDatApp: App {
     var caseItem = CaseViewModel()
     var news = NewsViewModel()
     var laws = LawBookViewModel()
+    var email = SignInEmailViewModel()
+    var auth = AuthenticationViewModel()
     
     var body: some Scene {
         WindowGroup {
@@ -28,6 +30,8 @@ struct JurDatApp: App {
                             Image(systemName: "house")
                             Text("Home")
                         }
+                        .environmentObject(email)
+                        .environmentObject(auth)
                     
                     SearchPage()
                         .tabItem {

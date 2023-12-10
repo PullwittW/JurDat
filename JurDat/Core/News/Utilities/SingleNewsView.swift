@@ -43,5 +43,6 @@ struct SingleNewsView: View {
         .sheet(isPresented: $showNewsDetailView, content: {
             NewsDetailView(news: news)
         })
+        .interactiveDismissDisabled()
     }
 }

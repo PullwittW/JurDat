@@ -11,7 +11,8 @@ import Firebase
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userVM: UserViewModel
-//    @StateObject private var userVM = UserViewModel()
+    @EnvironmentObject var auth: AuthenticationViewModel
+    @EnvironmentObject var email: SignInEmailViewModel
     @State private var userEmail = "info.pullwitt@gmail.com"
     
     var body: some View {
@@ -30,7 +31,6 @@ struct SettingsView: View {
                     
                     Spacer()
                     if userVM.authProviders.contains(.email) {
-//                        listView
                         updateEmailButton
                         updatePasswordButton
                         resetPasswordButton
@@ -56,31 +56,8 @@ struct SettingsView: View {
                 }
             }
             .navigationBarBackButtonHidden()
+        }
         .toolbar(.hidden, for: .tabBar)
-        }
-    }
-    
-    var listView: some View {
-        List {
-//            Section("Deine Fälle") {
-//                ForEach(userVM.user?.lawsuits ?? []) { lawsuit in
-//                    Text(lawsuit.lawsuitName)
-//                }
-//            }
-//            Section("Favoriten Urteile") {
-//                ForEach(userVM.user?.favoriteCases ?? [], id: \.self) { caseItem in
-//                    Text(caseItem)
-//                }
-//            }
-//            Section("Email") {
-//                updateEmailButton
-//                updatePasswordButton
-//                resetPasswordButton
-//                userLogOutButton
-//                userDeleteButton
-//            }
-        }
-        .listStyle(.plain)
     }
     
     var userSignInButton: some View {

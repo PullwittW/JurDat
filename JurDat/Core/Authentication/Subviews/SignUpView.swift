@@ -11,7 +11,8 @@ import GoogleSignIn
 
 struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
-    @StateObject private var vm = SignInEmailViewModel()
+    @EnvironmentObject var email: SignInEmailViewModel
+    @EnvironmentObject var auth: AuthenticationViewModel
     @State private var showError: Bool = false
     @State private var error: Error? = nil
     
@@ -28,7 +29,7 @@ struct SignUpView: View {
                     }
                     .padding()
                 }
-                .offset(y: -UIScreen.main.bounds.height * 0.5)
+                .offset(y: -UIScreen.main.bounds.height * 0.3)
                 
                 VStack {
                     Spacer()
@@ -40,7 +41,7 @@ struct SignUpView: View {
                                 dismiss()
                             }
                             .bold()
-                            .foregroundStyle(Color.accent)
+                            .foregroundStyle(Color.theme.purple)
                     }
                 }
                 .padding()
@@ -63,31 +64,43 @@ struct SignUpView: View {
                 
             }
         }
+        .ignoresSafeArea(.keyboard)
     }
     
     var textFields: some View {
         VStack(spacing: 20) {
-            TextField("Email", text: $vm.userEmail)
+            TextField("Vorname", text: $email.userSurname)
                 .textFieldStyle(.plain)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
             
-            SecureField("Passwort", text: $vm.userPassword)
+            TextField("Nachname", text: $email.userLastname)
                 .textFieldStyle(.plain)
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white)) 
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
+            
+            TextField("Email", text: $email.userEmail)
+                .textFieldStyle(.plain)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
+                .keyboardType(.emailAddress)
+            
+            SecureField("Passwort", text: $email.userPassword)
+                .textFieldStyle(.plain)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
         }
     }
     
     var signUpEmailButton: some View {
         VStack {
             Button(action: {
-                if vm.userEmail.count <= 0 || vm.userPassword.count <= 0 {
+                if email.userEmail.count <= 0 || email.userPassword.count <= 0 {
                     let customeError: Error = MyCustomError.noCredentials
                     error = customeError
                     showError.toggle()
                 } else {
-                    vm.signUp()
+                    email.signUp()
                     dismiss()
                 }
             }, label: {

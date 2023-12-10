@@ -27,9 +27,6 @@ struct AddToLawsuitSheet: View {
                     }
                 }
             }
-//            .task {
-//                try? await userVM.loadCurrentUser()
-//            }
             .font(.headline)
             .padding()
         }

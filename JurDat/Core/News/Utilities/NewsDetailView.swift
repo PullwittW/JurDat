@@ -41,9 +41,9 @@ struct NewsDetailView: View {
                         })
                     }
                 }
-                .interactiveDismissDisabled()
             }
         }
+        .interactiveDismissDisabled()
     }
     
     var userView: some View {

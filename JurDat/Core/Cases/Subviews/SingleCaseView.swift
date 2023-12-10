@@ -10,31 +10,33 @@ import SwiftUI
 
 struct SingleCaseView: View {
     
-    @StateObject private var vm = CaseViewModel()
+    @EnvironmentObject var vm: CaseViewModel
     @State private var showCaseDetailView: Bool = false
     let caseItem: Case
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(caseItem.fileNumber)
-                .font(.title2)
-                .fontWeight(.bold)
-            
-            
-            Text("\(caseItem.court.name) vom \(vm.formattedDate(dateString: caseItem.date))")
-                .fontWeight(.semibold)
-            
-            Text(caseItem.type)
-                .foregroundStyle(Color("TextColor"))
-                .font(.callout)
-        }
-        .padding()
-        .onTapGesture {
-            showCaseDetailView.toggle()
-        }
-        .sheet(isPresented: $showCaseDetailView, content: {
-            CaseDetailView(caseItem: caseItem)
+        NavigationStack {
+            VStack(alignment: .leading) {
+                Text(caseItem.fileNumber)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                
+                
+                Text("\(caseItem.court.name) vom \(vm.formattedDate(dateString: caseItem.date))")
+                    .fontWeight(.semibold)
+                
+                Text(caseItem.type)
+                    .foregroundStyle(Color("TextColor"))
+                    .font(.callout)
+            }
+            .padding()
+            .onTapGesture {
+                showCaseDetailView.toggle()
+            }
+            .sheet(isPresented: $showCaseDetailView, content: {
+                CaseDetailView(caseItem: caseItem)
         })
+        }
     }
 }
 

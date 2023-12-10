@@ -11,7 +11,8 @@ import FirebaseAuth
 
 @MainActor
 class SignInEmailViewModel: ObservableObject {
-    
+    @Published var userSurname = ""
+    @Published var userLastname = ""
     @Published var userEmail = ""
     @Published var userPassword = ""
     
@@ -48,6 +49,6 @@ class SignInEmailViewModel: ObservableObject {
             } catch {
                 print("Error: \(error.localizedDescription)")
             }
-        } 
+        }
     }
 }
