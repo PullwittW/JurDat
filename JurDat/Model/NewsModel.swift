@@ -93,5 +93,3 @@ enum Vorgangstyp: String, Codable {
     case gesetzgebung = "Gesetzgebung"
 }
 
-
-

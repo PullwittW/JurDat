@@ -14,7 +14,7 @@ struct SignInView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var email: SignInEmailViewModel
     @EnvironmentObject var auth: AuthenticationViewModel
-    @EnvironmentObject var user: UserViewModel
+    @EnvironmentObject var user: SettingsViewModel
     @State private var showError: Bool = false
     @State private var error: Error? = nil
     
@@ -90,12 +90,12 @@ struct SignInView: View {
         VStack {
             Button(action: {
                 if email.userEmail.isEmpty || email.userPassword.isEmpty {
-                    let customeError: Error = MyCustomError.noCredentials
-                    error = customeError
+                    let customError: Error = customError.noCredentials
+                    error = customError
                     showError.toggle()
                 } else if email.userEmail.count <= 0 || email.userPassword.count <= 0{
-                    let customeError: Error = MyCustomError.wrongCredentals
-                    error = customeError
+                    let customError: Error = customError.wrongCredentals
+                    error = customError
                     showError.toggle()
                 } else {
                     email.singIn()

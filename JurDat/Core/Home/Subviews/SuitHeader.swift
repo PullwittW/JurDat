@@ -12,13 +12,13 @@ struct SuitHeader: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Deine Fälle")
-                    .font(.title3)
-                    .fontWeight(.medium)
+                Text("Deine Sammlungen")
+                    .foregroundStyle(Color("TextColor"))
+                    .font(.callout)
+                    .fontWeight(.semibold)
                 Spacer()
             }
             Divider()
-//            PurpleLine()
         }
     }
 }

@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct HomeView: View {
     
-    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var userVM: SettingsViewModel
     @State var userName = "Wangu"
     @State private var suitSheet: Bool = false
     @State private var newSuitSheet: Bool = false
@@ -22,7 +22,7 @@ struct HomeView: View {
         NavigationStack {
             VStack {
                 if userVM.user != nil {
-                    HomeHeader(userName: userName)
+                    HomeHeader()
                 
                     SuitHeader()
                         .padding(.vertical)
@@ -35,7 +35,7 @@ struct HomeView: View {
                     
                     Spacer()
                 } else {
-                    HomeHeader(userName: userName)
+                    HomeHeader()
                                 
                     SuitHeader()
                         .padding(.vertical)
@@ -63,10 +63,10 @@ struct HomeView: View {
         VStack {
             if let user = userVM.user {
                 ForEach(user.lawsuits ?? []) { suit in
-                    if suit.lawsuitName != "Favoriten" {
+//                    if suit.lawsuitName != "Favoriten" {
                         LawsuitCard(suit: suit, color: "thirdColor")
                             .padding(.bottom, 5)
-                    }
+//                    }
                 }
             }
         }

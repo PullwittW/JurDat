@@ -37,6 +37,20 @@ final class UserManager {
         try userDocument(userId: user.userId).setData(from: user, merge: false)
     }
     
+    func setUserSurname(userId: String, surname: String) async throws {
+        let data: [String:Any] = [
+            DBUser.CodingKeys.surname.rawValue : FieldValue.arrayUnion([surname])
+        ]
+        try await userDocument(userId: userId).updateData(data)
+    }
+    
+    func setUserLastname(userId: String, lastname: String) async throws {
+        let data: [String:Any] = [
+            DBUser.CodingKeys.lastname.rawValue : FieldValue.arrayUnion([lastname])
+        ]
+        try await userDocument(userId: userId).updateData(data)
+    }
+    
 //    func creatNewUser(auth: AuthDataResultModel) async throws {
 //        var userData: [String:Any] = [
 //            "user_id" : auth.uid,
@@ -106,8 +120,25 @@ final class UserManager {
     }
     
     func removeLawsuit(userId: String, lawsuit: Lawsuit) async throws {
+        guard let data = try? encoder.encode(lawsuit) else {
+            throw URLError(.badURL)
+        }
+        let dict: [String:Any] = [
+            DBUser.CodingKeys.lawsuits.rawValue : FieldValue.arrayRemove([data])
+        ]
+        try await userDocument(userId: userId).updateData(dict)
+    }
+    
+    func addUserFavoriteNews(userId: String, news: News) async throws {
         let data: [String:Any] = [
-            DBUser.CodingKeys.lawsuits.rawValue : FieldValue.arrayRemove([lawsuit])
+            DBUser.CodingKeys.favoriteNews.rawValue : FieldValue.arrayUnion([news.titel])
+        ]
+        try await userDocument(userId: userId).updateData(data)
+    }
+    
+    func removeUserFavoriteNews(userId: String, news: News) async throws {
+        let data: [String:Any] = [
+            DBUser.CodingKeys.favoriteNews.rawValue : FieldValue.arrayRemove([news.titel])
         ]
         try await userDocument(userId: userId).updateData(data)
     }

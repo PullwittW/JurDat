@@ -11,7 +11,6 @@ struct SearchPage: View {
     
     @EnvironmentObject var caseVM: CaseViewModel
     @State private var searchText = ""
-    @State private var performSearch: Bool = true
     
     var body: some View {
         NavigationStack {

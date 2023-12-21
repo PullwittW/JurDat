@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct AddToLawsuitSheet: View {
-    @StateObject private var userVM = UserViewModel()
+    @StateObject private var userVM = SettingsViewModel()
     let caseItem: Case
     var body: some View {
         NavigationStack {

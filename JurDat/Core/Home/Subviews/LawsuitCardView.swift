@@ -10,7 +10,9 @@ import SwiftUI
 struct LawsuitDetailView: View {
     
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var userVM: SettingsViewModel
     let lawsuit: Lawsuit
+    @State private var deleteSheet: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -35,6 +37,8 @@ struct LawsuitDetailView: View {
                         .padding(.vertical)
                     }
                     Divider()
+                    
+                    Spacer()
                 }
                 .padding()
                 .toolbar {
@@ -49,11 +53,28 @@ struct LawsuitDetailView: View {
                         Button(action: {}, label: {
                             Image(systemName: "square.and.pencil")
                                 .resizable()
-                                .fontWeight(.bold)
+                                .bold()
+                        })
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(action: {deleteSheet.toggle()}, label: {
+                            Image(systemName: "trash")
+                                .resizable()
+                                .bold()
                         })
                     }
                 }
                 .interactiveDismissDisabled()
+                .actionSheet(isPresented: $deleteSheet, content: {
+                    ActionSheet(title: Text("Löschen bestätigen"), message: Text("Diese Aktion ist unwiderruflich"), buttons: [ .destructive(Text("Löschen"), action: {
+                        userVM.removeLawsuit(lawsuit: lawsuit)
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                            Task {
+//                                try await userVM.loadCurrentUser()
+//                            }
+//                        }
+                    }), .cancel()])
+                })
             }
         }
     }

@@ -29,6 +29,5 @@ final class Utilities {
             return topViewController(controller: presented)
         }
         return controller
-    }
-    
+    } 
 }

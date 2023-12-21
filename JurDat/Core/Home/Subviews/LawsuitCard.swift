@@ -30,7 +30,8 @@ struct LawsuitCard: View {
                     .fontWeight(.bold)
                     .foregroundStyle(.secondary)
             }
-            Spacer()
+            .frame(maxWidth: 100)
+            .frame(minWidth: 100)
         }
         .foregroundColor(.white)
         .frame(height: 125)

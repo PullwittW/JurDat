@@ -9,13 +9,30 @@ import SwiftUI
 
 struct NewsDetailView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var userVM: SettingsViewModel
+    @State private var newsIsFavorite: Bool = false
+    
     let news: News
+    
+    private func newsIsSelected(newsTitel: String) -> Bool {
+        userVM.user?.favoriteNews?.contains(newsTitel) == true
+    }
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack {
                     userView
+                }
+                .onAppear {
+                    Task {
+                        try? await userVM.loadCurrentUser()
+                    }
+                    if newsIsSelected(newsTitel: news.titel) {
+                        newsIsFavorite = true
+                    } else {
+                        newsIsFavorite = false
+                    }
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
@@ -27,8 +44,17 @@ struct NewsDetailView: View {
                     }
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
+                            if !newsIsFavorite {
+                                userVM.addNews(news: news)
+                                newsIsFavorite = true
+                                print("News is Favorite")
+                            } else {
+                                userVM.removeNews(news: news)
+                                newsIsFavorite = false
+                                print("News is no Favorite")
+                            }
                         } label: {
-                            Image(systemName: "heart")
+                            Image(systemName: newsIsFavorite ? "heart" : "heart.fill")
                                 .resizable()
                                 .fontWeight(.bold)
                         }
@@ -43,7 +69,6 @@ struct NewsDetailView: View {
                 }
             }
         }
-        .interactiveDismissDisabled()
     }
     
     var userView: some View {
@@ -72,6 +97,7 @@ struct NewsDetailView: View {
                     
                     Spacer()
                 }
+                .padding(.vertical)
                 
                 Divider()
                 
@@ -79,7 +105,11 @@ struct NewsDetailView: View {
                 
                 VStack(alignment: .leading) {
                     Text(news.abstract?.html2String ?? "Kein Inhalt verfügbar")
+                        .lineSpacing(2.0)
+                        .font(.system(size: 18))
+                        .fontWeight(.medium)
                 }
+                .padding(.vertical)
             }
             .padding()
             .interactiveDismissDisabled()

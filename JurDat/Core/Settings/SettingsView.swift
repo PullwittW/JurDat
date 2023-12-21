@@ -10,7 +10,7 @@ import Firebase
 
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var userVM: SettingsViewModel
     @EnvironmentObject var auth: AuthenticationViewModel
     @EnvironmentObject var email: SignInEmailViewModel
     @State private var userEmail = "info.pullwitt@gmail.com"

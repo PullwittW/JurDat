@@ -8,24 +8,27 @@
 import SwiftUI
 
 struct HomeHeader: View {
-    @State var userName: String
+    @EnvironmentObject var userVM: SettingsViewModel
     
     var body: some View {
-        HStack {
-            Text("Hi, \(userName)")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-        
-            Spacer()
+        NavigationStack {
+            HStack {
+                Text("Hi, Wangu")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                
             
-            NavigationLink {
-                SettingsView()
-            } label: {
-                Image("profilePicture")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 55, height: 55)
-                    .cornerRadius(20)
+                Spacer()
+                
+                NavigationLink {
+                    SettingsView()
+                } label: {
+                    Image("profilePicture")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 55, height: 55)
+                        .cornerRadius(20)
+                }
             }
         }
     }

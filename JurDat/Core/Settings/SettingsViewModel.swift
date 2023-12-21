@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class UserViewModel: ObservableObject {
+final class SettingsViewModel: ObservableObject {
     
     @Published var authProviders: [AuthProviderOption] = []
     @Published private(set) var user: DBUser? = nil
@@ -33,6 +33,17 @@ final class UserViewModel: ObservableObject {
         let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
         return authUser
     }
+    
+// MARK: User
+    func setUserName(surname: String, lastname: String) {
+        guard let user else { return }
+        Task {
+            try await UserManager.shared.setUserSurname(userId: user.userId, surname: surname)
+            try await UserManager.shared.setUserLastname(userId: user.userId, lastname: lastname)
+            self.user = try await UserManager.shared.getUser(userId: user.userId)
+        }
+    }
+    
     
 // MARK: User Email Settings
     
@@ -106,6 +117,23 @@ final class UserViewModel: ObservableObject {
         guard let user else { return }
         Task {
             try await UserManager.shared.addCaseToLawsuit(userId: user.userId, lawsuit: lawsuit, caseItem: caseItem)
+            self.user = try await UserManager.shared.getUser(userId: user.userId)
+        }
+    }
+    
+// MARK: User News
+    func addNews(news: News) {
+        guard let user else { return }
+        Task {
+            try await UserManager.shared.addUserFavoriteNews(userId: user.userId, news: news)
+            self.user = try await UserManager.shared.getUser(userId: user.userId)
+        }
+    }
+    
+    func removeNews(news: News) {
+        guard let user else { return }
+        Task {
+            try await UserManager.shared.removeUserFavoriteNews(userId: user.userId, news: news)
             self.user = try await UserManager.shared.getUser(userId: user.userId)
         }
     }

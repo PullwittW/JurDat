@@ -25,9 +25,18 @@ class NewsViewModel: ObservableObject {
                 let (data, response) = try await URLSession.shared.data(from: url)
                 if 200..<300 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
                     print("SUCCESS LOADING NEWS")
+                } else if 100..<200 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
+                    print("INFORMAL RESPONSE")
+                } else if 300..<400 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
+                    print("REDIRECTION ERROR")
+                } else if 400..<500 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
+                    print("CLIENT ERROR")
+                } else if 500..<600 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
+                    print("SERVER ERROR")
                 } else {
                     print(response)
                 }
+                
                 let newsResult = try JSONDecoder().decode(NewsResult.self, from: data)
                 news.self = newsResult.documents ?? []
                 print("News Count: \(self.news.count)")

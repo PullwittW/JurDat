@@ -11,12 +11,11 @@ struct SuitSheetView: View {
     @Binding var newSuitSheet: Bool
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Neuen Fall hinzufügen")
+            Text("Neue Sammlung erstellen")
                 .onTapGesture {newSuitSheet.toggle()}
-            
-//            PurpleLine()
+
             Divider()
-            Text("Alle Fälle ansehen")
+            Text("Sammlungen ansehen")
         }
         .font(.headline)
         .padding()

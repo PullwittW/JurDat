@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CaseDetailView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var userVM: UserViewModel
+    @EnvironmentObject var userVM: SettingsViewModel
     @State private var showAddToSuitSheet: Bool = false
     @State private var caseIsFavorite: Bool = false
     
@@ -30,18 +30,19 @@ struct CaseDetailView: View {
                     }
                 }
                 .padding()
-                .task {
-                    try? await userVM.loadCurrentUser()
+                .onAppear {
+                    Task {
+                        try? await userVM.loadCurrentUser()
+                    }
                     if caseIsSelected(slug: caseItem.slug) {
                         print("Case is favorite")
                         print(userVM.user?.favoriteCases?.count)
                         caseIsFavorite = true
+                    } else {
+                        caseIsFavorite = false
+                        print("Case is no favorite")
                     }
                 }
-//                .sheet(isPresented: $showAddToSuitSheet, content: {
-//                    AddToLawsuitSheet(caseItem: caseItem)
-//                        .presentationDetents([.height(UIScreen.main.bounds.height*0.4)])
-//                })
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(action: {dismiss()}, label: {
@@ -52,12 +53,14 @@ struct CaseDetailView: View {
                     }
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            if caseIsSelected(slug: caseItem.slug) {
+                            if caseIsFavorite {
                                 userVM.removeUserFavoiteCase(caseID: caseItem.slug)
                                 caseIsFavorite = false
+                                print("Case is no favorite")
                             } else {
                                 userVM.addUserFavoriteCase(caseID: caseItem.slug)
                                 caseIsFavorite = true
+                                print("Case is favorite: \(caseIsFavorite)")
                             }
                         } label: {
                             Image(systemName: caseIsFavorite ? "heart.fill" : "heart")
@@ -81,7 +84,7 @@ struct CaseDetailView: View {
     var userView: some View {
         VStack {
             Text(caseItem.court.name)
-                .font(.title3)
+                .font(.title2)
                 .bold()
             
             HStack(spacing: 10) {
@@ -107,6 +110,9 @@ struct CaseDetailView: View {
             
             VStack(alignment: .leading) {
                 Text(caseItem.content.html2String)
+                    .lineSpacing(2.0)
+                    .font(.system(size: 18))
+                    .fontWeight(.medium)
             }
         }
     }

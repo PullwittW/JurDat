@@ -35,7 +35,7 @@ struct SingleCaseView: View {
             }
             .sheet(isPresented: $showCaseDetailView, content: {
                 CaseDetailView(caseItem: caseItem)
-        })
+            })
         }
     }
 }
