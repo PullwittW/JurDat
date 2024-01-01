@@ -38,6 +38,10 @@ struct LawsuitDetailView: View {
                     }
                     Divider()
                     
+                    ForEach(lawsuit.fileNumbers, id: \.self) { number in
+                        Text(number)
+                    }
+                    
                     Spacer()
                 }
                 .padding()
@@ -68,11 +72,6 @@ struct LawsuitDetailView: View {
                 .actionSheet(isPresented: $deleteSheet, content: {
                     ActionSheet(title: Text("Löschen bestätigen"), message: Text("Diese Aktion ist unwiderruflich"), buttons: [ .destructive(Text("Löschen"), action: {
                         userVM.removeLawsuit(lawsuit: lawsuit)
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                            Task {
-//                                try await userVM.loadCurrentUser()
-//                            }
-//                        }
                     }), .cancel()])
                 })
             }

@@ -15,9 +15,9 @@ struct DBUser: Codable {
     let photoUrl: String?
     let dateCreated: Date?
     let isPremium: Bool?
-    let favoriteCases: [String]?
-    let favoriteNews: [String]?
-    let lawsuits: [Lawsuit]?
+    var favoriteCases: [String]?
+    var favoriteNews: [String]?
+    var lawsuits: [Lawsuit]?
     
     init(auth: AuthDataResultModel) {
         self.userId = auth.uid

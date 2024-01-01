@@ -11,6 +11,7 @@ import Foundation
 final class SettingsViewModel: ObservableObject {
     
     @Published var authProviders: [AuthProviderOption] = []
+    @Published var userLawsuits: [Lawsuit] = []
     @Published private(set) var user: DBUser? = nil
     @Published var userIsLoggedIn: Bool = false
     
@@ -21,6 +22,7 @@ final class SettingsViewModel: ObservableObject {
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
         print("LOADING AUTH USER...")
         userIsLoggedIn = true
+        self.userLawsuits = user?.lawsuits ?? []
     }
     
     func loadAuthProviders() {
@@ -103,20 +105,24 @@ final class SettingsViewModel: ObservableObject {
             try await UserManager.shared.addLawsuit(userId: user.userId, lawsuit: lawsuit)
             self.user = try await UserManager.shared.getUser(userId: user.userId)
         }
+        self.userLawsuits.append(lawsuit)
     }
     
     func removeLawsuit(lawsuit: Lawsuit) {
         guard let user else { return }
         Task {
             try await UserManager.shared.removeLawsuit(userId: user.userId, lawsuit: lawsuit)
+            print("Removing lawsuit: \(lawsuit)")
             self.user = try await UserManager.shared.getUser(userId: user.userId)
         }
     }
     
     func addCaseToLawsuit(lawsuit: Lawsuit, caseItem: Case) {
         guard let user else { return }
+        var cases = lawsuit.fileNumbers
+        cases.append(caseItem.fileNumber)
         Task {
-            try await UserManager.shared.addCaseToLawsuit(userId: user.userId, lawsuit: lawsuit, caseItem: caseItem)
+            try await UserManager.shared.addCaseToLawsuit(userId: user.userId, newLawsuit: Lawsuit(lawsuitName: lawsuit.lawsuitName, lawsuitDescription: lawsuit.lawsuitDescription ?? "", fileNumbers: cases), oldLawsuit: lawsuit)
             self.user = try await UserManager.shared.getUser(userId: user.userId)
         }
     }

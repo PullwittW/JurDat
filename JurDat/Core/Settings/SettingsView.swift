@@ -29,14 +29,40 @@ struct SettingsView: View {
                         .font(.title)
                         .bold()
                     
-                    Spacer()
-                    if userVM.authProviders.contains(.email) {
-                        updateEmailButton
-                        updatePasswordButton
-                        resetPasswordButton
+                    List {
+                        Section {
+                            ForEach(user.favoriteCases ?? [], id: \.self) { caseItem in
+                                Text(caseItem)
+                            }
+                        } header: {
+                            Text("Favorisierte Fälle")
+                        }
+                        
+                        Section {
+                            ForEach(user.favoriteNews ?? [], id: \.self) { news in
+                                Text(news)
+                            }
+                        } header: {
+                            Text("Favorisierte News")
+                        }
+                        
+                        Section {
+                            if userVM.authProviders.contains(.email) {
+                                updateEmailButton
+                                updatePasswordButton
+                                resetPasswordButton
+                            }
+                            userLogOutButton
+                            userDeleteButton
+                        } header: {
+                            Text("Email")
+                        }
+                        
                     }
-                    userLogOutButton
-                    userDeleteButton
+                    .scrollContentBackground(.hidden)
+                    
+//                    Spacer()
+                    
                 } else {
                     Spacer()
                     userSignInButton

@@ -9,23 +9,22 @@ import SwiftUI
 
 struct LawsuitCard: View {
     
-    let suit: Lawsuit
-    let color: String
+    let lawsuit: Lawsuit
     @State private var showLawsuitDetailView: Bool = false
     
     var body: some View {
         HStack {
             Spacer()
-            Text(suit.lawsuitName)
+            Text(lawsuit.lawsuitName)
                 .font(.title2)
                 .fontWeight(.bold)
             Spacer()
             VStack {
-                Text("\(suit.fileNumbers.count)")
+                Text("\(lawsuit.fileNumbers.count)")
                     .font(.title2)
                     .fontWeight(.bold)
                 
-                Text("Fälle")
+                Text(lawsuit.fileNumbers.count == 1 ? "Fall" : "Fälle")
                     .font(.footnote)
                     .fontWeight(.bold)
                     .foregroundStyle(.secondary)
@@ -44,7 +43,7 @@ struct LawsuitCard: View {
             showLawsuitDetailView.toggle()
         }
         .sheet(isPresented: $showLawsuitDetailView, content: {
-            LawsuitDetailView(lawsuit: suit)
+            LawsuitDetailView(lawsuit: lawsuit)
         })
     }
 }

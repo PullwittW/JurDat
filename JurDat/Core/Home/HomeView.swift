@@ -17,6 +17,8 @@ struct HomeView: View {
     @State var newSuitName: String = ""
     @State var newSuitDescription: String = ""
     @State private var lawsuitCardSheet: Bool = false
+    @State private var showError: Bool = false
+    @State private var error: Error? = nil
     
     var body: some View {
         NavigationStack {
@@ -61,13 +63,15 @@ struct HomeView: View {
     
     var allSuitsCardView: some View {
         VStack {
-            if let user = userVM.user {
-                ForEach(user.lawsuits ?? []) { suit in
-//                    if suit.lawsuitName != "Favoriten" {
-                        LawsuitCard(suit: suit, color: "thirdColor")
-                            .padding(.bottom, 5)
-//                    }
-                }
+//            if let user = userVM.user {
+//                ForEach(userVM.userLawsuits) { suit in
+//                    LawsuitCard(suit: suit, color: "thirdColor")
+//                        .padding(.bottom, 5)
+//                }
+//            }
+            ForEach(userVM.userLawsuits.sorted(by: { $0.lawsuitName < $1.lawsuitName })) { suit in
+                LawsuitCard(lawsuit: suit)
+                    .padding(.bottom, 5)
             }
         }
     }
@@ -77,19 +81,26 @@ struct HomeView: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    userVM.addLawsuit(lawsuit: Lawsuit(
-                        lawsuitName: newSuitName,
-                        lawsuitDescription: newSuitDescription,
-                        fileNumbers: []))
-                    newSuitName = ""
-                    newSuitDescription = ""
-                    suitSheet = false
-                    newSuitSheet = false
+                    if newSuitName.count < 3 {
+                        let customError: Error = customError.noLawsuitName
+                        error = customError
+                        showError.toggle()
+                    } else {
+                        userVM.addLawsuit(lawsuit: Lawsuit(
+                            lawsuitName: newSuitName,
+                            lawsuitDescription: newSuitDescription,
+                            fileNumbers: []))
+                        newSuitName = ""
+                        newSuitDescription = ""
+                        suitSheet = false
+                        newSuitSheet = false
+                    }
                 }, label: {
                     Text("Erstellen")
+                        .bold()
                 })
             }
-            TextField("Neuen Fall anlegen", text: $newSuitName)
+            TextField("Titel hinzufügen", text: $newSuitName)
                 .font(.headline)
             
             Divider()
@@ -98,6 +109,11 @@ struct HomeView: View {
             Spacer()
         }
         .padding()
+        .alert(error?.localizedDescription ?? "Ein Fehler ist aufgetreten", isPresented: $showError) {
+            Button("OK") {
+                
+            }
+        }
     }
     
     var noUserCard: some View {

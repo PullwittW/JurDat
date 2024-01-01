@@ -11,6 +11,7 @@ enum customError: Error, LocalizedError {
     case noInternetConnection
     case noCredentials
     case wrongCredentals
+    case noLawsuitName
     case unableToLoadUser
     case unableToLoadCases
     case unableToLoadNews
@@ -22,6 +23,8 @@ enum customError: Error, LocalizedError {
             return "Bitte überprüfe deine Internetverbindung und versuche es erneut."
         case .noCredentials:
             return "Bitte gib deine Anmeldedaten ein."
+        case .noLawsuitName:
+            return "Bitte gib einen Namen ein"
         case .wrongCredentals:
             return "Bitte gib valide Anmeldedaten ein."
         case .unableToLoadUser:

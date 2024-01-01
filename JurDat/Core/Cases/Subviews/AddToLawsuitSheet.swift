@@ -16,7 +16,7 @@ struct AddToLawsuitSheet: View {
             VStack(alignment: .leading, spacing: 20) {
                 if let user = userVM.user {
                     ScrollView {
-                        ForEach(user.lawsuits ?? []) { lawsuit in
+                        ForEach(user.lawsuits?.sorted(by: { $0.lawsuitName < $1.lawsuitName }) ?? []) { lawsuit in
                             Text(lawsuit.lawsuitName)
                                 .onTapGesture {
                                     userVM.addCaseToLawsuit(lawsuit: lawsuit, caseItem: caseItem)

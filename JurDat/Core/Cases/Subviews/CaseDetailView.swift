@@ -13,7 +13,7 @@ struct CaseDetailView: View {
     @State private var showAddToSuitSheet: Bool = false
     @State private var caseIsFavorite: Bool = false
     
-    let caseItem: Case
+    var caseItem: Case
     
     private func caseIsSelected(slug: String) -> Bool {
         userVM.user?.favoriteCases?.contains(slug) == true
@@ -30,52 +30,67 @@ struct CaseDetailView: View {
                     }
                 }
                 .padding()
-                .onAppear {
-                    Task {
-                        try? await userVM.loadCurrentUser()
-                    }
-                    if caseIsSelected(slug: caseItem.slug) {
-                        print("Case is favorite")
-                        print(userVM.user?.favoriteCases?.count)
-                        caseIsFavorite = true
-                    } else {
-                        caseIsFavorite = false
-                        print("Case is no favorite")
-                    }
+            }
+            .onAppear {
+                Task {
+                    try? await userVM.loadCurrentUser()
                 }
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button(action: {dismiss()}, label: {
-                            Image(systemName: "chevron.left")
-                                .resizable()
-                                .fontWeight(.bold)
-                        })
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            if caseIsFavorite {
-                                userVM.removeUserFavoiteCase(caseID: caseItem.slug)
-                                caseIsFavorite = false
-                                print("Case is no favorite")
-                            } else {
-                                userVM.addUserFavoriteCase(caseID: caseItem.slug)
-                                caseIsFavorite = true
-                                print("Case is favorite: \(caseIsFavorite)")
-                            }
-                        } label: {
-                            Image(systemName: caseIsFavorite ? "heart.fill" : "heart")
-                                .resizable()
-                                .fontWeight(.bold)
+                if caseIsSelected(slug: caseItem.slug) {
+                    caseIsFavorite = true
+                } else {
+                    caseIsFavorite = false
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {dismiss()}, label: {
+                        Image(systemName: "chevron.left")
+                            .resizable()
+                            .fontWeight(.bold)
+                    })
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        if !caseIsFavorite {
+                            userVM.addUserFavoriteCase(caseID: caseItem.slug)
+                            caseIsFavorite = true
+                            print("Case is favorite")
+                        } else {
+                            userVM.removeUserFavoiteCase(caseID: caseItem.slug)
+                            caseIsFavorite = false
+                            print("Case is no favorite")
                         }
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {showAddToSuitSheet.toggle()}, label: {
-                            Image(systemName: "plus")
-                                .resizable()
-                                .fontWeight(.bold)
-                        })
+                    } label: {
+                        Image(systemName: caseIsFavorite ? "heart.fill" : "heart")
+                            .resizable()
+                            .fontWeight(.bold)
                     }
                 }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {showAddToSuitSheet.toggle()}, label: {
+                        Image(systemName: "plus")
+                            .resizable()
+                            .fontWeight(.bold)
+                    })
+                }
+            }
+            .sheet(isPresented: $showAddToSuitSheet) {
+                List {
+                    Section {
+                        ForEach(userVM.user?.lawsuits ?? []) { suit in
+//                        ForEach(userVM.userLawsuits) { suit in
+                            Button {
+                                userVM.addCaseToLawsuit(lawsuit: suit, caseItem: caseItem)
+                                print("\(suit.lawsuitName) tapped")
+                            } label: {
+                                Text(suit.lawsuitName)
+                            }
+                        }
+                    } header: {
+                        Text("Zu Sammlung hinzufügen...")
+                    }
+                }
+                .presentationDetents([.medium])
             }
         }
         .interactiveDismissDisabled()
@@ -109,7 +124,7 @@ struct CaseDetailView: View {
             Spacer()
             
             VStack(alignment: .leading) {
-                Text(caseItem.content.html2String)
+                Text(caseItem.content)
                     .lineSpacing(2.0)
                     .font(.system(size: 18))
                     .fontWeight(.medium)

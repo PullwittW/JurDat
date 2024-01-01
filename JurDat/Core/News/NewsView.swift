@@ -10,7 +10,6 @@ import SwiftUI
 struct NewsView: View {
     
     @EnvironmentObject var newsVM: NewsViewModel
-    @State private var performSearch: Bool = true
     @State private var searchText: String = ""
     
     var body: some View {

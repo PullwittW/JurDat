@@ -11,5 +11,5 @@ struct Lawsuit: Codable, Identifiable {
     let id: String = UUID().uuidString
     let lawsuitName: String
     let lawsuitDescription: String?
-    let fileNumbers: [String]
+    var fileNumbers: [String]
 }

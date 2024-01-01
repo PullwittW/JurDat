@@ -143,13 +143,14 @@ final class UserManager {
         try await userDocument(userId: userId).updateData(data)
     }
     
-    func addCaseToLawsuit(userId: String, lawsuit: Lawsuit, caseItem: Case) async throws {
-        guard let data = try? encoder.encode(lawsuit) else {
+    func addCaseToLawsuit(userId: String, newLawsuit: Lawsuit, oldLawsuit: Lawsuit) async throws {
+        try await removeLawsuit(userId: userId, lawsuit: oldLawsuit)
+        guard let newData = try? encoder.encode(newLawsuit) else {
             throw URLError(.badURL)
         }
-        let dict: [String:Any] = [
-            DBUser.CodingKeys.lawsuits.rawValue : FieldValue.arrayUnion([data])
+        let newDict: [String:Any] = [
+            DBUser.CodingKeys.lawsuits.rawValue : FieldValue.arrayUnion([newData])
         ]
-        try await userDocument(userId: userId).updateData(dict)
+        try await userDocument(userId: userId).updateData(newDict)
     }
 }
