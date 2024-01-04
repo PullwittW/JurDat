@@ -28,37 +28,66 @@ struct SettingsView: View {
                         .font(.title)
                         .bold()
                     
-                    List {
-                        Section {
-                            ForEach(user.favoriteCases ?? [], id: \.self) { caseItem in
-                                Text(caseItem)
+                    ScrollView {
+                        VStack {
+                            // Favorisierte Cases
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text("Fälle")
+                                        .foregroundStyle(Color("TextColor"))
+                                        .font(.callout)
+                                        .fontWeight(.semibold)
+                                    Spacer()
+                                }
+                                Divider()
+                                
+                                ForEach(userVM.user?.favoriteCases ?? ["Kein Fall favorisiert"], id: \.self) { caseItem in
+                                    Text(caseItem)
+                                        .padding(.bottom, 10)
+                                }
                             }
-                        } header: {
-                            Text("Favorisierte Fälle")
-                        }
-                        
-                        Section {
-                            ForEach(user.favoriteNews ?? [], id: \.self) { news in
-                                Text(news)
+                            .padding(.vertical)
+                            
+                            // Favorisierte News
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text("News")
+                                        .foregroundStyle(Color("TextColor"))
+                                        .font(.callout)
+                                        .fontWeight(.semibold)
+                                    Spacer()
+                                }
+                                Divider()
+                                
+                                ForEach(userVM.user?.favoriteNews ?? ["Keine News favorisiert"], id: \.self) { news in
+                                    Text(news)
+                                        .padding(.bottom, 10)
+                                }
                             }
-                        } header: {
-                            Text("Favorisierte News")
-                        }
-                        
-                        Section {
-                            if userVM.authProviders.contains(.email) {
-                                updateEmailButton
-                                updatePasswordButton
-                                resetPasswordButton
+                            .padding(.bottom)
+                            
+                            // Email Einstellungen
+                            VStack {
+                                HStack {
+                                    Text("Email")
+                                        .foregroundStyle(Color("TextColor"))
+                                        .font(.callout)
+                                        .fontWeight(.semibold)
+                                    Spacer()
+                                }
+                                Divider()
+                                
+                                if userVM.authProviders.contains(.email) {
+                                    updateEmailButton
+                                    updatePasswordButton
+                                    resetPasswordButton
+                                        .padding(.bottom)
+                                }
+                                userLogOutButton
+                                userDeleteButton
                             }
-                            userLogOutButton
-                            userDeleteButton
-                        } header: {
-                            Text("Email")
                         }
-                        
                     }
-                    .scrollContentBackground(.hidden)
                     
 //                    Spacer()
                     
