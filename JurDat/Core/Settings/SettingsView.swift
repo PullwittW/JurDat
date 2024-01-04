@@ -13,7 +13,6 @@ struct SettingsView: View {
     @EnvironmentObject var userVM: SettingsViewModel
     @EnvironmentObject var auth: AuthenticationViewModel
     @EnvironmentObject var email: SignInEmailViewModel
-    @State private var userEmail = "info.pullwitt@gmail.com"
     
     var body: some View {
         NavigationStack {

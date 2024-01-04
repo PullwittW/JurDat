@@ -11,6 +11,8 @@ struct NewsDetailView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userVM: SettingsViewModel
     @State private var newsIsFavorite: Bool = false
+    @State private var showAddToSuitSheet: Bool = false
+    @State private var newsContent: String = ""
     
     let news: News
     
@@ -59,14 +61,34 @@ struct NewsDetailView: View {
                             .resizable()
                             .fontWeight(.bold)
                     }
+                    .disabled(userVM.user != nil ? false : true)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: {}, label: {
+                    Button(action: {showAddToSuitSheet.toggle()}, label: {
                         Image(systemName: "plus")
                             .resizable()
                             .fontWeight(.bold)
                     })
+                    .disabled(userVM.user != nil ? false : true)
                 }
+            }
+            .sheet(isPresented: $showAddToSuitSheet) {
+                List {
+                    Section {
+                        ForEach(userVM.user?.lawsuits ?? []) { suit in
+//                        ForEach(userVM.userLawsuits) { suit in
+                            Button {
+//                                userVM.addNewsToLawsuit(lawsuit: suit, newsItem: news)
+                                print("\(suit.lawsuitName) tapped")
+                            } label: {
+                                Text(suit.lawsuitName)
+                            }
+                        }
+                    } header: {
+                        Text("Zu Sammlung hinzufügen...")
+                    }
+                }
+                .presentationDetents([.medium])
             }
         }
         .interactiveDismissDisabled()
@@ -104,16 +126,16 @@ struct NewsDetailView: View {
             Spacer()
             
             VStack(alignment: .leading) {
-                if let abstract = news.abstract {
-                    Text(abstract)
-                        .lineSpacing(2.0)
-                        .font(.system(size: 18))
-                        .fontWeight(.medium)
-                }
+                Text(newsContent)
+                    .lineSpacing(2.0)
+                    .font(.system(size: 18))
+                    .fontWeight(.medium)
             }
-            .padding(.vertical)
         }
         .padding()
         .interactiveDismissDisabled()
+        .onAppear {
+            newsContent = news.abstract?.html2String ?? "Kein Inhalt verfügbar"
+        }
     }
 }

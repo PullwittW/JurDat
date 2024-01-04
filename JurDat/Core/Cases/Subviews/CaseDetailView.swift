@@ -12,6 +12,7 @@ struct CaseDetailView: View {
     @EnvironmentObject var userVM: SettingsViewModel
     @State private var showAddToSuitSheet: Bool = false
     @State private var caseIsFavorite: Bool = false
+    @State private var caseContent: String = ""
     
     var caseItem: Case
     
@@ -65,6 +66,7 @@ struct CaseDetailView: View {
                             .resizable()
                             .fontWeight(.bold)
                     }
+                    .disabled(userVM.user != nil ? false : true)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {showAddToSuitSheet.toggle()}, label: {
@@ -72,6 +74,7 @@ struct CaseDetailView: View {
                             .resizable()
                             .fontWeight(.bold)
                     })
+                    .disabled(userVM.user != nil ? false : true)
                 }
             }
             .sheet(isPresented: $showAddToSuitSheet) {
@@ -124,11 +127,14 @@ struct CaseDetailView: View {
             Spacer()
             
             VStack(alignment: .leading) {
-                Text(caseItem.content)
+                Text(caseContent)
                     .lineSpacing(2.0)
                     .font(.system(size: 18))
                     .fontWeight(.medium)
             }
+        }
+        .onAppear {
+            caseContent = caseItem.content.html2String
         }
     }
     

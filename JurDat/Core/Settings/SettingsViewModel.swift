@@ -143,4 +143,14 @@ final class SettingsViewModel: ObservableObject {
             self.user = try await UserManager.shared.getUser(userId: user.userId)
         }
     }
+    
+//    func addNewsToLawsuit(lawsuit: Lawsuit, newsItem: News) {
+//        guard let user else { return }
+//        var news = lawsuit.newsNumbers
+//        news.append(newsItem.titel)
+//        Task {
+//            try await UserManager.shared.addCaseToLawsuit(userId: user.userId, newLawsuit: Lawsuit(lawsuitName: lawsuit.lawsuitName, lawsuitDescription: lawsuit.lawsuitDescription ?? "", fileNumbers: lawsuit.fileNumbers, newsNumbers: news), oldLawsuit: lawsuit)
+//            self.user = try await UserManager.shared.getUser(userId: user.userId)
+//        }
+//    }
 }

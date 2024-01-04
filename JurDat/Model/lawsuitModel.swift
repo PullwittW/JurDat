@@ -12,4 +12,5 @@ struct Lawsuit: Codable, Identifiable {
     let lawsuitName: String
     let lawsuitDescription: String?
     var fileNumbers: [String]
+//    var newsNumbers: [String]
 }
