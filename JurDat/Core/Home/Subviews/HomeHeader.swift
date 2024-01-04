@@ -13,21 +13,39 @@ struct HomeHeader: View {
     var body: some View {
         NavigationStack {
             HStack {
-                Text("Hi, Wangu")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                
+                if userVM.user != nil {
+                    Text("Hi, Wangu")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                } else {
+                    Text("Hi")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                }
             
                 Spacer()
                 
                 NavigationLink {
                     SettingsView()
                 } label: {
-                    Image("profilePicture")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 55, height: 55)
-                        .cornerRadius(20)
+                    if userVM.user != nil {
+                        Image("profilePicture")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 55, height: 55)
+                            .cornerRadius(20)
+                    } else {
+                        Image(systemName: "person")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundStyle(.white)
+                            .padding(8)
+                            .background {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .foregroundStyle(Color.theme.textColor)
+                            }
+                            .frame(width: 55, height: 55)
+                    }
                 }
             }
         }

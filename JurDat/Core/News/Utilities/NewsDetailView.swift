@@ -25,6 +25,7 @@ struct NewsDetailView: View {
             ScrollView {
                 VStack {
                     userView
+                        .padding()
                 }
             }
             .onAppear {
@@ -119,7 +120,6 @@ struct NewsDetailView: View {
                 
                 Spacer()
             }
-            .padding(.vertical)
             
             Divider()
             
@@ -132,7 +132,6 @@ struct NewsDetailView: View {
                     .fontWeight(.medium)
             }
         }
-        .padding()
         .interactiveDismissDisabled()
         .onAppear {
             newsContent = news.abstract?.html2String ?? "Kein Inhalt verfügbar"

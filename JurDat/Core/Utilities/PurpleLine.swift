@@ -9,9 +9,14 @@ import SwiftUI
 
 struct PurpleLine: View {
     var body: some View {
-        Rectangle()
-            .frame(height: 1)
-            .foregroundStyle(Color.accentColor.opacity(0.4))
+        Image(systemName: "person")
+            .resizable()
+            .scaledToFit()
+            .background {
+                RoundedRectangle(cornerRadius: 20)
+                    .foregroundStyle(Color.theme.textColor)
+            }
+            .frame(width: 55, height: 55)
     }
 }
 
