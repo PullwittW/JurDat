@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // MARK: - LawBookResult
 struct LawbookResult: Codable {
@@ -31,23 +32,23 @@ struct LawBook: Codable, Identifiable {
 }
 
 // MARK: - LawbookResult
-struct specificLawbookResult: Codable {
+struct SpecificLawbookResult: Codable {
     let count: Int
     let next: String?
     let previous: String?
-    let results: [specificLawbook]
+    let results: [SpecificLawbook]?
 }
 
 // MARK: - Result
-struct specificLawbook: Codable, Identifiable {
+struct SpecificLawbook: Codable, Identifiable {
     let id: Int
     let book: Int
-    let title, content: String?
+    let title, content: String
     let slug: String
-    let createdDate, updatedDate: String?
-    let section: String?
+    let createdDate, updatedDate: String
+    let section: String
     let amtabk, kurzue, doknr: String?
-    let order: Int?
+    let order: Int
 
     enum CodingKeys: String, CodingKey {
         case id, book, title, content, slug
@@ -56,3 +57,11 @@ struct specificLawbook: Codable, Identifiable {
         case section, amtabk, kurzue, doknr, order
     }
 }
+
+//enum BookSection: String, Codable {
+//    case eingangsformel = "Eingangsformel"
+//    case inhaltsverzeichnis = "Inhaltsverzeichnis"
+//    case inhaltsübersicht = "Inhaltsübersicht"
+//    case the1 = "§ 1"
+//    case übersicht = "Übersicht"
+//}

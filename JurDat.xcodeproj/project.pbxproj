@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		720A860B2AF3FF96006BC8BE /* CaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720A860A2AF3FF96006BC8BE /* CaseViewModel.swift */; };
+		722372782B5142CD0063B74B /* SpecificLawBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722372772B5142CD0063B74B /* SpecificLawBookView.swift */; };
+		7223ADC02B53F80100461236 /* SingleParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7223ADBF2B53F80100461236 /* SingleParagraphView.swift */; };
 		723911F62AF3F0F800BD4295 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723911F52AF3F0F800BD4295 /* Extensions.swift */; };
 		7258AA7A2AFF8095005A86DD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7258AA792AFF8095005A86DD /* FirebaseAnalytics */; };
 		7258AA7E2AFF8095005A86DD /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7258AA7D2AFF8095005A86DD /* FirebaseAnalyticsSwift */; };
@@ -30,7 +32,7 @@
 		7258AADC2B0D146F005A86DD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258AADB2B0D146F005A86DD /* UserModel.swift */; };
 		7258AADE2B0FE846005A86DD /* AddToLawsuitSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7258AADD2B0FE845005A86DD /* AddToLawsuitSheet.swift */; };
 		726357C12AF924C0006E8AA7 /* SearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C02AF924C0006E8AA7 /* SearchPage.swift */; };
-		726357C62AF98D16006E8AA7 /* LawsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C52AF98D16006E8AA7 /* LawsView.swift */; };
+		726357C62AF98D16006E8AA7 /* LawBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C52AF98D16006E8AA7 /* LawBookView.swift */; };
 		726357C82AF99496006E8AA7 /* CaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C72AF99496006E8AA7 /* CaseModel.swift */; };
 		726357CA2AF9A03E006E8AA7 /* LawBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357C92AF9A03E006E8AA7 /* LawBookViewModel.swift */; };
 		726357CC2AF9A0E9006E8AA7 /* LawBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726357CB2AF9A0E9006E8AA7 /* LawBookModel.swift */; };
@@ -65,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		720A860A2AF3FF96006BC8BE /* CaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseViewModel.swift; sourceTree = "<group>"; };
+		722372772B5142CD0063B74B /* SpecificLawBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificLawBookView.swift; sourceTree = "<group>"; };
+		7223ADBF2B53F80100461236 /* SingleParagraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleParagraphView.swift; sourceTree = "<group>"; };
 		723911F52AF3F0F800BD4295 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7258AAB12B001C52005A86DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7258AAB92B00D073005A86DD /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
@@ -80,7 +84,7 @@
 		7258AADB2B0D146F005A86DD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7258AADD2B0FE845005A86DD /* AddToLawsuitSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToLawsuitSheet.swift; sourceTree = "<group>"; };
 		726357C02AF924C0006E8AA7 /* SearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPage.swift; sourceTree = "<group>"; };
-		726357C52AF98D16006E8AA7 /* LawsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawsView.swift; sourceTree = "<group>"; };
+		726357C52AF98D16006E8AA7 /* LawBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawBookView.swift; sourceTree = "<group>"; };
 		726357C72AF99496006E8AA7 /* CaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseModel.swift; sourceTree = "<group>"; };
 		726357C92AF9A03E006E8AA7 /* LawBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawBookViewModel.swift; sourceTree = "<group>"; };
 		726357CB2AF9A0E9006E8AA7 /* LawBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawBookModel.swift; sourceTree = "<group>"; };
@@ -229,7 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				726AF58A2B24A6E300FDC41B /* Subviews */,
-				726357C52AF98D16006E8AA7 /* LawsView.swift */,
+				726357C52AF98D16006E8AA7 /* LawBookView.swift */,
 				726357C92AF9A03E006E8AA7 /* LawBookViewModel.swift */,
 			);
 			path = Laws;
@@ -264,6 +268,8 @@
 		726AF58A2B24A6E300FDC41B /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				7223ADBF2B53F80100461236 /* SingleParagraphView.swift */,
+				722372772B5142CD0063B74B /* SpecificLawBookView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 				7258AADC2B0D146F005A86DD /* UserModel.swift in Sources */,
 				726357C82AF99496006E8AA7 /* CaseModel.swift in Sources */,
 				7258AACA2B016B92005A86DD /* SignInGoogleHelper.swift in Sources */,
+				722372782B5142CD0063B74B /* SpecificLawBookView.swift in Sources */,
 				7258AABF2B011475005A86DD /* SignInView.swift in Sources */,
 				723911F62AF3F0F800BD4295 /* Extensions.swift in Sources */,
 				72B764462AFD8721005CDA43 /* SingleCaseView.swift in Sources */,
@@ -471,7 +478,7 @@
 				72D8B2EB2AF2ADAD0030770A /* JurDatApp.swift in Sources */,
 				726AF57F2B1F135400FDC41B /* NewsDetailView.swift in Sources */,
 				72C507442B1490F5004EBADA /* NewsView.swift in Sources */,
-				726357C62AF98D16006E8AA7 /* LawsView.swift in Sources */,
+				726357C62AF98D16006E8AA7 /* LawBookView.swift in Sources */,
 				72D8B3042AF2AE9D0030770A /* CourtModel.swift in Sources */,
 				72C507412B10FC81004EBADA /* LawsuitCardView.swift in Sources */,
 				72C507492B14F97B004EBADA /* PurpleLine.swift in Sources */,
@@ -479,6 +486,7 @@
 				72C507462B14982F004EBADA /* NewsViewModel.swift in Sources */,
 				726AF5892B21B54B00FDC41B /* ErrorHandler.swift in Sources */,
 				72AC4D262AFE33250008C9A7 /* SignInEmailViewModel.swift in Sources */,
+				7223ADC02B53F80100461236 /* SingleParagraphView.swift in Sources */,
 				72B7643A2AFD7F7D005CDA43 /* HomeHeader.swift in Sources */,
 				7258AABA2B00D073005A86DD /* AuthenticationManager.swift in Sources */,
 				72AC4D282AFE3B360008C9A7 /* SettingsView.swift in Sources */,

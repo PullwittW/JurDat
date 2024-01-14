@@ -62,7 +62,7 @@ struct HomeView: View {
     }
     
     var allSuitsCardView: some View {
-        VStack {
+        LazyVStack {
 //            if let user = userVM.user {
 //                ForEach(userVM.userLawsuits) { suit in
 //                    LawsuitCard(suit: suit, color: "thirdColor")

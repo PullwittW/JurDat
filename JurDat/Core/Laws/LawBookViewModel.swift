@@ -12,9 +12,11 @@ import SwiftUI
 class LawBookViewModel: ObservableObject {
 
     @Published var lawBooks: [LawBook] = []
-    @Published var singleLawbook: [specificLawbook] = []
+    @Published var selectedLawbook: SpecificLawbookResult? = nil
+    @Published var singleLawbook: [SpecificLawbook] = []
     
     // URL: https://de.openlegaldata.io/api/law_books/?slug=&code=&latest=true&limit=1200
+    //"https://de.openlegaldata.io/api/laws/?book__latest=true&book_id=2215&limit=50&offset=50"
     // Specific Book: https://de.openlegaldata.io/api/laws/?book_id=2215&book__latest=true
     
     func loadSpecificLawbook(bookId: String) async throws {
@@ -25,23 +27,34 @@ class LawBookViewModel: ObservableObject {
             do {
                 let (data, response) = try await URLSession.shared.data(from: url)
                 if 200..<300 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
-                    print("SUCCESS LOADING NEWS")
+                    print("SUCCESS LOADING LAWBOOK")
                 } else if 100..<200 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
                     print("INFORMAL RESPONSE")
                 } else if 300..<400 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
                     print("REDIRECTION ERROR")
-                } else if 400..<500 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
-                    print("CLIENT ERROR")
+//                } else if 400..<500 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
+//                    print("CLIENT ERROR")
                 } else if 500..<600 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
                     print("SERVER ERROR")
                 } else {
                     print(response)
                 }
-                let lawBookResult = try JSONDecoder().decode(specificLawbookResult.self, from: data)
-                singleLawbook.self = lawBookResult.results
-                print("SUCCESS LOADING LAWBOOK")
+                let lawBookResult = try JSONDecoder().decode(SpecificLawbookResult.self, from: data)
+//                selectedLawbook.self = lawBookResult
+                singleLawbook.self = lawBookResult.results ?? []
             } catch {
-                print(error.localizedDescription)
+                print(error)
+            }
+        }
+    }
+    
+    func filterLaws(searchText: String) -> [SpecificLawbook] {
+        if searchText.isEmpty {
+            return singleLawbook
+        } else {
+            return singleLawbook.filter {
+//                $0.title.contains(searchText)
+                $0.section.contains(searchText)
             }
         }
     }

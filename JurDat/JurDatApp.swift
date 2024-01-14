@@ -45,7 +45,6 @@ struct JurDatApp: App {
                                 .renderingMode(.template)
                             Text("Gesetze")
                         }
-                        .environmentObject(laws)
                     
                     NewsView()
                         .tabItem {
@@ -62,6 +61,7 @@ struct JurDatApp: App {
             .environmentObject(user)
             .environmentObject(caseItem)
             .environmentObject(news)
+            .environmentObject(laws)
         }
     }
 }

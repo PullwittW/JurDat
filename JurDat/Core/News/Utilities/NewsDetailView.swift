@@ -100,6 +100,7 @@ struct NewsDetailView: View {
             Text(news.titel)
                 .font(.title2)
                 .bold()
+                .multilineTextAlignment(.center)
             
             HStack(spacing: 10) {
                 Rectangle()

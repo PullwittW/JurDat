@@ -16,6 +16,7 @@ struct LaunchView: View {
     @EnvironmentObject var userVM: SettingsViewModel
     @EnvironmentObject var caseVM: CaseViewModel
     @EnvironmentObject var newsVM: NewsViewModel
+    @EnvironmentObject var bookVM: LawBookViewModel
     @Binding var showLaunchAnimation: Bool
     
     private func appendToString1() {
@@ -58,6 +59,7 @@ struct LaunchView: View {
                 try? await userVM.loadCurrentUser()
                 try? await caseVM.loadNewCases()
                 try? await newsVM.loadNews()
+                try? await bookVM.getAllLawbooks()
             }
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

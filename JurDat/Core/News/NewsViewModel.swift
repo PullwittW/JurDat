@@ -15,6 +15,7 @@ class NewsViewModel: ObservableObject {
     
     // URL: https://search.dip.bundestag.de/api/v1/vorgang?f.metatyp=Gesetze&f.format=json&apikey=rgsaY4U.oZRQKUHdJhF9qguHMkwCGIoLaqEcaHjYLF
     // https://search.dip.bundestag.de/api/v1/vorgang?f.vorgangstyp=Gesetzgebung&format=json&apikey=rgsaY4U.oZRQKUHdJhF9qguHMkwCGIoLaqEcaHjYLF
+    // https://search.dip.bundestag.de/api/v1/vorgang?f.titel=GesetzzudemÃœbereinkommenvom12.MÃ¤rz2019zurGrÃ¼ndungdes\"SquareKilometreArray\"-Observatoriums&f.vorgangstyp=Gesetzgebung&format=json&apikey=rgsaY4U.oZRQKUHdJhF9qguHMkwCGIoLaqEcaHjYLF
     
     func loadNews() async throws {
         print("LOADING NEWS")
@@ -47,10 +48,10 @@ class NewsViewModel: ObservableObject {
         }
     }
     
-    func loadSpecificNews(id: String) async throws {
+    func loadSpecificNews(titel: String) async throws {
         print("LOADING NEWS")
         let token = "rgsaY4U.oZRQKUHdJhF9qguHMkwCGIoLaqEcaHjYLF"
-        guard let url = URL(string: "https://search.dip.bundestag.de/api/v1/vorgang/\(id)?f.vorgangstyp=Gesetzgebung&format=json&apikey=\(token)") else { return }
+        guard let url = URL(string: "https://search.dip.bundestag.de/api/v1/vorgang/f.titel=\(titel)?f.vorgangstyp=Gesetzgebung&format=json&apikey=\(token)") else { return }
         Task {
             do {
                 let (data, response) = try await URLSession.shared.data(from: url)
