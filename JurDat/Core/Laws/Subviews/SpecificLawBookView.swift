@@ -25,13 +25,6 @@ struct LawBookView: View {
                 } else {
                     ScrollView {
                         VStack {
-                            
-//                            Text(lawBookTitel)
-//                                .font(.title2)
-//                                .bold()
-//                                .multilineTextAlignment(.center)
-//                            Divider()
-                            
                             LazyVStack {
                                 ForEach(lawBookVM.filterLaws(searchText: searchText)) { paragraph in
                                     SingleParagraphView(paragraph: paragraph)
@@ -44,6 +37,8 @@ struct LawBookView: View {
             }
             .navigationTitle(lawBookTitel)
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden()
+            .toolbar(.hidden, for: .tabBar)
             .interactiveDismissDisabled()
             .searchable(text: $searchText, prompt: "Suche nach Paragraphen und Titeln")
             .onAppear {

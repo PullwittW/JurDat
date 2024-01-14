@@ -18,15 +18,6 @@ struct LawsOverviewView: View {
         NavigationStack {
             ScrollView {
                 VStack {
-//                    HStack {
-//                        lawBooksFavorites(lawBookName: "BGB", lawBookID: "1280")
-//                        lawBooksFavorites(lawBookName: "GG", lawBookID: "2215")
-//                    }
-//                    HStack {
-//                        lawBooksFavorites(lawBookName: "StpO", lawBookID: "2012")
-//                        lawBooksFavorites(lawBookName: "StGB", lawBookID: "2009")
-//                    }
-                    
                     if bookVM.lawBooks.isEmpty {
                         VStack(spacing: 10) {
                             ProgressView()
@@ -81,20 +72,34 @@ struct singleLawbook: View {
     @State private var showBookDetailView: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(lawBook.title ?? "")
-                .font(.title3)
-            .fontWeight(.semibold)
-            
-            Divider()
-        }
-        .padding()
-        .onTapGesture {
-            showBookDetailView.toggle()
-        }
-        .sheet(isPresented: $showBookDetailView, content: {
+        NavigationLink {
             LawBookView(lawBookTitel: lawBook.title ?? "", lawBookID: String(lawBook.id))
-        })
+        } label: {
+            VStack(alignment: .leading) {
+                Text(lawBook.title ?? "")
+                    .foregroundStyle(Color.black)
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                
+                Divider()
+            }
+            .padding()
+        }
+
+//        VStack(alignment: .leading) {
+//            Text(lawBook.title ?? "")
+//                .font(.title3)
+//            .fontWeight(.semibold)
+//            
+//            Divider()
+//        }
+//        .padding()
+//        .onTapGesture {
+//            showBookDetailView.toggle()
+//        }
+//        .sheet(isPresented: $showBookDetailView, content: {
+//            
+//        })
     }
 }
 

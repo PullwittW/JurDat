@@ -14,16 +14,16 @@ struct SingleParagraphView: View {
     
     var body: some View {
         VStack {
-            if !paragraph.content.isEmpty && paragraph.order == 0 {
-                Text(formattedHTML)
-                    .lineSpacing(2.0)
-                    .font(.system(size: 18))
-                    .fontWeight(.semibold)
-                Divider()
-            }
+//            if !paragraph.content.isEmpty && paragraph.order == 0 {
+//                Text(formattedHTML)
+//                    .lineSpacing(2.0)
+//                    .font(.system(size: 18))
+//                    .fontWeight(.semibold)
+//                Divider()
+//            }
             if !paragraph.content.isEmpty && paragraph.order != 0 {
                 VStack(alignment: .leading) {
-                    Text("\(paragraph.section) - \(paragraph.title)")
+                    Text(paragraph.title.isEmpty ? "\(paragraph.section)" : "\(paragraph.section) - \(paragraph.title)")
                         .fontWeight(.heavy)
                         .padding(.bottom, 5)
                     
