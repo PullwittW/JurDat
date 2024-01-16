@@ -17,21 +17,41 @@ struct LawBookView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                if lawBookVM.singleLawbook.isEmpty {
-                    VStack(spacing: 10) {
-                        ProgressView()
-                        Text("Lade Gesetzbuch...")
+                if userVM.user == nil {
+                    VStack {
+                        Text("Um Inhalte zu sehen, logge dich ein.")
                     }
                 } else {
-                    ScrollView {
-                        VStack {
-                            LazyVStack {
-                                ForEach(lawBookVM.filterLaws(searchText: searchText)) { paragraph in
-                                    SingleParagraphView(paragraph: paragraph)
-                                }
-                            }
+                    if lawBookVM.singleParagraph.isEmpty {
+                        VStack(spacing: 10) {
+                            ProgressView()
+                            Text("Lade Gesetzbuch...")
                         }
-                        .padding()
+                    } else {
+                        ScrollView {
+                            VStack {
+                                LazyVStack {
+                                    ForEach(lawBookVM.filterLaws(searchText: searchText)) { paragraph in
+                                        SingleParagraphView(paragraph: paragraph)
+                                    }
+                                }
+                                .padding(.bottom, 5)
+                                
+//                                Button {
+//                                    print(lawBookVM.selectedLawbook?.next ?? "")
+//                                    Task {
+//                                        try? await lawBookVM.loadMoreSpecificLawbook(url: URL(fileURLWithPath: lawBookVM.selectedLawbook?.next ?? ""))
+//                                    }
+//                                } label: {
+//                                    Text("Mehr laden...")
+//                                        .bold()
+//                                        .font(.footnote)
+//                                        .foregroundStyle(Color.theme.textColor)
+//                                }
+
+                            }
+                            .padding()
+                        }
                     }
                 }
             }
@@ -43,6 +63,7 @@ struct LawBookView: View {
             .searchable(text: $searchText, prompt: "Suche nach Paragraphen und Titeln")
             .onAppear {
                 Task {
+                    try? await userVM.loadCurrentUser()
                     try? await lawBookVM.loadSpecificLawbook(bookId: lawBookID)
                 }
             }

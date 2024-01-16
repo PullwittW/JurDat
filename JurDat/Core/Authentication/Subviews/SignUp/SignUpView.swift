@@ -35,15 +35,6 @@ struct SignUpView: View {
                 VStack {
                     Spacer()
                     signUpEmailButton
-                    HStack {
-                        Text("Du hast noch keinen Accout?")
-                        Text("Sign In")
-                            .onTapGesture {
-                                dismiss()
-                            }
-                            .bold()
-                            .foregroundStyle(Color.theme.purple)
-                    }
                 }
                 .padding()
             }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SignInEmailView: View {
+struct SignUpEmailView: View {
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var email: SignInEmailViewModel
@@ -23,13 +23,13 @@ struct SignInEmailView: View {
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
                 .keyboardType(.emailAddress)
             Spacer()
-            PurpleButton(buttonName: "Weiter")
+            NavigationLink {
+                SignUpNameView()
+            } label: {
+                PurpleButton(buttonName: "Weiter")
+            }
             Spacer()
             
         }
     }
-}
-
-#Preview {
-    SignInEmailView()
 }

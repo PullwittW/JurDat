@@ -32,15 +32,15 @@ struct LawBook: Codable, Identifiable {
 }
 
 // MARK: - LawbookResult
-struct SpecificLawbookResult: Codable {
+struct ParagraphResult: Codable {
     let count: Int
     let next: String?
     let previous: String?
-    let results: [SpecificLawbook]?
+    let results: [Paragraph]?
 }
 
 // MARK: - Result
-struct SpecificLawbook: Codable, Identifiable {
+struct Paragraph: Codable, Identifiable {
     let id: Int
     let book: Int
     let title, content: String

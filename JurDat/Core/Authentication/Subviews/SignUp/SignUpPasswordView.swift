@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SignInPasswordView: View {
+struct SignUpPasswordView: View {
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var email: SignInEmailViewModel
@@ -45,8 +45,4 @@ struct SignInPasswordView: View {
             })
         }
     }
-}
-
-#Preview {
-    SignInPasswordView()
 }

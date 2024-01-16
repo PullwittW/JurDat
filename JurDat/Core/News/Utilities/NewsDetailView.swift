@@ -24,8 +24,14 @@ struct NewsDetailView: View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    userView
-                        .padding()
+                    if userVM.user != nil {
+                        userView
+                            .padding()
+                    } else {
+                        VStack {
+                            Text("Um Inhalte zu sehen, logge dich ein.")
+                        }
+                    }
                 }
             }
             .onAppear {

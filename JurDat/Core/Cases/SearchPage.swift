@@ -32,7 +32,6 @@ struct SearchPage: View {
                 }
             }
             .navigationTitle("Urteile")
-            .searchable(text: $searchText, prompt: "Suche nach Urteilen")
             .refreshable {
                 try? await caseVM.loadNewCases()
             }

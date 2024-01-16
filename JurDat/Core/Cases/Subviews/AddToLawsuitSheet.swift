@@ -21,7 +21,6 @@ struct AddToLawsuitSheet: View {
                                 .onTapGesture {
                                     userVM.addCaseToLawsuit(lawsuit: lawsuit, caseItem: caseItem)
                                 }
-                            
                             Divider()
                         }
                     }

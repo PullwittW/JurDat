@@ -24,10 +24,6 @@ struct SettingsView: View {
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
                     
-                    Text(user.email ?? "No email found")
-                        .font(.title)
-                        .bold()
-                    
                     ScrollView {
                         VStack {
                             // Favorisierte Cases
@@ -92,11 +88,47 @@ struct SettingsView: View {
 //                    Spacer()
                     
                 } else {
-                    Spacer()
-                    userSignInButton
+                    VStack {
+                        Spacer()
+//                        VStack(alignment: .leading, spacing: 20) {
+//                            HStack {
+//                                Image("hammer")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(height: 50)
+//                                    .padding(.trailing)
+//
+//                                Text("Erhalte Zugriff auf aktuelle Gerichtsentscheidungen")
+//                            }
+//                            HStack {
+//                                Image("lawBookIcon2")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(height: 50)
+//                                    .padding(.trailing)
+//
+//                                Text("Die 'Gesetze'-Überscht bietet dir aktelle Gesetze")
+//                            }
+//                            HStack {
+//                                Image(systemName: "newspaper")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(height: 50)
+//                                    .padding(.trailing)
+//            
+//                                Text("Beschlüsse und Entscheidungen des Bundestags kannst du in der 'News'-Übersicht einsehen")
+//                            }
+//                        }
+//                        .foregroundStyle(Color.theme.textColor)
+//                        .bold()
+//                        .frame(height: 400)
+                        Spacer()
+                        userSignInButton
+                    }
                 }
             }
             .padding()
+            .navigationTitle(userVM.user?.email ?? "")
             .task {
                 userVM.loadAuthProviders()
             }

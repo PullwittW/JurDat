@@ -12,17 +12,18 @@ import SwiftUI
 class LawBookViewModel: ObservableObject {
 
     @Published var lawBooks: [LawBook] = []
-    @Published var selectedLawbook: SpecificLawbookResult? = nil
-    @Published var singleLawbook: [SpecificLawbook] = []
+    @Published var selectedLawbook: ParagraphResult? = nil
+    @Published var singleParagraph: [Paragraph] = []
     
     // URL: https://de.openlegaldata.io/api/law_books/?slug=&code=&latest=true&limit=1200
     //"https://de.openlegaldata.io/api/laws/?book__latest=true&book_id=2215&limit=50&offset=50"
     // Specific Book: https://de.openlegaldata.io/api/laws/?book_id=2215&book__latest=true
+    // https://de.openlegaldata.io/api/laws/search/?text=
     
     func loadSpecificLawbook(bookId: String) async throws {
         print("LOADING SPECIFIC LAWBOOK")
         guard let url = URL(string: "https://de.openlegaldata.io/api/laws/?book_id=\(bookId)&book__latest=true") else { return }
-        singleLawbook = []
+        singleParagraph = []
         Task {
             do {
                 let (data, response) = try await URLSession.shared.data(from: url)
@@ -39,21 +40,20 @@ class LawBookViewModel: ObservableObject {
                 } else {
                     print(response)
                 }
-                let lawBookResult = try JSONDecoder().decode(SpecificLawbookResult.self, from: data)
+                let lawBookResult = try JSONDecoder().decode(ParagraphResult.self, from: data)
 //                selectedLawbook.self = lawBookResult
-                singleLawbook.self = lawBookResult.results ?? []
+                singleParagraph.self = lawBookResult.results ?? []
             } catch {
                 print(error)
             }
         }
     }
     
-    func filterLaws(searchText: String) -> [SpecificLawbook] {
+    func filterLaws(searchText: String) -> [Paragraph] {
         if searchText.isEmpty {
-            return singleLawbook
+            return singleParagraph
         } else {
-            return singleLawbook.filter {
-//                $0.title.contains(searchText)
+            return singleParagraph.filter {
                 $0.section.contains(searchText)
             }
         }

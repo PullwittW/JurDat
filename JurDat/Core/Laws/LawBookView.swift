@@ -72,34 +72,21 @@ struct singleLawbook: View {
     @State private var showBookDetailView: Bool = false
     
     var body: some View {
-        NavigationLink {
-            LawBookView(lawBookTitel: lawBook.title ?? "", lawBookID: String(lawBook.id))
-        } label: {
-            VStack(alignment: .leading) {
-                Text(lawBook.title ?? "")
-                    .foregroundStyle(Color.black)
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                
-                Divider()
+        VStack(alignment: .leading) {
+            NavigationLink {
+                LawBookView(lawBookTitel: lawBook.title ?? "", lawBookID: String(lawBook.id))
+            } label: {
+                VStack(alignment: .leading) {
+                    Text(lawBook.title ?? "")
+                        .foregroundStyle(Color.black)
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    
+                    Divider()
+                }
+                .padding(.vertical)
             }
-            .padding()
         }
-
-//        VStack(alignment: .leading) {
-//            Text(lawBook.title ?? "")
-//                .font(.title3)
-//            .fontWeight(.semibold)
-//            
-//            Divider()
-//        }
-//        .padding()
-//        .onTapGesture {
-//            showBookDetailView.toggle()
-//        }
-//        .sheet(isPresented: $showBookDetailView, content: {
-//            
-//        })
     }
 }
 
