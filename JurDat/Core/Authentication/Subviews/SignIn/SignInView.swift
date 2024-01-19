@@ -36,17 +36,9 @@ struct SignInView: View {
                 
                 VStack {
                     Spacer()
-                    signInGoogleButton
-                        .padding(.bottom)
+//                    signInGoogleButton
+//                        .padding(.bottom)
                     signInEmailButton
-                    HStack {
-                        Text("Du hast noch keinen Accout?")
-                        NavigationLink("Registrieren") {
-                            SignUpView()
-                        }
-                        .bold()
-                        .foregroundStyle(Color.accent)
-                    }
                 }
                 .padding()
             }

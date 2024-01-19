@@ -90,40 +90,57 @@ struct SettingsView: View {
                 } else {
                     VStack {
                         Spacer()
-//                        VStack(alignment: .leading, spacing: 20) {
-//                            HStack {
-//                                Image("hammer")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(height: 50)
-//                                    .padding(.trailing)
-//
-//                                Text("Erhalte Zugriff auf aktuelle Gerichtsentscheidungen")
-//                            }
-//                            HStack {
-//                                Image("lawBookIcon2")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(height: 50)
-//                                    .padding(.trailing)
-//
-//                                Text("Die 'Gesetze'-Überscht bietet dir aktelle Gesetze")
-//                            }
-//                            HStack {
-//                                Image(systemName: "newspaper")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(height: 50)
-//                                    .padding(.trailing)
-//            
-//                                Text("Beschlüsse und Entscheidungen des Bundestags kannst du in der 'News'-Übersicht einsehen")
-//                            }
-//                        }
-//                        .foregroundStyle(Color.theme.textColor)
-//                        .bold()
-//                        .frame(height: 400)
+                        Text("JurDat.")
+                            .foregroundStyle(Color.theme.purple)
+                            .font(.custom("Kadwa-Bold", size: 63))
                         Spacer()
-                        userSignInButton
+                        VStack(alignment: .leading, spacing: 40) {
+                            HStack {
+                                Image(systemName: "hammer.fill") // "hammer"
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 50)
+                                    .padding(.trailing)
+
+                                Text("Erhalte Zugriff auf aktuelle Gerichtsentscheidungen")
+                            }
+                            Divider()
+                            HStack {
+                                Image(systemName: "text.book.closed.fill") // "lawBookIcon2"
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 50)
+                                    .padding(.trailing)
+
+                                Text("Die 'Gesetze'-Überscht bietet dir aktelle Gesetzestexte")
+                            }
+                            Divider()
+                            HStack {
+                                Image(systemName: "newspaper")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 50)
+                                    .padding(.trailing)
+            
+                                Text("Beschlüsse und Entscheidungen des Bundestags kannst du in der 'News'-Übersicht einsehen")
+                            }
+                        }
+                        .foregroundStyle(Color.theme.textColor)
+                        .bold()
+                        .multilineTextAlignment(.leading)
+                        .frame(height: 400)
+                        Spacer()
+                        userSignUpButton
+                            .padding(.bottom, 5)
+                        HStack {
+                            Text("Du hast schon einen Account?")
+                                .foregroundStyle(Color.theme.textColor)
+                            NavigationLink("Anmelden") {
+                                SignInView()
+                            }
+                            .bold()
+                            .foregroundStyle(Color.theme.purple)
+                        }
                     }
                 }
             }
@@ -146,11 +163,11 @@ struct SettingsView: View {
         .toolbar(.hidden, for: .tabBar)
     }
     
-    var userSignInButton: some View {
+    var userSignUpButton: some View {
         NavigationLink {
-            SignInView()
+            SignUpEmailView()
         } label: {
-            PurpleButton(buttonName: "Sign In")
+            PurpleButton(buttonName: "Sign Up")
         }
 
     }
