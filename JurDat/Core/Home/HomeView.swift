@@ -10,8 +10,9 @@ import FirebaseAuth
 
 struct HomeView: View {
     
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userVM: SettingsViewModel
-    @State var userName = "Wangu"
+//    @EnvironmentObject var emailVM: SignInEmailViewModel
     @State private var suitSheet: Bool = false
     @State private var newSuitSheet: Bool = false
     @State var newSuitName: String = ""
@@ -19,6 +20,7 @@ struct HomeView: View {
     @State private var lawsuitCardSheet: Bool = false
     @State private var showError: Bool = false
     @State private var error: Error? = nil
+//    @State private var showNameSheet: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -50,6 +52,17 @@ struct HomeView: View {
                 }
             }
             .padding()
+//            .onAppear {
+//                if userVM.user != nil {
+//                    if userVM.user?.surname == "" || userVM.user?.lastname == "" || userVM.user?.surname == nil || userVM.user?.lastname == nil {
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+//                            showNameSheet.toggle()
+//                        }
+//                    } else {
+//                        print(userVM.user?.surname)
+//                    }
+//                }
+//            }
             .sheet(isPresented: $suitSheet) {
                 SuitSheetView(newSuitSheet: $newSuitSheet)
                     .presentationDetents([.height(UIScreen.main.bounds.height*0.15)])
@@ -58,6 +71,10 @@ struct HomeView: View {
                             .presentationDetents([.medium])
                     }
             }
+//            .sheet(isPresented: $showNameSheet) {
+//                nameSubmit
+//                    .presentationDetents([.medium])
+//            }
         }
     }
     
@@ -122,7 +139,7 @@ struct HomeView: View {
         } label: {
             HStack {
                 Spacer()
-                Text("Logge dich ein um neue Fälle anzulegen!")
+                Text("Registriere dich, um neue Fälle anzulegen!")
                     .font(.title2)
                     .fontWeight(.bold)
                 Spacer()
@@ -136,4 +153,48 @@ struct HomeView: View {
             }
         }
     }
+    
+//    var nameSubmit: some View {
+//        VStack {
+//            
+//            Text("Bitte bestätige noch einmal deinen Vor- und Nachnamen")
+//                .multilineTextAlignment(.center)
+//                .bold()
+//                .foregroundStyle(Color.theme.textColor)
+//            
+//            TextField("Vorname", text: $userVM.userSurname)
+//                .foregroundStyle(Color.white)
+//                .textFieldStyle(.plain)
+//                .padding()
+//                .background(RoundedRectangle(cornerRadius: 10).fill(Color.theme.purple))
+//            
+//            TextField("Nachname", text: $userVM.userLastname)
+//                .foregroundStyle(Color.white)
+//                .textFieldStyle(.plain)
+//                .padding()
+//                .background(RoundedRectangle(cornerRadius: 10).fill(Color.theme.purple))
+//            
+//            Spacer()
+//            
+//            Button {
+//                if userVM.userSurname.count < 3 || userVM.userLastname.count < 3{
+//                    let customError: Error = customError.noCredentials
+//                    error = customError
+//                    showError.toggle()
+//                } else {
+//                    Task {
+//                        try await userVM.setUserSurname()
+//                        try await userVM.setUserLastname()
+//                    }
+//                    userVM.userSurname = ""
+//                    userVM.userLastname = ""
+//                    showNameSheet = false
+//                    dismiss()
+//                }
+//            } label: {
+//                PurpleButton(buttonName: "Bestätigen")
+//            }
+//        }
+//        .padding()
+//    }
 }

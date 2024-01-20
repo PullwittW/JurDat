@@ -38,15 +38,17 @@ final class UserManager {
     }
     
     func setUserSurname(userId: String, surname: String) async throws {
+        print("Saving Surname")
         let data: [String:Any] = [
-            DBUser.CodingKeys.surname.rawValue : FieldValue.arrayUnion([surname])
+            DBUser.CodingKeys.surname.rawValue : surname
         ]
         try await userDocument(userId: userId).updateData(data)
     }
     
     func setUserLastname(userId: String, lastname: String) async throws {
+        print("Saving Lastname")
         let data: [String:Any] = [
-            DBUser.CodingKeys.lastname.rawValue : FieldValue.arrayUnion([lastname])
+            DBUser.CodingKeys.lastname.rawValue : lastname
         ]
         try await userDocument(userId: userId).updateData(data)
     }

@@ -26,11 +26,10 @@ struct SignUpPasswordView: View {
                             
                         VStack {
                             Spacer()
-                            TextField("Passwort", text: $email.userPassword)
+                            SecureField("Passwort", text: $email.userPassword)
                                 .textFieldStyle(.plain)
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-                                .keyboardType(.emailAddress)
                         }
                         .padding()
                     }
@@ -40,12 +39,18 @@ struct SignUpPasswordView: View {
                     
                     NavigationLink {
                         SignUpNameView()
+//                        HomeView()
                     } label: {
                         PurpleButton(buttonName: "Weiter")
                     }
                     .padding()
                 }
             }
+            .onAppear(perform: {
+                if user.allDataValid {
+                    dismiss()
+                }
+            })
             .toolbar(.hidden, for: .tabBar)
             .navigationBarBackButtonHidden()
             .toolbar {
@@ -58,6 +63,9 @@ struct SignUpPasswordView: View {
                     })
                 }
             }
+            .onDisappear(perform: {
+                email.signUp()
+            })
             .alert(error?.localizedDescription ?? "Ein Fehler ist aufgetreten", isPresented: $showError) {
                 Button("OK") {
                     

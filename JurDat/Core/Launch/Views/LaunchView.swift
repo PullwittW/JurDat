@@ -67,7 +67,7 @@ struct LaunchView: View {
                     appendToString2()
                 }
                 // Set show launch animation to false after x seconds
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                     showLaunchAnimation = false
                 }
             }

@@ -44,6 +44,11 @@ struct SignUpEmailView: View {
                 }
                 .padding()
             }
+            .onAppear(perform: {
+                if user.allDataValid {
+                    dismiss()
+                }
+            })
             .toolbar(.hidden, for: .tabBar)
             .navigationBarBackButtonHidden()
             .toolbar {

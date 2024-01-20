@@ -26,11 +26,10 @@ struct SignUpNameView: View {
                             
                         VStack {
                             Spacer()
-                            TextField("Dein Vorname", text: $email.userSurname)
+                            TextField("Dein Vorname", text: $user.userSurname)
                                 .textFieldStyle(.plain)
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-                                .keyboardType(.emailAddress)
                         }
                         .padding()
                     }
@@ -46,6 +45,14 @@ struct SignUpNameView: View {
                     .padding()
                 }
             }
+            .onAppear(perform: {
+                if user.allDataValid {
+                    dismiss()
+                }
+            })
+//            .onDisappear(perform: {
+//                user.setUserSurname(surname: email.userSurname)
+//            })
             .toolbar(.hidden, for: .tabBar)
             .navigationBarBackButtonHidden()
             .toolbar {

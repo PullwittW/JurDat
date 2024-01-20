@@ -26,11 +26,10 @@ struct SignUpLastName: View {
                             
                         VStack {
                             Spacer()
-                            TextField("Dein Nachname", text: $email.userLastname)
+                            TextField("Dein Nachname", text: $user.userLastname)
                                 .textFieldStyle(.plain)
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-                                .keyboardType(.emailAddress)
                         }
                         .padding()
                     }
@@ -64,16 +63,17 @@ struct SignUpLastName: View {
     var signUpEmailButton: some View {
         VStack {
             Button(action: {
-                if email.userEmail.count <= 0 || email.userPassword.count <= 0 {
-                    let customError: Error = customError.noCredentials
-                    error = customError
-                    showError.toggle()
-                } else {
-                    email.signUp()
-                    dismiss()
+                Task {
+                    try await user.loadCurrentUser()
+                    try await user.setUserLastname()
+                    try await user.setUserSurname()
                 }
+                email.userEmail = ""
+                email.userPassword = ""
+                user.allDataValid = true
+                dismiss()
             }, label: {
-                PurpleButton(buttonName: "Sign Up")
+                PurpleButton(buttonName: "Registrieren")
             })
         }
         .padding()

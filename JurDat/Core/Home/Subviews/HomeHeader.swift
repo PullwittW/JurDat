@@ -14,7 +14,7 @@ struct HomeHeader: View {
         NavigationStack {
             HStack {
                 if userVM.user != nil {
-                    Text("Hi, Wangu")
+                    Text("Hi, \(userVM.user?.surname ?? "")")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                 } else {

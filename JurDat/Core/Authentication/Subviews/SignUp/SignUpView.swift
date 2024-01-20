@@ -61,12 +61,12 @@ struct SignUpView: View {
     
     var textFields: some View {
         VStack(spacing: 20) {
-            TextField("Vorname", text: $email.userSurname)
+            TextField("Vorname", text: $user.userSurname)
                 .textFieldStyle(.plain)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
             
-            TextField("Nachname", text: $email.userLastname)
+            TextField("Nachname", text: $user.userLastname)
                 .textFieldStyle(.plain)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))

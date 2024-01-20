@@ -167,7 +167,7 @@ struct SettingsView: View {
         NavigationLink {
             SignUpEmailView()
         } label: {
-            PurpleButton(buttonName: "Sign Up")
+            PurpleButton(buttonName: "Registrieren")
         }
 
     }
@@ -229,6 +229,7 @@ struct SettingsView: View {
                     print(error)
                 }
             }
+            userVM.allDataValid = false
         }) {
             PurpleButton(buttonName: "Log Out")
         }

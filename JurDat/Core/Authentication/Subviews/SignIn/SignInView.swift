@@ -91,13 +91,10 @@ struct SignInView: View {
                     showError.toggle()
                 } else {
                     email.singIn()
-                    Task {
-                        try? await user.loadCurrentUser()
-                    }
                     dismiss()
                 }
             }, label: {
-                PurpleButton(buttonName: "Sign In")
+                PurpleButton(buttonName: "Anmelden")
             })
         }
     }

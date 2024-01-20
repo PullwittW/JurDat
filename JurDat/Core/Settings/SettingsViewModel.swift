@@ -14,6 +14,9 @@ final class SettingsViewModel: ObservableObject {
     @Published var userLawsuits: [Lawsuit] = []
     @Published private(set) var user: DBUser? = nil
     @Published var userIsLoggedIn: Bool = false
+    @Published var allDataValid: Bool = false
+    @Published var userSurname = ""
+    @Published var userLastname = ""
     
 // MARK: Load user data
     
@@ -37,20 +40,23 @@ final class SettingsViewModel: ObservableObject {
     }
     
 // MARK: User
-    func setUserName(surname: String, lastname: String) {
+    func setUserSurname() async throws {
         guard let user else { return }
-        Task {
-            try await UserManager.shared.setUserSurname(userId: user.userId, surname: surname)
-            try await UserManager.shared.setUserLastname(userId: user.userId, lastname: lastname)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
-        }
+        try await UserManager.shared.setUserSurname(userId: user.userId, surname: userSurname)
+        self.user = try await UserManager.shared.getUser(userId: user.userId)
+    }
+    
+    func setUserLastname() async throws {
+        guard let user else { return }
+        try await UserManager.shared.setUserLastname(userId: user.userId, lastname: userLastname)
+        self.user = try await UserManager.shared.getUser(userId: user.userId)
     }
     
     
 // MARK: User Email Settings
     
     func updateEmail() async throws {
-        let email = "test4@gmail.com"
+        let email = "olaf.scholz@ampel.de"
         try await AuthenticationManager.shared.updateEmail(email: email)
     }
     

@@ -9,8 +9,8 @@ import Foundation
 
 struct DBUser: Codable {
     let userId: String
-    let surname: String?
-    let lastname: String?
+    var surname: String?
+    var lastname: String?
     let email: String?
     let photoUrl: String?
     let dateCreated: Date?
@@ -22,8 +22,8 @@ struct DBUser: Codable {
     init(auth: AuthDataResultModel) {
         self.userId = auth.uid
         self.email = auth.email
-        self.surname = ""
-        self.lastname = ""
+        self.surname = nil
+        self.lastname = nil
         self.photoUrl = auth.photoURL
         self.dateCreated = Date()
         self.isPremium = false
