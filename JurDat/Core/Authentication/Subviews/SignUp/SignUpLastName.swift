@@ -57,6 +57,7 @@ struct SignUpLastName: View {
                     
                 }
             }
+            .ignoresSafeArea(.keyboard)
         }
     }
     

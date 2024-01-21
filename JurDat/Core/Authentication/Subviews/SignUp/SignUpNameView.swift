@@ -70,6 +70,7 @@ struct SignUpNameView: View {
                     
                 }
             }
+            .ignoresSafeArea(.keyboard)
         }
     }
 }

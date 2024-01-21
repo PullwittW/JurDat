@@ -71,6 +71,7 @@ struct SignUpPasswordView: View {
                     
                 }
             }
+            .ignoresSafeArea(.keyboard)
         }
     }
     

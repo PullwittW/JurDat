@@ -66,6 +66,7 @@ struct SignUpEmailView: View {
                     
                 }
             }
+            .ignoresSafeArea(.keyboard)
         }
     }
 }
