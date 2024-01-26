@@ -251,8 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				7258AACC2B03E359005A86DD /* Subviews */,
-				720A860A2AF3FF96006BC8BE /* CaseViewModel.swift */,
 				726357C02AF924C0006E8AA7 /* SearchPage.swift */,
+				720A860A2AF3FF96006BC8BE /* CaseViewModel.swift */,
 			);
 			path = Cases;
 			sourceTree = "<group>";

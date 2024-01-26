@@ -13,6 +13,7 @@ struct LawsOverviewView: View {
     @State private var showCaseDetailView: Bool = false
     @State private var searchText: String = ""
     @State private var performSearch: Bool = true
+    // 0.00975257
     
     var body: some View {
         NavigationStack {

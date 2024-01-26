@@ -22,7 +22,7 @@ struct NewsView: View {
                     }
                 } else {
                     ScrollView {
-                        LazyVStack(alignment: .leading) {
+                        VStack(alignment: .leading) {
                             ForEach(newsVM.filterNews(searchText: searchText)) { news in
                                 SingleNewsView(news: news)
                                 Divider()

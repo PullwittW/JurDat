@@ -22,7 +22,7 @@ struct SearchPage: View {
                     }
                 } else {
                     ScrollView {
-                        LazyVStack(alignment: .leading) {
+                        VStack(alignment: .leading) {
                             ForEach(caseVM.filterCases(searchText: searchText)) { caseItem in
                                 SingleCaseView(caseItem: caseItem)
                                 Divider()
