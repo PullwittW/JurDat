@@ -81,6 +81,7 @@ struct singleLawbook: View {
                         .foregroundStyle(Color.black)
                         .font(.title3)
                         .fontWeight(.semibold)
+                        .multilineTextAlignment(.leading)
                     
                     Divider()
                 }
