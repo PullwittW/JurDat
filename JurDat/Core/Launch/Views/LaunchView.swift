@@ -21,16 +21,20 @@ struct LaunchView: View {
     
     private func appendToString1() {
         for index in text1 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                emptyString1.append(index)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation(.bouncy) {
+                    emptyString1.append(index)
+                }
             }
         }
     }
     
     private func appendToString2() {
         for index in text2 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                emptyString2.append(index)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation(.bouncy) {
+                    emptyString2.append(index)
+                }
             }
         }
     }
@@ -62,12 +66,14 @@ struct LaunchView: View {
                 try? await bookVM.getAllLawbooks()
             }
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    appendToString1()
-                    appendToString2()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    withAnimation(.bouncy) {
+                        appendToString1()
+                        appendToString2()
+                    }
                 }
                 // Set show launch animation to false after x seconds
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                     showLaunchAnimation = false
                 }
             }
