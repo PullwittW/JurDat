@@ -53,6 +53,13 @@ final class UserManager {
         try await userDocument(userId: userId).updateData(data)
     }
     
+    func updateUserProfileImagePath(userId: String, path: String) async throws {
+        let data: [String:Any] = [
+            DBUser.CodingKeys.profileImagePath.rawValue : path
+        ]
+        try await userDocument(userId: userId).updateData(data)
+    }
+    
 //    func creatNewUser(auth: AuthDataResultModel) async throws {
 //        var userData: [String:Any] = [
 //            "user_id" : auth.uid,

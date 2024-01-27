@@ -48,6 +48,7 @@
 		726AF5852B20A9D700FDC41B /* Kadwa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 726AF5842B20A9D700FDC41B /* Kadwa-Regular.ttf */; };
 		726AF5872B20AA4C00FDC41B /* Kadwa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 726AF5862B20AA4C00FDC41B /* Kadwa-Bold.ttf */; };
 		726AF5892B21B54B00FDC41B /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726AF5882B21B54B00FDC41B /* ErrorHandler.swift */; };
+		72775B102B6491E000532E4D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 72775B0F2B6491E000532E4D /* FirebaseStorage */; };
 		72AC4D262AFE33250008C9A7 /* SignInEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AC4D252AFE33250008C9A7 /* SignInEmailViewModel.swift */; };
 		72AC4D282AFE3B360008C9A7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AC4D272AFE3B360008C9A7 /* SettingsView.swift */; };
 		72B7643A2AFD7F7D005CDA43 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B764392AFD7F7C005CDA43 /* HomeHeader.swift */; };
@@ -56,6 +57,7 @@
 		72B764402AFD823D005CDA43 /* LawsuitCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B7643F2AFD823D005CDA43 /* LawsuitCard.swift */; };
 		72B764422AFD830D005CDA43 /* SuitSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B764412AFD830D005CDA43 /* SuitSheetView.swift */; };
 		72B764462AFD8721005CDA43 /* SingleCaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B764452AFD8721005CDA43 /* SingleCaseView.swift */; };
+		72C16C422B648F3700FE1303 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C16C412B648F3700FE1303 /* StorageManager.swift */; };
 		72C507412B10FC81004EBADA /* LawsuitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C507402B10FC81004EBADA /* LawsuitCardView.swift */; };
 		72C507442B1490F5004EBADA /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C507432B1490F5004EBADA /* NewsView.swift */; };
 		72C507462B14982F004EBADA /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C507452B14982F004EBADA /* NewsViewModel.swift */; };
@@ -113,6 +115,7 @@
 		72B7643F2AFD823D005CDA43 /* LawsuitCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawsuitCard.swift; sourceTree = "<group>"; };
 		72B764412AFD830D005CDA43 /* SuitSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuitSheetView.swift; sourceTree = "<group>"; };
 		72B764452AFD8721005CDA43 /* SingleCaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCaseView.swift; sourceTree = "<group>"; };
+		72C16C412B648F3700FE1303 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		72C507402B10FC81004EBADA /* LawsuitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LawsuitCardView.swift; sourceTree = "<group>"; };
 		72C507432B1490F5004EBADA /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		72C507452B14982F004EBADA /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 				7258AA7A2AFF8095005A86DD /* FirebaseAnalytics in Frameworks */,
 				7258AAB72B001CD3005A86DD /* GoogleSignInSwift in Frameworks */,
 				7258AA962AFF8095005A86DD /* FirebaseFirestoreSwift in Frameworks */,
+				72775B102B6491E000532E4D /* FirebaseStorage in Frameworks */,
 				7258AA862AFF8095005A86DD /* FirebaseAuth in Frameworks */,
 				7258AAB52B001CD3005A86DD /* GoogleSignIn in Frameworks */,
 			);
@@ -302,6 +306,13 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
+		72775B0E2B6491E000532E4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		72B764382AFD7F2C005CDA43 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +324,14 @@
 				72C507402B10FC81004EBADA /* LawsuitCardView.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		72C16C402B648EF800FE1303 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				72C16C412B648F3700FE1303 /* StorageManager.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		72C507422B149078004EBADA /* News */ = {
@@ -338,6 +357,7 @@
 			children = (
 				72D8B2E92AF2ADAD0030770A /* JurDat */,
 				72D8B2E82AF2ADAD0030770A /* Products */,
+				72775B0E2B6491E000532E4D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -360,6 +380,7 @@
 				7258AAC72B01442B005A86DD /* Utilities.swift */,
 				723911F52AF3F0F800BD4295 /* Extensions.swift */,
 				726AF5882B21B54B00FDC41B /* ErrorHandler.swift */,
+				72C16C402B648EF800FE1303 /* Storage */,
 				7258AAD02B040D26005A86DD /* Firestore */,
 				7258AACD2B03E3AD005A86DD /* Core */,
 				72D8B2F92AF2ADEA0030770A /* Model */,
@@ -414,6 +435,7 @@
 				7258AA952AFF8095005A86DD /* FirebaseFirestoreSwift */,
 				7258AAB42B001CD3005A86DD /* GoogleSignIn */,
 				7258AAB62B001CD3005A86DD /* GoogleSignInSwift */,
+				72775B0F2B6491E000532E4D /* FirebaseStorage */,
 			);
 			productName = JurDat;
 			productReference = 72D8B2E72AF2ADAD0030770A /* JurDat.app */;
@@ -492,6 +514,7 @@
 				7258AACA2B016B92005A86DD /* SignInGoogleHelper.swift in Sources */,
 				7223ADC62B553E5E00461236 /* SignUpPasswordView.swift in Sources */,
 				722372782B5142CD0063B74B /* SpecificLawBookView.swift in Sources */,
+				72C16C422B648F3700FE1303 /* StorageManager.swift in Sources */,
 				7258AABF2B011475005A86DD /* SignInView.swift in Sources */,
 				7223ADC22B553E4300461236 /* SignUpEmailView.swift in Sources */,
 				723911F62AF3F0F800BD4295 /* Extensions.swift in Sources */,
@@ -792,6 +815,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7258AAB32B001CD3005A86DD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		72775B0F2B6491E000532E4D /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7258AA782AFF8095005A86DD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

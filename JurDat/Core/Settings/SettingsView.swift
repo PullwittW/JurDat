@@ -7,22 +7,49 @@
 
 import SwiftUI
 import Firebase
+import PhotosUI
 
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var userVM: SettingsViewModel
     @EnvironmentObject var auth: AuthenticationViewModel
     @EnvironmentObject var email: SignInEmailViewModel
+    @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var url: URL? = nil
     
     var body: some View {
         NavigationStack {
             VStack {
                 if let user = userVM.user {
-                    Image("profilePicture")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100, height: 100)
-                        .clipShape(Circle())
+                    
+                    if let urlString = userVM.user?.profileImagePath, let url = URL(string: urlString) {
+                        AsyncImage(url: url) { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 100, height: 100)
+                                .clipShape(Circle())
+                        } placeholder: {
+                            ProgressView()
+                                .frame(width: 100, height: 100)
+                        }
+                    } else {
+                        Image(systemName: "person")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 100, height: 100)
+                            .padding()
+                            .background {
+                                Circle()
+                                    .foregroundStyle(Color.theme.textColor)
+                            }
+                    }
+                    
+                    PhotosPicker(selection: $selectedItem) {
+                        Text("Profilbild ändern")
+                            .font(.system(size: 10))
+                            .foregroundStyle(Color.theme.textColor)
+                    }
                     
                     ScrollView {
                         VStack {
@@ -146,6 +173,7 @@ struct SettingsView: View {
             }
             .padding()
             .navigationTitle(userVM.user?.email ?? "")
+            .navigationBarBackButtonHidden()
             .task {
                 userVM.loadAuthProviders()
             }
@@ -158,7 +186,12 @@ struct SettingsView: View {
                     })
                 }
             }
-            .navigationBarBackButtonHidden()
+            .onChange(of: selectedItem, perform: { newValue in
+                if let newValue {
+                    userVM.saveProfileImage(item: newValue)
+                }
+            })
+            
         }
         .toolbar(.hidden, for: .tabBar)
     }

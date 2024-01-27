@@ -18,6 +18,7 @@ struct DBUser: Codable {
     var favoriteCases: [String]?
     var favoriteNews: [String]?
     var lawsuits: [Lawsuit]?
+    let profileImagePath: String?
     
     init(auth: AuthDataResultModel) {
         self.userId = auth.uid
@@ -30,6 +31,7 @@ struct DBUser: Codable {
         self.favoriteCases = nil
         self.favoriteNews = nil
         self.lawsuits = nil
+        self.profileImagePath = nil
     }
     
     init(
@@ -42,7 +44,8 @@ struct DBUser: Codable {
         isPremium: Bool? = nil,
         favoriteCases: [String]? = nil,
         favoriteNews: [String]? = nil,
-        lawsuits: [Lawsuit]? = nil
+        lawsuits: [Lawsuit]? = nil,
+        profileImagePath: String? = nil
     ) {
         self.userId = userId
         self.email = email
@@ -54,6 +57,7 @@ struct DBUser: Codable {
         self.favoriteCases = favoriteCases
         self.favoriteNews = favoriteNews
         self.lawsuits = lawsuits
+        self.profileImagePath = profileImagePath
     }
     
 //    func togglePremiumState() -> DBUser {
@@ -81,6 +85,7 @@ struct DBUser: Codable {
         case favoriteCases = "favorite_cases"
         case favoriteNews = "favorite_news"
         case lawsuits = "lawsuits"
+        case profileImagePath = "profile_image_path"
     }
     
     init(from decoder: Decoder) throws {
@@ -95,6 +100,7 @@ struct DBUser: Codable {
         self.favoriteCases = try container.decodeIfPresent([String].self, forKey: .favoriteCases)
         self.favoriteNews = try container.decodeIfPresent([String].self, forKey: .favoriteNews)
         self.lawsuits = try container.decodeIfPresent([Lawsuit].self, forKey: .lawsuits)
+        self.profileImagePath = try container.decodeIfPresent(String.self, forKey: .profileImagePath)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -109,5 +115,6 @@ struct DBUser: Codable {
         try container.encodeIfPresent(self.favoriteCases, forKey: .favoriteCases)
         try container.encodeIfPresent(self.favoriteNews, forKey: .favoriteNews)
         try container.encodeIfPresent(self.lawsuits, forKey: .lawsuits)
+        try container.encodeIfPresent(self.profileImagePath, forKey: .profileImagePath)
     }
 }
