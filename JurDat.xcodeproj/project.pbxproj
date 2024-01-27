@@ -63,6 +63,7 @@
 		72C507462B14982F004EBADA /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C507452B14982F004EBADA /* NewsViewModel.swift */; };
 		72C507492B14F97B004EBADA /* PurpleLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C507482B14F97B004EBADA /* PurpleLine.swift */; };
 		72C5074B2B15481E004EBADA /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C5074A2B15481E004EBADA /* NewsModel.swift */; };
+		72CD4B742B650D3900B929CB /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CD4B732B650D3900B929CB /* TabBarView.swift */; };
 		72D8B2EB2AF2ADAD0030770A /* JurDatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8B2EA2AF2ADAD0030770A /* JurDatApp.swift */; };
 		72D8B2EF2AF2ADB00030770A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D8B2EE2AF2ADB00030770A /* Assets.xcassets */; };
 		72D8B2F22AF2ADB00030770A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72D8B2F12AF2ADB00030770A /* Preview Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		72C507452B14982F004EBADA /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		72C507482B14F97B004EBADA /* PurpleLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleLine.swift; sourceTree = "<group>"; };
 		72C5074A2B15481E004EBADA /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		72CD4B732B650D3900B929CB /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		72D8B2E72AF2ADAD0030770A /* JurDat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JurDat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72D8B2EA2AF2ADAD0030770A /* JurDatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JurDatApp.swift; sourceTree = "<group>"; };
 		72D8B2EE2AF2ADB00030770A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			children = (
 				72C507472B14F962004EBADA /* Utilities */,
 				726AF5802B1F86A700FDC41B /* Launch */,
+				72CD4B722B650D2200B929CB /* TabBar */,
 				7258AAB82B00D051005A86DD /* Authentication */,
 				726357C22AF98CC2006E8AA7 /* Home */,
 				7258AABD2B0112E5005A86DD /* Settings */,
@@ -350,6 +353,14 @@
 				72C507482B14F97B004EBADA /* PurpleLine.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		72CD4B722B650D2200B929CB /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				72CD4B732B650D3900B929CB /* TabBarView.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		72D8B2DE2AF2ADAD0030770A = {
@@ -508,6 +519,7 @@
 				7258AAC62B0142A7005A86DD /* AuthenticationViewModel.swift in Sources */,
 				7258AAD42B056F55005A86DD /* CaseDetailView.swift in Sources */,
 				72C5074B2B15481E004EBADA /* NewsModel.swift in Sources */,
+				72CD4B742B650D3900B929CB /* TabBarView.swift in Sources */,
 				7258AADE2B0FE846005A86DD /* AddToLawsuitSheet.swift in Sources */,
 				7258AADC2B0D146F005A86DD /* UserModel.swift in Sources */,
 				726357C82AF99496006E8AA7 /* CaseModel.swift in Sources */,
