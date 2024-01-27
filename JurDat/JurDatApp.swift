@@ -24,6 +24,7 @@ struct JurDatApp: App {
         WindowGroup {
             ZStack {
                 TabBarView()
+                    .preferredColorScheme(.light)
                 // Show the animation on launch
                 if showLaunchAnimation {
                     LaunchView(showLaunchAnimation: $showLaunchAnimation)
@@ -34,6 +35,9 @@ struct JurDatApp: App {
             .environmentObject(caseItem)
             .environmentObject(news)
             .environmentObject(laws)
+            .environmentObject(email)
+            .environmentObject(auth)
+            
         }
     }
 }

@@ -15,7 +15,6 @@ struct SettingsView: View {
     @EnvironmentObject var auth: AuthenticationViewModel
     @EnvironmentObject var email: SignInEmailViewModel
     @State private var selectedItem: PhotosPickerItem? = nil
-    @State private var url: URL? = nil
     
     var body: some View {
         NavigationStack {
@@ -79,8 +78,8 @@ struct SettingsView: View {
                                 Divider()
                                 
                                 ForEach(userVM.user?.favoriteCases ?? ["Kein Fall favorisiert"], id: \.self) { caseItem in
-                                    Text(caseItem)
-                                        .padding(.bottom, 10)
+                                    FavoriteCaseCard(slug: caseItem)
+                                        .padding(.bottom, 5)
                                 }
                             }
                             .padding(.vertical)
@@ -97,8 +96,8 @@ struct SettingsView: View {
                                 Divider()
                                 
                                 ForEach(userVM.user?.favoriteNews ?? ["Keine News favorisiert"], id: \.self) { news in
-                                    Text(news)
-                                        .padding(.bottom, 10)
+                                    FavoriteNewsCard(title: news)
+                                        .padding(.bottom, 5)
                                 }
                             }
                             .padding(.bottom)

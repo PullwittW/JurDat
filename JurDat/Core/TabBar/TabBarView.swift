@@ -26,6 +26,7 @@ struct TabBarView: View {
             NewsView()
                 .tabBarItem(tab: .news, selection: $tabSelection)
         }
+        .ignoresSafeArea(.keyboard)
     }
 }
 
