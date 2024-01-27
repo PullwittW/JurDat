@@ -188,6 +188,12 @@ struct SettingsView: View {
             .padding()
             .navigationTitle(userVM.user?.email ?? "")
             .navigationBarBackButtonHidden()
+            .onAppear {
+                userVM.showingSettingsView = true
+            }
+            .onDisappear {
+                userVM.showingSettingsView = false
+            }
             .task {
                 userVM.loadAuthProviders()
             }

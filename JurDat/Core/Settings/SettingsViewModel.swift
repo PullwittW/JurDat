@@ -19,6 +19,7 @@ final class SettingsViewModel: ObservableObject {
     @Published var allDataValid: Bool = false
     @Published var userSurname = ""
     @Published var userLastname = ""
+    @Published var showingSettingsView: Bool = false
     
 // MARK: Load user data
     

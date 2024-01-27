@@ -9,12 +9,15 @@ import SwiftUI
 
 struct CustomTabBarView: View {
     
+    @EnvironmentObject var userVM: SettingsViewModel
     let tabs: [TabBarItem]
     @Binding var selection: TabBarItem
     @Namespace private var namespace
     
     var body: some View {
-        tabBarVersion2
+        if !userVM.showingSettingsView {
+            tabBarVersion2
+        }
     }
 }
 
