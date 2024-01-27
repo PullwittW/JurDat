@@ -23,35 +23,7 @@ struct JurDatApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                TabView {
-                    HomeView()
-                        .preferredColorScheme(.light)
-                        .tabItem {
-                            Image(systemName: "house")
-                            Text("Home")
-                        }
-                        .environmentObject(email)
-                        .environmentObject(auth)
-                    
-                    SearchPage()
-                        .tabItem {
-                            Image(systemName: "magnifyingglass")
-                            Text("Suchen")
-                        }
-                    
-                    LawsOverviewView()
-                        .tabItem {
-                            Image("lawBookIcon2")
-                                .renderingMode(.template)
-                            Text("Gesetze")
-                        }
-                    
-                    NewsView()
-                        .tabItem {
-                            Image(systemName: "newspaper")
-                            Text("News")
-                        }
-                }
+                TabBarView()
                 // Show the animation on launch
                 if showLaunchAnimation {
                     LaunchView(showLaunchAnimation: $showLaunchAnimation)
@@ -72,3 +44,32 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
 }
+
+//TabView(selection: $selection) {
+//    HomeView()
+//        .preferredColorScheme(.light)
+//        .tabItem {
+//            Image(systemName: "house")
+//            Text("Home")
+//        }
+//    
+//    SearchPage()
+//        .tabItem {
+//            Image(systemName: "magnifyingglass")
+//            Text("Suchen")
+//        }
+//    
+//    LawsOverviewView()
+//        .tabItem {
+//            Image("lawBookIcon2")
+//                .renderingMode(.template)
+//            Text("Gesetze")
+//        }
+//    
+//    NewsView()
+//        .tabItem {
+//            Image(systemName: "newspaper")
+//            Text("News")
+//        }
+//
+//}
