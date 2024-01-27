@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+final class StorageManager {
+    
+    let shared = StorageManager()
+    private init() { }
+    
+}
