@@ -22,37 +22,51 @@ struct SettingsView: View {
             VStack {
                 if let user = userVM.user {
                     
-                    if let urlString = userVM.user?.profileImagePath, let url = URL(string: urlString) {
-                        AsyncImage(url: url) { image in
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 100, height: 100)
-                                .clipShape(Circle())
-                        } placeholder: {
-                            ProgressView()
-                                .frame(width: 100, height: 100)
-                        }
-                    } else {
-                        Image(systemName: "person")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 100, height: 100)
-                            .padding()
-                            .background {
-                                Circle()
+                    ScrollView() {
+                        ZStack {
+                            if let urlString = userVM.user?.profileImagePath, let url = URL(string: urlString) {
+                                AsyncImage(url: url) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 100, height: 100)
+                                        .clipShape(Circle())
+                                } placeholder: {
+                                    ProgressView()
+                                        .frame(width: 100, height: 100)
+                                }
+                            } else {
+                                Image(systemName: "person")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 100, height: 100)
+                                    .padding()
+                                    .background {
+                                        Circle()
+                                            .foregroundStyle(Color.theme.textColor)
+                                    }
+                            }
+                            
+                            PhotosPicker(selection: $selectedItem) {
+                                Image(systemName: "chevron.down")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 10, height: 10)
                                     .foregroundStyle(Color.theme.textColor)
                             }
-                    }
-                    
-                    PhotosPicker(selection: $selectedItem) {
-                        Text("Profilbild ändern")
-                            .font(.system(size: 10))
-                            .foregroundStyle(Color.theme.textColor)
-                    }
-                    
-                    ScrollView {
+                            .background {
+                                Color.black.blur(radius: 5)
+                            }
+                            .offset(y: 40)
+                        }
+
                         VStack {
+                            
+                            Text((user.surname ?? "") + (" ") + (user.lastname ?? ""))
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .padding()
+                            
                             // Favorisierte Cases
                             VStack(alignment: .leading) {
                                 HStack {
@@ -111,6 +125,7 @@ struct SettingsView: View {
                             }
                         }
                     }
+                    .scrollIndicators(.hidden)
                     
 //                    Spacer()
                     

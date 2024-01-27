@@ -27,13 +27,18 @@ struct HomeHeader: View {
                 
                 NavigationLink {
                     SettingsView()
-                } label: {
-                    if userVM.user != nil {
-                        Image("profilePicture")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 55, height: 55)
-                            .cornerRadius(20)
+                } label: { 
+                    if let urlString = userVM.user?.profileImagePath, let url = URL(string: urlString) {
+                        AsyncImage(url: url) { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 55, height: 55)
+                                .cornerRadius(20)
+                        } placeholder: {
+                            ProgressView()
+                                .frame(width: 55, height: 55)
+                        }
                     } else {
                         Image(systemName: "person")
                             .resizable()
