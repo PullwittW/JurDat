@@ -22,7 +22,9 @@ struct LaunchView: View {
     private func appendToString1() {
         for index in text1 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                emptyString1.append(index)
+                withAnimation(.bouncy) {
+                        emptyString1.append(index)
+                }
             }
         }
     }
@@ -30,7 +32,9 @@ struct LaunchView: View {
     private func appendToString2() {
         for index in text2 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                emptyString2.append(index)
+                withAnimation(.bouncy) {
+                    emptyString2.append(index)
+                }
             }
         }
     }
@@ -63,8 +67,10 @@ struct LaunchView: View {
             }
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    appendToString1()
-                    appendToString2()
+                    withAnimation(.bouncy(duration: 0.5)) {
+                        appendToString1()
+                        appendToString2()
+                    }
                 }
                 // Set show launch animation to false after x seconds
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
