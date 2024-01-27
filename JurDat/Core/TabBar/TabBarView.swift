@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct TabBarView: View {
+    
+    @State private var selection: String = "home"
+    @State private var tabSelection: TabBarItem = .home
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        CustomTabBarContainerView(selection: $tabSelection) {
+            HomeView()
+                .tabBarItem(tab: .home, selection: $tabSelection)
+            
+            SearchPage()
+                .tabBarItem(tab: .cases, selection: $tabSelection)
+            
+            LawsOverviewView()
+                .tabBarItem(tab: .books, selection: $tabSelection)
+            
+            NewsView()
+                .tabBarItem(tab: .news, selection: $tabSelection)
+        }
     }
 }
 
-#Preview {
-    TabBarView()
+struct TabBarView_Previews: PreviewProvider {
+    static var previews: some View {
+        TabBarView()
+    }
 }
