@@ -15,6 +15,7 @@ struct SignUpLastName: View {
     @EnvironmentObject var user: SettingsViewModel
     @State private var showError: Bool = false
     @State private var error: Error? = nil
+    @State private var successFeedback: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -42,6 +43,7 @@ struct SignUpLastName: View {
             }
             .toolbar(.hidden, for: .tabBar)
             .navigationBarBackButtonHidden()
+            .sensoryFeedback(.success, trigger: successFeedback)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(action: {dismiss()}, label: {
@@ -72,6 +74,7 @@ struct SignUpLastName: View {
                 email.userEmail = ""
                 email.userPassword = ""
                 user.allDataValid = true
+                successFeedback.toggle()
                 dismiss()
             }, label: {
                 PurpleButton(buttonName: "Registrieren")

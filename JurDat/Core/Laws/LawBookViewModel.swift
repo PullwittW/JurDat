@@ -60,16 +60,15 @@ class LawBookViewModel: ObservableObject {
     }
     
 //    func loadLawBook() async throws {
-//        guard let url = URL(string: "https://de.openlegaldata.io/api/law_books/?slug=patg&code=&latest=true") else { return }
+//        guard let url = URL(string: "https://de.openlegaldata.io/api/law_books/?slug=owig-1968&code=&latest=true") else { return }
 //        Task {
 //            do {
 //                let (data, response) = try await URLSession.shared.data(from: url)
 //                if 200..<300 ~= (response as? HTTPURLResponse)?.statusCode ?? 0 {
 //                    print("SUCCESS LOADING LAWBOOK")
 //                }
-//                let lawBooksResult = try JSONDecoder().decode(LawBookResult.self, from: data)
+//                let lawBooksResult = try JSONDecoder().decode(LawbookResult.self, from: data)
 //                lawBooks = lawBooksResult.results
-//                
 //                For uploading cases to Firestore
 //                for lawbook in lawBooks {
 //                    try? await LawbookManager.shared.uploadCase(lawbook: lawbook)

@@ -17,6 +17,7 @@ struct SignInView: View {
     @EnvironmentObject var user: SettingsViewModel
     @State private var showError: Bool = false
     @State private var error: Error? = nil
+    @State private var successFeedback: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -45,6 +46,7 @@ struct SignInView: View {
         }
         .toolbar(.hidden, for: .tabBar)
         .navigationBarBackButtonHidden()
+        .sensoryFeedback(.success, trigger: successFeedback)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {dismiss()}, label: {
@@ -91,6 +93,7 @@ struct SignInView: View {
                     showError.toggle()
                 } else {
                     email.singIn()
+                    successFeedback.toggle()
                     dismiss()
                 }
             }, label: {

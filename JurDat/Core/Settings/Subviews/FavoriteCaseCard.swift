@@ -23,6 +23,7 @@ struct FavoriteCaseCard: View {
                 .padding()
         }
         .frame(maxWidth: .infinity)
+        .frame(minHeight: 40)
         .frame(height: 40)
         .foregroundStyle(Color.white)
         .bold()

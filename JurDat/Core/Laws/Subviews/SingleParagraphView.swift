@@ -14,7 +14,7 @@ struct SingleParagraphView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            if !paragraph.content.isEmpty && paragraph.order != 0 {
+            if !paragraph.content.isEmpty && paragraph.order != 0 && paragraph.section != "Inhaltsübersicht" {
                 VStack(alignment: .leading) {
                     Text(paragraph.title.isEmpty ? "\(paragraph.section)" : "\(paragraph.section) - \(paragraph.title)")
                         .fontWeight(.heavy)

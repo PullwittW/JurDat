@@ -9,19 +9,17 @@ import SwiftUI
 
 struct HomeHeader: View {
     @EnvironmentObject var userVM: SettingsViewModel
+    @State private var showWelcommingText: Bool = true
     
     var body: some View {
         NavigationStack {
             HStack {
-                if userVM.user != nil {
-                    Text("Hi, \(userVM.user?.surname ?? "")")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                } else {
-                    Text("Hi")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                }
+                Image(systemName: "bell")
+                    .resizable()
+                    .scaledToFill()
+                    .foregroundStyle(Color.theme.purple)
+                    .bold()
+                    .frame(width: 25, height: 25)
             
                 Spacer()
                 
@@ -33,11 +31,12 @@ struct HomeHeader: View {
                             image
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 55, height: 55)
+                                .clipShape(Circle())
+                                .frame(width: 45, height: 45)
                                 .cornerRadius(20)
                         } placeholder: {
                             ProgressView()
-                                .frame(width: 55, height: 55)
+                                .frame(width: 45, height: 45)
                         }
                     } else {
                         Image(systemName: "person")
@@ -45,11 +44,8 @@ struct HomeHeader: View {
                             .scaledToFit()
                             .foregroundStyle(.white)
                             .padding(8)
-                            .background {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .foregroundStyle(Color.theme.textColor)
-                            }
-                            .frame(width: 55, height: 55)
+                            .clipShape(Circle())
+                            .frame(width: 45, height: 45)
                     }
                 }
             }

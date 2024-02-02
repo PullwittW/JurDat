@@ -49,6 +49,7 @@
 		726AF5872B20AA4C00FDC41B /* Kadwa-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 726AF5862B20AA4C00FDC41B /* Kadwa-Bold.ttf */; };
 		726AF5892B21B54B00FDC41B /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726AF5882B21B54B00FDC41B /* ErrorHandler.swift */; };
 		72775B102B6491E000532E4D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 72775B0F2B6491E000532E4D /* FirebaseStorage */; };
+		727F8DC62B6D3F5E001B8192 /* SignUpPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727F8DC52B6D3F5E001B8192 /* SignUpPhotoView.swift */; };
 		72AC4D262AFE33250008C9A7 /* SignInEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AC4D252AFE33250008C9A7 /* SignInEmailViewModel.swift */; };
 		72AC4D282AFE3B360008C9A7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AC4D272AFE3B360008C9A7 /* SettingsView.swift */; };
 		72B7643A2AFD7F7D005CDA43 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B764392AFD7F7C005CDA43 /* HomeHeader.swift */; };
@@ -113,6 +114,7 @@
 		726AF5842B20A9D700FDC41B /* Kadwa-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kadwa-Regular.ttf"; sourceTree = "<group>"; };
 		726AF5862B20AA4C00FDC41B /* Kadwa-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kadwa-Bold.ttf"; sourceTree = "<group>"; };
 		726AF5882B21B54B00FDC41B /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		727F8DC52B6D3F5E001B8192 /* SignUpPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPhotoView.swift; sourceTree = "<group>"; };
 		72AC4D1F2AFE29270008C9A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		72AC4D252AFE33250008C9A7 /* SignInEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailViewModel.swift; sourceTree = "<group>"; };
 		72AC4D272AFE3B360008C9A7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				72D8B2FB2AF2AE250030770A /* SignUpView.swift */,
 				7223ADC12B553E4300461236 /* SignUpEmailView.swift */,
 				7223ADC52B553E5E00461236 /* SignUpPasswordView.swift */,
+				727F8DC52B6D3F5E001B8192 /* SignUpPhotoView.swift */,
 				7223ADC32B553E4F00461236 /* SignUpNameView.swift */,
 				7228B60F2B5AC688008E6EAD /* SignUpLastName.swift */,
 			);
@@ -539,6 +542,7 @@
 				7258AAD42B056F55005A86DD /* CaseDetailView.swift in Sources */,
 				72CD4B802B6542D700B929CB /* FavoriteNewsCard.swift in Sources */,
 				72C5074B2B15481E004EBADA /* NewsModel.swift in Sources */,
+				727F8DC62B6D3F5E001B8192 /* SignUpPhotoView.swift in Sources */,
 				72CD4B742B650D3900B929CB /* TabBarView.swift in Sources */,
 				7258AADE2B0FE846005A86DD /* AddToLawsuitSheet.swift in Sources */,
 				72CD4B762B650EA100B929CB /* CustomTabBarView.swift in Sources */,

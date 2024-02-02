@@ -20,7 +20,7 @@ struct HomeView: View {
     @State private var lawsuitCardSheet: Bool = false
     @State private var showError: Bool = false
     @State private var error: Error? = nil
-//    @State private var showNameSheet: Bool = false
+    @State private var successFeedback: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -111,6 +111,7 @@ struct HomeView: View {
                         newSuitDescription = ""
                         suitSheet = false
                         newSuitSheet = false
+                        successFeedback.toggle()
                     }
                 }, label: {
                     Text("Erstellen")
@@ -131,6 +132,7 @@ struct HomeView: View {
                 
             }
         }
+        .sensoryFeedback(.success, trigger: successFeedback)
     }
     
     var noUserCard: some View {

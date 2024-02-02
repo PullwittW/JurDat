@@ -13,6 +13,7 @@ struct CustomTabBarView: View {
     let tabs: [TabBarItem]
     @Binding var selection: TabBarItem
     @Namespace private var namespace
+    @State private var feedback: Bool = false
     
     var body: some View {
         if !userVM.showingSettingsView {
@@ -59,6 +60,7 @@ extension CustomTabBarView {
                 }
             }
         )
+        .sensoryFeedback(.selection, trigger: feedback)
     }
     
     private var tabBarVersion2: some View {
@@ -67,6 +69,7 @@ extension CustomTabBarView {
                 tabView2(tab: tab)
                     .onTapGesture {
                         switchToTab(tab: tab)
+                        feedback.toggle()
                     }
             }
         }
