@@ -16,7 +16,7 @@ struct CustomTabBarView: View {
     @State private var feedback: Bool = false
     
     var body: some View {
-        if !userVM.showingSettingsView {
+        if userVM.showingSettingsView {
             tabBarVersion2
         }
     }
@@ -76,7 +76,7 @@ extension CustomTabBarView {
         .padding(6)
         .background { Color.white.ignoresSafeArea() }
         .cornerRadius(10)
-        .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
+        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 0)
         .padding(.horizontal)
     }
     

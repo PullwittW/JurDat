@@ -24,7 +24,7 @@ struct SignInView: View {
             ZStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 20)
-                        .foregroundStyle(Color.theme.purple)
+                        .foregroundStyle(Color.theme.primaryPurple)
                         
                     VStack {
                         Spacer()
@@ -44,7 +44,6 @@ struct SignInView: View {
                 .padding()
             }
         }
-        .toolbar(.hidden, for: .tabBar)
         .navigationBarBackButtonHidden()
         .sensoryFeedback(.success, trigger: successFeedback)
         .toolbar {

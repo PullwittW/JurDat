@@ -42,7 +42,7 @@ struct LaunchView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.theme.purple.ignoresSafeArea()
+                Color.theme.primaryPurple.ignoresSafeArea()
                 
                 ZStack {
                     withAnimation(.easeIn(duration: 0.5)) {

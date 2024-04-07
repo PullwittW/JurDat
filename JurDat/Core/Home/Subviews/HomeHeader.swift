@@ -14,11 +14,11 @@ struct HomeHeader: View {
     var body: some View {
         NavigationStack {
             HStack {
-                Image(systemName: "bell")
+                Image(systemName: "bell.badge")
                     .resizable()
                     .scaledToFill()
-                    .foregroundStyle(Color.theme.purple)
-                    .bold()
+                    .foregroundStyle(Color.theme.primaryPurple)
+                    .fontWeight(.semibold)
                     .frame(width: 25, height: 25)
             
                 Spacer()

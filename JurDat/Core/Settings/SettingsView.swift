@@ -20,44 +20,8 @@ struct SettingsView: View {
         NavigationStack {
             VStack {
                 if let user = userVM.user {
-                    
                     ScrollView() {
-                        ZStack {
-                            if let urlString = userVM.user?.profileImagePath, let url = URL(string: urlString) {
-                                AsyncImage(url: url) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 100, height: 100)
-                                        .clipShape(Circle())
-                                } placeholder: {
-                                    ProgressView()
-                                        .frame(width: 100, height: 100)
-                                }
-                            } else {
-                                Image(systemName: "person")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 100, height: 100)
-                                    .padding()
-                                    .background {
-                                        Circle()
-                                            .foregroundStyle(Color.theme.textColor)
-                                    }
-                            }
-                            
-                            PhotosPicker(selection: $selectedItem) {
-                                Image(systemName: "chevron.down")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 10, height: 10)
-                                    .foregroundStyle(Color.theme.textColor)
-                            }
-                            .background {
-                                Color.black.blur(radius: 5)
-                            }
-                            .offset(y: 40)
-                        }
+                        profileImage
 
                         VStack {
                             
@@ -66,132 +30,23 @@ struct SettingsView: View {
                                 .fontWeight(.bold)
                                 .padding()
                             
-                            // Favorisierte Cases
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text("Fälle")
-                                        .foregroundStyle(Color("TextColor"))
-                                        .font(.callout)
-                                        .fontWeight(.semibold)
-                                    Spacer()
-                                }
-                                Divider()
-                                
-                                ForEach(userVM.user?.favoriteCases ?? ["Kein Fall favorisiert"], id: \.self) { caseItem in
-                                    FavoriteCaseCard(slug: caseItem)
-                                        .padding(.bottom, 5)
-                                }
-                            }
-                            .padding(.vertical)
-                            
-                            // Favorisierte News
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text("News")
-                                        .foregroundStyle(Color("TextColor"))
-                                        .font(.callout)
-                                        .fontWeight(.semibold)
-                                    Spacer()
-                                }
-                                Divider()
-                                
-                                ForEach(userVM.user?.favoriteNews ?? ["Keine News favorisiert"], id: \.self) { news in
-                                    FavoriteNewsCard(title: news)
-                                        .padding(.bottom, 5)
-                                }
-                            }
-                            .padding(.bottom)
+                            // Ansicht der Favorisierten News, Fälle, Gesetze
+                            userFavorites
                             
                             // Email Einstellungen
-                            VStack {
-                                HStack {
-                                    Text("Email")
-                                        .foregroundStyle(Color("TextColor"))
-                                        .font(.callout)
-                                        .fontWeight(.semibold)
-                                    Spacer()
-                                }
-                                Divider()
-                                
-                                if userVM.authProviders.contains(.email) {
-                                    updateEmailButton
-                                    updatePasswordButton
-                                    resetPasswordButton
-                                        .padding(.bottom)
-                                }
-                                userLogOutButton
-                                userDeleteButton
-                            }
+                            userSignedInEmailSettings
                         }
                     }
                     .scrollIndicators(.hidden)
                     
-//                    Spacer()
-                    
                 } else {
-                    VStack {
-                        Spacer()
-                        Text("JurDat.")
-                            .foregroundStyle(Color.theme.purple)
-                            .font(.custom("Kadwa-Bold", size: 63))
-                        Spacer()
-                        VStack(alignment: .leading, spacing: 40) {
-                            HStack {
-                                Image(systemName: "hammer.fill") // "hammer"
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 50)
-                                    .padding(.trailing)
-
-                                Text("Erhalte Zugriff auf aktuelle Gerichtsentscheidungen")
-                            }
-                            Divider()
-                            HStack {
-                                Image(systemName: "text.book.closed.fill") // "lawBookIcon2"
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 50)
-                                    .padding(.trailing)
-
-                                Text("Die 'Gesetze'-Überscht bietet dir aktelle Gesetzestexte")
-                            }
-                            Divider()
-                            HStack {
-                                Image(systemName: "newspaper")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 50)
-                                    .padding(.trailing)
-            
-                                Text("Beschlüsse und Entscheidungen des Bundestags kannst du in der 'News'-Übersicht einsehen")
-                            }
-                        }
-                        .foregroundStyle(Color.theme.textColor)
-                        .bold()
-                        .multilineTextAlignment(.leading)
-                        .frame(height: 400)
-                        Spacer()
-                        userSignUpButton
-                            .padding(.bottom, 5)
-                        HStack {
-                            Text("Du hast schon einen Account?")
-                                .foregroundStyle(Color.theme.textColor)
-                            NavigationLink("Anmelden") {
-                                SignInView()
-                            }
-                            .bold()
-                            .foregroundStyle(Color.theme.purple)
-                        }
-                    }
+                    userNotSignedInView
                 }
             }
             .padding()
             .navigationTitle(userVM.user?.email ?? "")
             .navigationBarBackButtonHidden()
             .onAppear {
-                userVM.showingSettingsView = true
-            }
-            .onDisappear {
                 userVM.showingSettingsView = false
             }
             .task {
@@ -214,6 +69,164 @@ struct SettingsView: View {
             
         }
         .toolbar(.hidden, for: .tabBar)
+    }
+    
+    var userNotSignedInView: some View {
+        VStack {
+            Spacer()
+            Text("JurDat.")
+                .foregroundStyle(Color.theme.primaryPurple)
+                .font(.custom("Kadwa-Bold", size: 63))
+            Spacer()
+            VStack(alignment: .leading, spacing: 40) {
+                HStack {
+                    Image(systemName: "hammer.fill") // "hammer"
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 50)
+                        .padding(.trailing)
+
+                    Text("Erhalte Zugriff auf aktuelle Gerichtsentscheidungen")
+                }
+                Divider()
+                HStack {
+                    Image(systemName: "text.book.closed.fill") // "lawBookIcon2"
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 50)
+                        .padding(.trailing)
+
+                    Text("Die 'Gesetze'-Überscht bietet dir aktelle Gesetzestexte")
+                }
+                Divider()
+                HStack {
+                    Image(systemName: "newspaper")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 50)
+                        .padding(.trailing)
+
+                    Text("Beschlüsse und Entscheidungen des Bundestags kannst du in der 'News'-Übersicht einsehen")
+                }
+            }
+            .foregroundStyle(Color.theme.textColor)
+            .bold()
+            .multilineTextAlignment(.leading)
+            .frame(height: 400)
+            Spacer()
+            userSignUpButton
+                .padding(.bottom, 5)
+            HStack {
+                Text("Du hast schon einen Account?")
+                    .foregroundStyle(Color.theme.textColor)
+                NavigationLink("Anmelden") {
+                    SignInView()
+                }
+                .bold()
+                .foregroundStyle(Color.theme.primaryPurple)
+            }
+        }
+    }
+    
+    var profileImage: some View {
+        ZStack {
+            if let urlString = userVM.user?.profileImagePath, let url = URL(string: urlString) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                } placeholder: {
+                    ProgressView()
+                        .frame(width: 100, height: 100)
+                }
+            } else {
+                Image(systemName: "person")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 100, height: 100)
+                    .padding()
+                    .background {
+                        Circle()
+                            .foregroundStyle(Color.theme.textColor)
+                    }
+            }
+            
+            PhotosPicker(selection: $selectedItem) {
+                Image(systemName: "chevron.down")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 10, height: 10)
+                    .foregroundStyle(Color.theme.textColor)
+            }
+            .background {
+                Color.black.blur(radius: 5)
+            }
+            .offset(y: 40)
+        }
+    }
+    
+    var userSignedInEmailSettings: some View {
+        VStack {
+            HStack {
+                Text("Email")
+                    .foregroundStyle(Color("TextColor"))
+                    .font(.callout)
+                    .fontWeight(.semibold)
+                Spacer()
+            }
+            Divider()
+            
+            if userVM.authProviders.contains(.email) {
+                updateEmailButton
+                updatePasswordButton
+                resetPasswordButton
+                    .padding(.bottom)
+            }
+            userLogOutButton
+            userDeleteButton
+        }
+    }
+    
+    var userFavorites: some View {
+        VStack {
+            // Favorisierte Cases
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("Fälle")
+                        .foregroundStyle(Color("TextColor"))
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                    Spacer()
+                }
+                Divider()
+                
+                ForEach(userVM.user?.favoriteCases ?? ["Kein Fall favorisiert"], id: \.self) { caseItem in
+                    FavoriteCaseCard(slug: caseItem)
+                        .padding(.bottom, 5)
+                }
+            }
+            .padding(.vertical)
+            
+            // Favorisierte News
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("News")
+                        .foregroundStyle(Color("TextColor"))
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                    Spacer()
+                }
+                Divider()
+                
+                ForEach(userVM.user?.favoriteNews ?? ["Keine News favorisiert"], id: \.self) { news in
+                    FavoriteNewsCard(title: news)
+                        .padding(.bottom, 5)
+                }
+            }
+            .padding(.bottom)
+        }
     }
     
     var userSignUpButton: some View {

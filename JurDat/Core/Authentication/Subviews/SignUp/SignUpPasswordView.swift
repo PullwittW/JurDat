@@ -22,7 +22,7 @@ struct SignUpPasswordView: View {
                 VStack {
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
-                            .foregroundStyle(Color.theme.purple)
+                            .foregroundStyle(Color.theme.primaryPurple)
                             
                         VStack {
                             Spacer()

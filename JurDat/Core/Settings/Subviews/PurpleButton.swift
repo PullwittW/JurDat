@@ -16,7 +16,7 @@ struct PurpleButton: View {
             .bold()
             .frame(height: 55)
             .frame(maxWidth: .infinity)
-            .background(Color.accent)
+            .background(Color.theme.primaryPurple)
             .cornerRadius(10)
     }
 }

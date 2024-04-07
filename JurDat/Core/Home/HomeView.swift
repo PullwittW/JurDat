@@ -24,12 +24,12 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 0) {
                 if userVM.user != nil {
                     HomeHeader()
                 
                     SuitHeader()
-                        .padding(.vertical)
+                        .padding(.vertical, 10)
                     
                     ScrollView(showsIndicators: false) {
                         allSuitsCardView
@@ -52,17 +52,6 @@ struct HomeView: View {
                 }
             }
             .padding()
-//            .onAppear {
-//                if userVM.user != nil {
-//                    if userVM.user?.surname == "" || userVM.user?.lastname == "" || userVM.user?.surname == nil || userVM.user?.lastname == nil {
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-//                            showNameSheet.toggle()
-//                        }
-//                    } else {
-//                        print(userVM.user?.surname)
-//                    }
-//                }
-//            }
             .sheet(isPresented: $suitSheet) {
                 SuitSheetView(newSuitSheet: $newSuitSheet)
                     .presentationDetents([.height(UIScreen.main.bounds.height*0.15)])
@@ -71,10 +60,9 @@ struct HomeView: View {
                             .presentationDetents([.medium])
                     }
             }
-//            .sheet(isPresented: $showNameSheet) {
-//                nameSubmit
-//                    .presentationDetents([.medium])
-//            }
+            .onAppear {
+                userVM.showingSettingsView = true
+            }
         }
     }
     
@@ -151,7 +139,7 @@ struct HomeView: View {
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 15, style: .continuous)
-                    .fill(Color.theme.purple)
+                    .fill(Color.theme.primaryPurple)
             }
         }
     }

@@ -110,7 +110,7 @@ struct NewsDetailView: View {
             
             HStack(spacing: 10) {
                 Rectangle()
-                    .foregroundStyle(Color.theme.purple)
+                    .foregroundStyle(Color.theme.primaryPurple)
                     .frame(width: 3)
                 VStack(alignment: .leading) {
                     ForEach(news.initiative ?? [], id: \.self) { news in

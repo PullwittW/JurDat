@@ -37,10 +37,10 @@ enum TabBarItem: Hashable {
     
     var color: Color {
         switch self {
-        case .home: return Color.theme.purple
-        case .cases: return Color.theme.purple
-        case .books: return Color.theme.purple
-        case .news: return Color.theme.purple
+        case .home: return Color.theme.primaryPurple
+        case .cases: return Color.theme.primaryPurple
+        case .books: return Color.theme.primaryPurple
+        case .news: return Color.theme.primaryPurple
         }
     }
 }

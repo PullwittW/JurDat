@@ -29,7 +29,7 @@ struct FavoriteCaseCard: View {
         .bold()
         .background {
             RoundedRectangle(cornerRadius: 10)
-                .foregroundStyle(Color.theme.purple)
+                .foregroundStyle(Color.theme.primaryPurple)
                 .frame(height: 40)
         }
     }

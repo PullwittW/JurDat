@@ -13,6 +13,7 @@ import FirebaseAuth
 class SignInEmailViewModel: ObservableObject {
     @Published var userEmail = ""
     @Published var userPassword = ""
+//    @Published var showingLoginView: Bool = false
     
     func signUp() {
         guard !userEmail.isEmpty, !userPassword.isEmpty else {

@@ -37,7 +37,7 @@ struct LawsuitCard: View {
         .frame(maxWidth: .infinity)
         .background {
             RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .fill(Color.theme.purple)
+                .fill(Color.theme.primaryPurple)
         }
         .onTapGesture {
             showLawsuitDetailView.toggle()

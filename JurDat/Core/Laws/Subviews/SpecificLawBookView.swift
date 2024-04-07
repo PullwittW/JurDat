@@ -76,24 +76,6 @@ struct LawBookView: View {
                     })
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-//                        if !newsIsFavorite {
-//                            userVM.addNews(news: news)
-//                            newsIsFavorite = true
-//                            print("News is favorite")
-//                        } else {
-//                            userVM.removeNews(news: news)
-//                            newsIsFavorite = false
-//                            print("News is no favorite")
-//                        }
-                    } label: {
-                        Image(systemName: "heart")
-                            .resizable()
-                            .fontWeight(.bold)
-                    }
-                    .disabled(userVM.user != nil ? false : true)
-                }
-                ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {}, label: {
                         Image(systemName: "plus")
                             .resizable()

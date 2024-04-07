@@ -16,9 +16,21 @@ struct SingleParagraphView: View {
         VStack(alignment: .leading) {
             if !paragraph.content.isEmpty && paragraph.order != 0 && paragraph.section != "Inhaltsübersicht" {
                 VStack(alignment: .leading) {
-                    Text(paragraph.title.isEmpty ? "\(paragraph.section)" : "\(paragraph.section) - \(paragraph.title)")
-                        .fontWeight(.heavy)
-                    
+                    HStack {
+                        Text(paragraph.title.isEmpty ? "\(paragraph.section)" : "\(paragraph.section) - \(paragraph.title)")
+                            .fontWeight(.heavy)
+                        Spacer()
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "heart")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 15, height: 15)
+                                .bold()
+                        }
+
+                    }
                     Divider()
                         .padding(.bottom, 5)
                     
