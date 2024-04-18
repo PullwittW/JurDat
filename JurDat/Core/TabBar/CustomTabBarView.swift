@@ -34,11 +34,6 @@ struct CustomTabBarView_Previews: PreviewProvider {
     }
 }
 
-//#Preview {
-//    
-//    
-//}
-
 extension CustomTabBarView {
     
     private func tabView2(tab: TabBarItem) -> some View {

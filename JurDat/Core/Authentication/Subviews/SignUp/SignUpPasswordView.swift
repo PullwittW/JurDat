@@ -38,7 +38,7 @@ struct SignUpPasswordView: View {
                     Spacer()
                     
                     NavigationLink {
-                        SignUpNameView()
+                        SignUpPhotoView()
 //                        HomeView()
                     } label: {
                         PurpleButton(buttonName: "Weiter")
